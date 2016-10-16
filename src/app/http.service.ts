@@ -8,7 +8,7 @@ export class HttpService {
   constructor(private http: Http) { }
 
   getUmbPageData(url){
-      return this.http.get('http://localhost:49570/umbraco/api/contentApi/getData?url=' + url)
+      return this.http.get('http://umb.dynamikfabrikken.com/umbraco/api/contentApi/getData?url=' + url)
       .map((response: Response) => response.json());
   }
 }
