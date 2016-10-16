@@ -1,17 +1,17 @@
-import { NgModule }       from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BrowserModule }  from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms';
-import { HttpModule }    from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule }  from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
-import { LocationStrategy, HashLocationStrategy, PathLocationStrategy} from '@angular/common';
+import { LocationStrategy, PathLocationStrategy} from '@angular/common';
 
-import { AppComponent }         from './app.component';
+import { AppComponent } from './app.component';
 import { routing, appRoutingProviders }  from './app.routing';
-import { HttpService }  from './http.service';
+import { HttpService } from './http.service';
 
-import { PageComponent }    from './page/page.component';
+import { PageComponent } from './page/page.component';
 import { AboutComponent }  from './about/about.component';
 import { ErrorComponent } from './error/error.component';
 
@@ -29,7 +29,7 @@ import { ErrorComponent } from './error/error.component';
     ErrorComponent
   ],
   providers: [
-    appRoutingProviders, 
+    appRoutingProviders,
     {provide: LocationStrategy, useClass: PathLocationStrategy},
     HttpService
   ],

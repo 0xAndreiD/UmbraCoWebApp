@@ -7,8 +7,6 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-
-    title = 'Umbraco + Angular2';    
+    title = 'Umbraco + Angular2';
     constructor(){}
-
 }
