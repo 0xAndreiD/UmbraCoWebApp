@@ -1,20 +1,20 @@
-import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {ModuleWithProviders} from "@angular/core";
+import {Routes, RouterModule} from "@angular/router";
+import {ErrorComponent} from "./error/error.component";
+import {RouteController} from "./services/RouteController";
+import {ContentComponent} from "./content/content.component";
 
-import { PageComponent } from './page/page.component';
-import { AboutComponent } from './about/about.component';
-import { ErrorComponent } from './error/error.component';
-
-const appRoutes: Routes = [
-  { path: 'subpage-1', component: PageComponent },
-  { path: 'subpage-1/nested-subpage', component: PageComponent },
-  { path: 'subpage-2', component: PageComponent },
-  { path: '', component: AboutComponent },
-  { path: '**', component: ErrorComponent }
+var appRoutes: Routes = [
+  {
+    path: '', component: ContentComponent, children: [{
+    path: "**",
+    component: ErrorComponent,
+    canActivate: [RouteController]
+  }], canActivate: [RouteController], canActivateChild: [RouteController]
+  },
+  {path: '**', component: ErrorComponent}
 ];
 
-export const appRoutingProviders: any[] = [
-
-];
+export const appRoutingProviders: any[] = [];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

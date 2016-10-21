@@ -5,5 +5,5 @@
 -->
 
 <!-- fake image -->
-<img src="{{img}}" alt="{{umbpage?.contentImages[0].altText}}">
+<img *ngFor="let img of imgs" src={{img.url}} alt={{img?.altText}}>
 

@@ -1,24 +1,4 @@
-<header>
-  <h1>
-    {{title}}
-  </h1>
-</header>
-<nav>
-  <!-- ng for creating menu items form nodes in umbraco -->
-  <a routerLink="/">About - Forside</a>
-  <a routerLink="/subpage-1">Page</a>
-  <a routerLink="/subpage-1/nested-subpage/">nested-subpage/</a>
-  <a routerLink="/subpage-2">subpage 2</a>
-</nav>
-<main>
-    <router-outlet></router-outlet>
-</main>
-
-<!--
-<div [innerHTML]="umbpage?.contentBody"></div>
-<img src="{{umbpage?.contentImages[0].croppedUrl}}" alt="">
--->
-
+<router-outlet></router-outlet>
 
 
 

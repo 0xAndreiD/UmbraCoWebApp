@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:host ul {
+  float: left;
+  background: white;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+:host li {
+  float: left;
+  position: relative;
+  width: 150px;
+  list-style: none;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+li:hover, li:hover li {
+  background: #ddd;
+}
+li li:hover, li li:hover li {
+  background: #bbb;
+}
+:host a {
+  display: block;
+  text-decoration: none;
+  padding: 5px 15px;
+  color: #000000;
+}
+
+:host ul ul {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  visibility: hidden;
+  opacity: 0;
+}
+:host ul ul ul {
+   left: 100%;
+   top: 0;
+ }
+:host  li:hover > * >  ul {
+  visibility: visible;
+  opacity: 1;
+}
