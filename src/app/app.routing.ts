@@ -1,8 +1,8 @@
 import {ModuleWithProviders} from "@angular/core";
 import {Routes, RouterModule} from "@angular/router";
-import {ErrorComponent} from "./error/error.component";
+import {ErrorComponent} from "./components/error/error.component";
 import {RouteController} from "./services/RouteController";
-import {ContentComponent} from "./content/content.component";
+import {ContentComponent} from "./components/content/content.component";
 
 var appRoutes: Routes = [
   {

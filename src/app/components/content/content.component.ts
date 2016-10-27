@@ -3,11 +3,10 @@
  */
 
 import {Component} from "@angular/core";
-import {IMenuItem} from "../model/IMenuItem";
-import {HttpService} from "../services/http.service";
-import {DataParseService} from "../services/DataParseService";
+import {IMenuItem} from "../../model/IMenuItem";
+import {HttpService} from "../../services/http.service";
+import {DataParseService} from "../../services/DataParseService";
 import {ActivatedRoute, Router} from "@angular/router";
-import {RouteController} from "../services/RouteController";
 @Component({
   templateUrl: "./content.component.html",
   styleUrls: ["./content.component.css"]

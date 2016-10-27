@@ -12,7 +12,12 @@ export class HttpService {
       .map((response: Response) => response.json());
   }
 
+  /**
+   * loads menu
+   * @returns {Promise<any>}
+   */
   getMenu():Promise<any> {
+    //It is needed to be sure that menu data is loaded once
     let loadPromise:Promise<any>=null;
     let that=this;
     return (function ():Promise<any> {

@@ -10,11 +10,6 @@ export class SeoService {
   private headElement:HTMLElement;
   private tags:IMetaTag[]=[];
   constructor( private titleService: Title){
-
-    /**
-     * get the <head> Element
-     * @type {any}
-     */
     this.headElement = <HTMLElement>document.querySelector('head');
   }
 

@@ -1,9 +1,0 @@
-<h2>{{umbpage?.name}}</h2>
-<div [innerHTML]="umbpage?.contentBody"></div>
-<!--
-<img src="{{umbpage?.contentImages[0].croppedUrl}}" alt="">
--->
-
-<!-- fake image -->
-<img *ngFor="let img of imgs" src={{img.url}} alt={{img?.altText}}>
-

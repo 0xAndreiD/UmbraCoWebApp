@@ -1,0 +1,19 @@
+<div [@wrapper]="state">
+  <div *ngIf="loaded">
+    <h2>{{umbpage?.name}}</h2>
+    <div [innerHTML]="umbpage?.contentBody"></div>
+    <!--
+    <img src="{{umbpage?.contentImages[0].croppedUrl}}" alt="">
+    -->
+
+    <!-- fake image -->
+    <div imageLazyLoadArea>
+      <div *ngFor="let img of imgs" class="image-container">
+        <div class="spinner"></div>
+        <IMG imageLazyLoadItem={{img?.croppedUrl}} alt={{img?.alt}} class="image resposive"/>
+      </div>
+    </div>
+  </div>
+  <div class="loader centered" *ngIf="!loaded"><div class="loader-inner ball-scale"><div></div></div></div>
+
+</div>
