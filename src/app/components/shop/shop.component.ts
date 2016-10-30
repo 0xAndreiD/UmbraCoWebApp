@@ -26,9 +26,12 @@ export class ShopComponent implements OnInit {
         this.shownItems=this.items;
       });
     });
+
+    //Create an observable from the input event
     Observable.fromEvent(this.search.nativeElement, "input")
       .debounceTime(300)
       .subscribe((e:Event)=> {
+        //Filters the elements
         this.shownItems = this.items.filter((item)=> {
           for (let key in item) {
             if (item.hasOwnProperty(key) && item[key].indexOf((e.target as HTMLInputElement).value) > -1) {
