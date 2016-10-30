@@ -1,20 +1,9 @@
-import {
-  Component,
-  OnInit,
-  ElementRef,
-  ViewChild,
-  OnDestroy,
-  transition,
-  trigger,
-  style,
-  animate,
-  keyframes,
-  state
-} from "@angular/core";
+import {Component, OnInit, transition, trigger, style, animate, keyframes} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
-import {Http} from "@angular/http";
 import {HttpService} from "../../services/http.service";
 import {SeoService} from "../../services/SeoService";
+
+
 @Component({
   selector: 'app-page',
   templateUrl: './page.component.html',
@@ -38,7 +27,7 @@ export class PageComponent implements OnInit {
   umbpage;
   imgs=[]
   loaded=false;
-  constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute, private seoService: SeoService, private http: Http, private el: ElementRef) {
+  constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute, private seoService: SeoService) {
   }
 
   ngOnInit() {

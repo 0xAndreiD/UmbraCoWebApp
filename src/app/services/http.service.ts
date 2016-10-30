@@ -34,4 +34,12 @@ export class HttpService {
       }
     })();
   }
+
+    getShops():Promise<any> {
+    return new Promise<any>((resolve, reject)=>{
+      this.http.get("https://demodk.mindworking.eu/resources/search/Cases.xml?deviceid=mwipad&searchtype=simpleWildCard&Status=Til%20salg&ReturnAllSolrFields=true&SimpleWildCardVal=s")
+        .map(response=>response.text())
+        .subscribe(resolve);
+    })
+  }
 }

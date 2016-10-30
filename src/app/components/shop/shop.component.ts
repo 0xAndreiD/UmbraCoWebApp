@@ -1,0 +1,42 @@
+import {Component, OnInit, ViewChild} from "@angular/core"
+import {HttpService} from "../../services/http.service";
+import {DataParseService} from "../../services/DataParseService";
+import {Observable} from "rxjs/Rx"
+
+let parseString = require("xml2js").parseString;
+
+@Component({
+  templateUrl: './shop.component.html'
+})
+export class ShopComponent implements OnInit {
+
+
+  items: any[] = [];
+  shownItems: any[] = [];
+  @ViewChild("search") search;
+
+  constructor(private httpService: HttpService, private dataParse: DataParseService) {
+
+  }
+
+  ngOnInit(): void {
+    this.httpService.getShops().then(response=> {
+      parseString(response, (err, result)=> {
+        this.items = this.dataParse.parseShopItems(result);
+        this.shownItems=this.items;
+      });
+    });
+    Observable.fromEvent(this.search.nativeElement, "input")
+      .debounceTime(300)
+      .subscribe((e:Event)=> {
+        this.shownItems = this.items.filter((item)=> {
+          for (let key in item) {
+            if (item.hasOwnProperty(key) && item[key].indexOf((e.target as HTMLInputElement).value) > -1) {
+              return true
+            }
+          }
+          return false;
+        })
+      });
+  }
+}

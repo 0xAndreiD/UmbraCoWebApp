@@ -2,6 +2,9 @@ import {Injectable} from "@angular/core";
 import {Routes, Route} from "@angular/router";
 import {PAGE_ALIAS} from "../constants/pages";
 import {IMenuItem} from "../model/IMenuItem";
+import {decodeHtml} from "../utils/utils";
+
+
 @Injectable()
 export class DataParseService {
 
@@ -29,6 +32,21 @@ export class DataParseService {
         return result;
       }
     }, []);
+  }
+
+  /**
+   * Parses shop items got from server xml
+   */
+  parseShopItems(items) {
+    return items.Cases.Case.map(item=>{
+      let item_=item.$;
+      for(let key in item_) {
+        if(item_.hasOwnProperty(key)) {
+          item_[key]=decodeHtml(item_[key])
+        }
+      }
+      return item_;
+    });
   }
 
   //Recursively finds child navigation elements

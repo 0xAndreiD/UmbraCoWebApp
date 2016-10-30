@@ -3,12 +3,14 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   Router,
-  CanActivateChild
+  CanActivateChild,
+  Routes
 } from "@angular/router";
 import {Observable} from "rxjs";
 import {HttpService} from "./http.service";
 import {DataParseService} from "./DataParseService";
 import {Injectable} from "@angular/core";
+import {ShopComponent} from "../components/shop/shop.component";
 
 @Injectable()
 export class RouteController implements CanActivate, CanActivateChild {
@@ -28,7 +30,19 @@ export class RouteController implements CanActivate, CanActivateChild {
         return;
       }
       that.http.getMenu().then((response)=> {
-        this.router.config[0].children=this.dataParse.parseMenuDataToRoutes(response);
+        let additionalRoutes: Routes = [
+          {
+            path: "shops",
+            component: ShopComponent,
+            data: {
+              title: "Shops",
+              meta: []
+            }
+          }
+        ];
+
+
+        this.router.config[0].children=[...this.dataParse.parseMenuDataToRoutes(response), ...additionalRoutes];
         this.router.resetConfig([...this.router.config])
         that.isLoaded = true;
         resolve(false);

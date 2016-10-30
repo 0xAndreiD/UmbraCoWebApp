@@ -19,6 +19,8 @@ import {RouteController} from "./services/RouteController";
 import {ContentComponent} from "./components/content/content.component";
 import {ImageLazyLoadModule, ImageLazyLoaderService, WebWorkerService} from "ng2-image-lazy-load"
 import {LoadImagesService} from "./services/LoadImagesService";
+import {ShopComponent} from "./components/shop/shop.component";
+import {ShopItemComponent} from "./components/shop/shop.item.component";
 
 WebWorkerService.enabled=false;
 @NgModule({
@@ -36,7 +38,9 @@ WebWorkerService.enabled=false;
     ErrorComponent,
     MenuComponent,
     MenuItemComponent,
-    ContentComponent
+    ContentComponent,
+    ShopComponent,
+    ShopItemComponent
   ],
   providers: [
     appRoutingProviders,
@@ -50,7 +54,7 @@ WebWorkerService.enabled=false;
       useClass: LoadImagesService
     }
   ],
-  entryComponents: [PageComponent, ErrorComponent, AppComponent],
+  entryComponents: [PageComponent, ErrorComponent, AppComponent, ShopComponent],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {
