@@ -23,7 +23,6 @@ import {SeoService} from "../../services/SeoService";
 })
 export class PageComponent implements OnInit {
 
-
   umbpage;
   imgs=[]
   loaded=false;
@@ -46,6 +45,9 @@ export class PageComponent implements OnInit {
           this.umbpage = umbpagedata.data;
           this.imgs = umbpagedata.data.contentImages;
           this.loaded=true;
+          console.log("why am I here X3 ? From page.component.ts Ivan? :-)")
         });
+
+
   }
 }

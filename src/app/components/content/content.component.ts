@@ -16,6 +16,7 @@ export class ContentComponent {
 
   title = 'Umbraco + Angular2';
   menuItems: IMenuItem[] = [];
+  umbpagegeneral;
 
   constructor(private http: HttpService, private dataParse: DataParseService) {
 
@@ -31,5 +32,11 @@ export class ContentComponent {
       })
     });
 
+    this.http.getUmbPageGeneralData()
+      .subscribe(
+        (umbpagegeneraldata: any) => {
+          this.umbpagegeneral = umbpagegeneraldata.data;
+          console.log(umbpagegeneraldata.data);
+        });
   }
 }

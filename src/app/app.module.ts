@@ -9,7 +9,6 @@ import {AppComponent} from "./components/app/app.component";
 import {routing, appRoutingProviders} from "./app.routing";
 import {HttpService} from "./services/http.service";
 import {PageComponent} from "./components/page/page.component";
-import {AboutComponent} from "./components/about/about.component";
 import {ErrorComponent} from "./components/error/error.component";
 import {SeoService} from "./services/SeoService";
 import {DataParseService} from "./services/DataParseService";
@@ -34,7 +33,6 @@ WebWorkerService.enabled=false;
   declarations: [
     AppComponent,
     PageComponent,
-    AboutComponent,
     ErrorComponent,
     MenuComponent,
     MenuItemComponent,
