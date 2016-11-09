@@ -35,7 +35,8 @@ export class ContentComponent {
     this.http.getUmbPageGeneralData()
       .subscribe(
         (umbpagegeneraldata: any) => {
-          this.umbpagegeneral = umbpagegeneraldata.data;
+          //The problem was that you received an array from server but used as object
+          this.umbpagegeneral = umbpagegeneraldata.data[0];
           console.log(umbpagegeneraldata.data);
         });
   }

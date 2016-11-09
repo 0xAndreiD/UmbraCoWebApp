@@ -45,6 +45,7 @@ export class PageComponent implements OnInit {
           this.umbpage = umbpagedata.data;
           this.imgs = umbpagedata.data.contentImages;
           this.loaded=true;
+          this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription)
           console.log("why am I here X3 ? From page.component.ts Ivan? :-)")
         });
 
