@@ -10,6 +10,7 @@ import {IMenuItem} from "../../model/IMenuItem";
   styleUrls: ["./menu.item.component.css"]
 })
 export class MenuItemComponent {
-
   @Input() items:IMenuItem[]
+
+
 }

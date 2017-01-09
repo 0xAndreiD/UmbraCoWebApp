@@ -49,6 +49,14 @@ export class DataParseService {
     });
   }
 
+  parseForm(items) {
+    return items.subform.map(item=>{
+      let item_=item.$;
+      console.log("sxsxss");
+      return item_;
+    });
+  }
+
   //Recursively finds child navigation elements
   private getChildItems(id, data): Array<IMenuItem> {
     //See Array.prototype.reduce

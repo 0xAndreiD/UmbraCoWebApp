@@ -12,9 +12,15 @@ import {SeoService} from "../../services/SeoService";
   animations: [
     trigger("wrapper", [
       transition("void => *", [
-        animate("0.5s", keyframes([
+      /*  animate("0.5s", keyframes([
           style({transform: 'translate3d(-100%, 0, 0)'}),
           style({transform: 'translate3d(0, 0, 0)'}),
+
+        ]))*/
+        /* remove css animation on index*/
+        animate("0s", keyframes([
+          style({opacity: '1'}),
+          style({opacity: '1'}),
 
         ]))
       ])

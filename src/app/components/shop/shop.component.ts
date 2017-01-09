@@ -15,11 +15,24 @@ export class ShopComponent implements OnInit {
   shownItems: any[] = [];
   @ViewChild("search") search;
 
+  mwmenutest: any[] = [];
+
   constructor(private httpService: HttpService, private dataParse: DataParseService) {
 
   }
 
   ngOnInit(): void {
+
+    this.httpService.getForms().then(response=> {
+      parseString(response, (err, result)=> {
+        //this.items = this.dataParse.parseShopItems(result);
+        //this.shownItems=this.items;
+        //console.log(result.formvalues.subforms);
+        this.mwmenutest = this.dataParse.parseForm(result);
+      });
+    });
+
+
     this.httpService.getShops().then(response=> {
       parseString(response, (err, result)=> {
         this.items = this.dataParse.parseShopItems(result);

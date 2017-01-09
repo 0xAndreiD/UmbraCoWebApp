@@ -3,6 +3,9 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 
 var domainname = "http://umb.dynamikfabrikken.com";
+///domainname = "http://localhost:50947";
+
+
 
 @Injectable()
 export class HttpService {
@@ -49,4 +52,13 @@ export class HttpService {
         .subscribe(resolve);
     })
   }
+
+  getForms():Promise<any> {
+  return new Promise<any>((resolve, reject)=>{
+    this.http.get("https://thomasjorgensen.mindworking.eu/resources/form/websiteProjects/data.xml?deviceid=mwipad")
+      .map(response=>response.text())
+      .subscribe(resolve);
+  })
+}
+
 }

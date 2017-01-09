@@ -91,3 +91,15 @@
     -webkit-transform: rotate(360deg);
   }
 }
+
+.paper-content{
+  background-color: #fff;
+  min-height: 400px;
+  color: #1c1d22;
+}
+.paper-content .container {
+    max-width: 100% !important;
+}
+@media (min-width: 1280px){
+
+}
