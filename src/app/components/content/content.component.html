@@ -5,8 +5,9 @@
   <h2>CompanyAddress: {{umbpagegeneral?.CompanyAddress}}</h2>
 </header>
 
-
+<a href="javascript:void(0)" id="main-menu-btn" onclick="toggleClass('body', 'menu-open'); "></a>
 <main-menu [menuItems]="menuItems"></main-menu>
+
 <main>
   <router-outlet></router-outlet>
 </main>
