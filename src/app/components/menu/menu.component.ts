@@ -13,9 +13,7 @@ export class MenuComponent {
   @Input() menuItems:IMenuItem[]=[]
 
   is_navbar_opened:boolean = false;
-
   constructor(){
-
   }
 
   ngOnInit():void {
