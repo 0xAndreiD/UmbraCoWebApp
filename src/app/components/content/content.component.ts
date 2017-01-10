@@ -37,7 +37,6 @@ export class ContentComponent {
         (umbpagegeneraldata: any) => {
           //The problem was that you received an array from server but used as object
           this.umbpagegeneral = umbpagegeneraldata.data[0];
-          console.log(umbpagegeneraldata.data);
         });
   }
 }

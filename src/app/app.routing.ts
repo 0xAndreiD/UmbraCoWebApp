@@ -6,13 +6,18 @@ import {ContentComponent} from "./components/content/content.component";
 
 var appRoutes: Routes = [
   {
-    path: '', component: ContentComponent, children: [{
-    path: "**",
-    component: ErrorComponent,
-    canActivate: [RouteController]
-  }], canActivate: [RouteController], canActivateChild: [RouteController]
+    path: '', component: ContentComponent,
+              children: [{
+                    path: "**",
+                    component: ErrorComponent,
+                    canActivate: [RouteController]
+               }]
+              //canActivate: [RouteController],
+              //canActivateChild: [RouteController]
   },
-  {path: '**', component: ErrorComponent}
+  {
+    path: '**', component: ErrorComponent
+  }
 ];
 
 export const appRoutingProviders: any[] = [];
