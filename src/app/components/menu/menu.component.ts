@@ -11,4 +11,19 @@ import {IMenuItem} from "../../model/IMenuItem";
 })
 export class MenuComponent {
   @Input() menuItems:IMenuItem[]=[]
+
+  is_navbar_opened:boolean = false;
+
+  constructor(){
+
+  }
+
+  ngOnInit():void {
+  }
+
+  private getWidth():string {
+    if(this.is_navbar_opened)  return "250px";
+    else return "0px";
+  }
+
 }

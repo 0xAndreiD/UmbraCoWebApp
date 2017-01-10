@@ -1,6 +1,4 @@
-
-
-<ul  *ngIf="items.length>0">
+<ul *ngIf="items.length>0">
   <li *ngFor="let item of items">
     <a routerLink={{item.path}}>{{item.name}}</a>
     <menu-item [items]="item.children"></menu-item>

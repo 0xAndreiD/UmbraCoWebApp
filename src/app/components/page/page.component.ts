@@ -30,7 +30,7 @@ import {SeoService} from "../../services/SeoService";
 export class PageComponent implements OnInit {
 
   umbpage;
-  imgs=[]
+  imgs=[];
   loaded=false;
   contentGrid: string="";
   constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute, private seoService: SeoService) {
@@ -52,10 +52,9 @@ export class PageComponent implements OnInit {
           this.umbpage = umbpagedata.data;
           this.imgs = umbpagedata.data.contentImages;
           this.loaded=true;
-          let conetentGrid = umbpagedata.data.bodyContentGrid
+          let conetentGrid = umbpagedata.data.bodyContentGrid;
           this.contentGrid = conetentGrid ? conetentGrid :"";
-          this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription)
-          console.log("why am I here X3 ? From page.component.ts Ivan? :-)")
+          this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
         });
 
 

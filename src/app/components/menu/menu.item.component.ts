@@ -12,5 +12,10 @@ import {IMenuItem} from "../../model/IMenuItem";
 export class MenuItemComponent {
   @Input() items:IMenuItem[]
 
+  constructor(){
 
+  }
+
+  ngOnInit():void {
+  }
 }

@@ -48,3 +48,42 @@ li li:hover, li li:hover li {
   visibility: visible;
   opacity: 1;
 }*/
+.closebtn {
+  cursor: pointer;
+}
+.fixed-sidebar {
+  position: fixed;
+  height: 100%;
+  width: 75px;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  background-color: #1a1a1a;
+  overflow-x: hidden;
+}
+.fixed-sidebar > ul > li > a {
+  cursor: pointer;
+}
+.fixed-sidebar > ul {
+  padding-left: 0px;
+}
+
+.fixed-sidebar a {
+  width: 100%;
+  height: 55px;
+  display: flex;
+  text-align: center;
+  text-decoration: none;
+}
+.fixed-sidebar a:hover {
+  background-color: rgb(67, 63, 63);
+}
+
+.fixed-sidebar a > span {
+  font-size: 20px;
+  font-weight: bold;
+  color: whitesmoke;
+  padding-top: 13px;
+  width: 100%;
+}
+

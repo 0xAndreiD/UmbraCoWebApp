@@ -1,3 +1,9 @@
-<nav>
-<menu-item [items]="menuItems"></menu-item>
+<div class="fixed-sidebar">
+  <ul>
+    <li><a (click)="is_navbar_opened = !is_navbar_opened"><span>Menu</span></a></li>
+  </ul>
+</div>
+<nav class="sidenav" [style.width]="getWidth()">
+  <a class="closebtn" (click)="is_navbar_opened = false">&times;</a>
+  <menu-item [items]="menuItems"></menu-item>
 </nav>
