@@ -18,7 +18,6 @@ export class MenuComponent {
   title = 'Umbraco + Angular2';
 
   constructor(){
-
   }
 
   ngOnInit():void {
