@@ -13,6 +13,7 @@ export class MenuComponent {
   @Input() menuItems:IMenuItem[]=[]
 
   is_navbar_opened:boolean = false;
+  nav_mode:string = '';
 
   constructor(){
 
@@ -21,9 +22,22 @@ export class MenuComponent {
   ngOnInit():void {
   }
 
+  private onOpenNavbar(cases:string):void {
+    this.is_navbar_opened = !this.is_navbar_opened;
+    this.nav_mode = cases;
+  }
+
   private getWidth():string {
     if(this.is_navbar_opened)  return "300px";
     else return "0px";
+  }
+
+  private getClass():string {
+    if (this.is_navbar_opened){
+      return this.nav_mode;
+    } else {
+      return '';
+    }
   }
 
 }

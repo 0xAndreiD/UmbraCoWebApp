@@ -9,9 +9,15 @@
 ul {
   padding-left: 20px;
 }
-.menu-item:hover, .offcanvas a:focus{
+.menu-item:hover, .offcanvas a:focus, .menu-item.selected {
   color: #f1f1f1;
 }
+
+.sub-panel {
+  margin-left: 10px;
+  border-left: 4px solid #d58b52;
+}
+
 .collapse-icon {
   float: right;
   color: rgb(165, 165, 165);
@@ -20,4 +26,28 @@ ul {
   margin-right: 26px;
   margin-top: 4px;
   cursor: pointer;
+  transition: ease all 320ms;
+}
+.collapse {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  -webkit-transition: opacity 1000ms, visibility 1000ms !important;
+  transition: opacity 1000ms, visibility 1000ms !important;
+}
+.collapse.in {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  animation: fade 1s !important;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
