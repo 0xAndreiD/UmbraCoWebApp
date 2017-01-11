@@ -1,14 +1,5 @@
-<header>
- <img src="{{umbpagegeneral?.SidebarImageUrl}}" alt="{{umbpagegeneral?.CompanyName}}" />
-</header>
-
-<a href="javascript:void(0)" id="main-menu-btn" onclick="toggleClass('body', 'menu-open'); "></a>
 <main-menu [menuItems]="menuItems"></main-menu>
 
 <main>
   <router-outlet></router-outlet>
 </main>
-<!--
-<div [innerHTML]="umbpage?.contentBody"></div>
-<img src="{{umbpage?.contentImages[0].croppedUrl}}" alt="">
--->

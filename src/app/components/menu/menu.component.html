@@ -1,6 +1,10 @@
 <div class="fixed-sidebar">
+  <header>
+    <img src="{{umbpagegeneral?.SidebarImageUrl}}" alt="{{umbpagegeneral?.CompanyName}}" />
+  </header>
   <ul>
-    <li><a (click)="is_navbar_opened = !is_navbar_opened"><span>Menu</span></a></li>
+    <li><a (click)="onOpenNavbar('MENU')" [class.selected]="getClass() == 'MENU'"><i class="material-icons">&#xE5D2;</i><span>Menu</span></a></li>
+    <li><a (click)="onOpenNavbar('SEARCH')" [class.selected]="getClass() == 'SEARCH'"><i class="material-icons">&#xE8B6;</i><span>Search</span></a></li>
   </ul>
 </div>
 <nav class="sidenav" [style.width]="getWidth()">

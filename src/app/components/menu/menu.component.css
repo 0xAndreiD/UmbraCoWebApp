@@ -1,3 +1,7 @@
+header {
+  height:150px;
+}
+
 .fixed-sidebar {
   position: fixed;
   height: 100%;
@@ -7,6 +11,7 @@
   left: 0;
   background-color: #1a1a1a;
   overflow-x: hidden;
+  padding-top: 150px;
 }
 .fixed-sidebar > ul > li > a {
   cursor: pointer;
@@ -17,21 +22,29 @@
 
 .fixed-sidebar a {
   width: 100%;
-  height: 55px;
+  height: 67px;
   display: flex;
   text-align: center;
   text-decoration: none;
+  color: rgb(165, 165, 165);
+  flex-direction: column;
 }
 .fixed-sidebar a:hover {
   background-color: rgb(67, 63, 63);
 }
 
+.fixed-sidebar a.selected {
+  border-left: 4px solid #d58b52;
+}
+
 .fixed-sidebar a > span {
   font-size: 20px;
-  font-weight: bold;
-  color: whitesmoke;
-  padding-top: 13px;
   width: 100%;
+}
+
+.fixed-sidebar .material-icons {
+  margin-top: 8px;
+  font-size: 25px;
 }
 
 .sidenav {
@@ -41,7 +54,7 @@
   z-index: 1;
   top: 0;
   left: 75px;
-  background-color: #111;
+  background-color: #2f2f2f;
   overflow-x: hidden;
   transition: 0.5s;
   padding: 0px;
@@ -66,6 +79,7 @@
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+  cursor: pointer;
 }
 
 @media screen and (max-height: 450px) {

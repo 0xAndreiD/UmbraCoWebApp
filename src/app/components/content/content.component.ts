@@ -14,9 +14,7 @@ import {DataParseService} from "../../services/DataParseService";
 })
 export class ContentComponent {
 
-  title = 'Umbraco + Angular2';
   menuItems: IMenuItem[] = [];
-  umbpagegeneral;
 
   constructor(private http: HttpService, private dataParse: DataParseService) {
 
@@ -28,15 +26,13 @@ export class ContentComponent {
       this.menuItems.push({
         name: "Shop",
         path: "/shops",
+        level: 0,
         children:[]
-      })
-    });
+      });
+      for (let i = 0; i < this.menuItems.length; i++) {
+        this.menuItems[i].level = 0;
+      }
 
-    this.http.getUmbPageGeneralData()
-      .subscribe(
-        (umbpagegeneraldata: any) => {
-          //The problem was that you received an array from server but used as object
-          this.umbpagegeneral = umbpagegeneraldata.data[0];
-        });
+    });
   }
 }
