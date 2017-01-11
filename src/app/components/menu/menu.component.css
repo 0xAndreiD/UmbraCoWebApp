@@ -7,6 +7,7 @@
   left: 0;
   background-color: #1a1a1a;
   overflow-x: hidden;
+  padding-top: 150px;
 }
 .fixed-sidebar > ul > li > a {
   cursor: pointer;
