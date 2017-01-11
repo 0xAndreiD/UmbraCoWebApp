@@ -4,6 +4,8 @@
 
 import {Component, Input} from "@angular/core";
 import {IMenuItem} from "../../model/IMenuItem";
+import {HttpService} from "../../services/http.service";
+
 @Component({
   selector: "main-menu",
   templateUrl: "./menu.component.html",
@@ -15,12 +17,18 @@ export class MenuComponent {
   is_navbar_opened:boolean = false;
   nav_mode:string = '';
 
-  title = 'Umbraco + Angular2';
+  umbpagegeneral;
 
-  constructor(){
+  constructor(private http: HttpService){
   }
 
   ngOnInit():void {
+    this.http.getUmbPageGeneralData()
+      .subscribe(
+        (umbpagegeneraldata: any) => {
+          //The problem was that you received an array from server but used as object
+          this.umbpagegeneral = umbpagegeneraldata.data[0];
+        });
   }
 
   private onOpenNavbar(cases:string):void {

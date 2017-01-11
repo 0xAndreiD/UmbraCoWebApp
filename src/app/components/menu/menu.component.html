@@ -1,9 +1,6 @@
 <div class="fixed-sidebar">
   <header>
-    <h1>
-      {{title}}
-    </h1>
-    <h2>CompanyAddress: </h2>
+    <img src="{{umbpagegeneral?.SidebarImageUrl}}" alt="{{umbpagegeneral?.CompanyName}}" />
   </header>
   <ul>
     <li><a (click)="onOpenNavbar('MENU')" [class.selected]="getClass() == 'MENU'"><i class="material-icons">&#xE5D2;</i><span>Menu</span></a></li>
