@@ -22,7 +22,7 @@ export class MenuComponent {
   }
 
   private getWidth():string {
-    if(this.is_navbar_opened)  return "250px";
+    if(this.is_navbar_opened)  return "300px";
     else return "0px";
   }
 

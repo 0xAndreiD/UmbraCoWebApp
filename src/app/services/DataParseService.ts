@@ -74,7 +74,8 @@ export class DataParseService {
   private mapDataObjectToMenuItem(object): IMenuItem {
     return {
       path: object.path,
-      name: object.name
+      name: object.name,
+      level: 1,
     }
   }
 

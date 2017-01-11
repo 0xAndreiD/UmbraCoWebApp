@@ -28,8 +28,14 @@ export class ContentComponent {
       this.menuItems.push({
         name: "Shop",
         path: "/shops",
+        level: 0,
         children:[]
       })
+      for (let i = 0; i < this.menuItems.length; i++) {
+        this.menuItems[i].level = 0;
+      }
+      console.log(this.menuItems)
+
     });
 
     this.http.getUmbPageGeneralData()
