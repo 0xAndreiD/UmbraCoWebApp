@@ -1,4 +1,10 @@
 <div class="fixed-sidebar">
+  <header>
+    <h1>
+      {{title}}
+    </h1>
+    <h2>CompanyAddress: </h2>
+  </header>
   <ul>
     <li><a (click)="onOpenNavbar('MENU')" [class.selected]="getClass() == 'MENU'"><i class="material-icons">&#xE5D2;</i><span>Menu</span></a></li>
     <li><a (click)="onOpenNavbar('SEARCH')" [class.selected]="getClass() == 'SEARCH'"><i class="material-icons">&#xE8B6;</i><span>Search</span></a></li>

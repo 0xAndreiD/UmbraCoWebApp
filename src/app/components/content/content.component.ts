@@ -14,7 +14,6 @@ import {DataParseService} from "../../services/DataParseService";
 })
 export class ContentComponent {
 
-  title = 'Umbraco + Angular2';
   menuItems: IMenuItem[] = [];
   umbpagegeneral;
 

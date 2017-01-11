@@ -15,6 +15,8 @@ export class MenuComponent {
   is_navbar_opened:boolean = false;
   nav_mode:string = '';
 
+  title = 'Umbraco + Angular2';
+
   constructor(){
 
   }
