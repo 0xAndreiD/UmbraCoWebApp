@@ -14,7 +14,9 @@ import {HttpService} from "../../services/http.service";
 export class MenuComponent {
   @Input() menuItems:IMenuItem[]=[]
 
-  is_navbar_opened:boolean = false;
+  is_menutab_opened:boolean = false;
+  is_searchtab_opened:boolean = false;
+
   nav_mode:string = '';
 
   umbpagegeneral;
@@ -32,17 +34,28 @@ export class MenuComponent {
   }
 
   private onOpenNavbar(cases:string):void {
-    this.is_navbar_opened = !this.is_navbar_opened;
+    if (cases == 'MENU') {
+      this.is_menutab_opened = !this.is_menutab_opened;
+      this.is_searchtab_opened = false;
+    } else {
+      this.is_searchtab_opened = !this.is_searchtab_opened;
+      this.is_menutab_opened = false;
+    }
     this.nav_mode = cases;
   }
 
-  private getWidth():string {
-    if(this.is_navbar_opened)  return "300px";
+  private getWidthMenuTab():string {
+    if(this.is_menutab_opened)  return "300px";
+    else return "0px";
+  }
+
+  private getWidthSearchTab():string {
+    if(this.is_searchtab_opened)  return "100%";
     else return "0px";
   }
 
   private getClass():string {
-    if (this.is_navbar_opened){
+    if (this.is_menutab_opened || this.is_searchtab_opened){
       return this.nav_mode;
     } else {
       return '';

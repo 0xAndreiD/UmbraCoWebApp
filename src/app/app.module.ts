@@ -12,7 +12,8 @@ import {PageComponent} from "./components/page/page.component";
 import {ErrorComponent} from "./components/error/error.component";
 import {SeoService} from "./services/SeoService";
 import {DataParseService} from "./services/DataParseService";
-import {MenuItemComponent} from "./components/menu/menu.item.component";
+import {MenuItemComponent} from "./components/menu/menu-item/menu.item.component.ts";
+import {MenuSearchComponent} from "./components/menu/menu-search/menu.search.component.ts";
 import {MenuComponent} from "./components/menu/menu.component";
 import {RouteController} from "./services/RouteController";
 import {ContentComponent} from "./components/content/content.component";
@@ -20,7 +21,7 @@ import {ImageLazyLoadModule, ImageLazyLoaderService, WebWorkerService} from "ng2
 import {LoadImagesService} from "./services/LoadImagesService";
 import {ShopComponent} from "./components/shop/shop.component";
 import {ShopItemComponent} from "./components/shop/shop.item.component";
-import { CollapseModule } from 'ng2-bootstrap/collapse';
+import {CollapseModule} from 'ng2-bootstrap/collapse';
 
 WebWorkerService.enabled=false;
 @NgModule({
@@ -38,6 +39,7 @@ WebWorkerService.enabled=false;
     ErrorComponent,
     MenuComponent,
     MenuItemComponent,
+    MenuSearchComponent,
     ContentComponent,
     ShopComponent,
     ShopItemComponent

@@ -1,0 +1,52 @@
+<div class="search-form" [class.state-1]="!is_search_focused" [class.state-2]="is_search_focused || search_value">
+  <label for="search">Søg</label>
+  <a class="search-icon-wrapper"><i class="material-icons">&#xE8B6;</i></a>
+  <input type="text" #search id="search" (focus)="is_search_focused = true" (focusout)="is_search_focused = false" [(ngModel)]="search_value">
+</div>
+
+<div id="search_result_area">
+  <div class="row">
+    <div class="col-md-4 col-lg-3 col-sm-6 col-xs-12" *ngFor="let item of shownItems">
+      <div class="item-card">
+        <div class="image-wrapper">
+          <img src="https://thomasjorgensen.mindworking.eu/resources/shops/1293/cases/VEGA1/casemedia/images/428abab358518bc2e54a361e73ea5df0/customsize.jpg?deviceId=fd3jkl342j44&h=355&w=738&mode=Crop">
+        </div>
+        <div class="content">
+          <p class="card-name">Name goes here</p>
+          <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+              <div class="sec-1">
+                <p>Param</p>
+                <span>value</span>
+              </div>
+              <div class="sec-2">
+                <p>Param</p>
+                <span>value</span>
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4 middle">
+              <div class="sec-1">
+                <p>Param</p>
+                <span>value</span>
+              </div>
+              <div class="sec-2">
+                <p>Param</p>
+                <span>value</span>
+              </div>
+            </div>
+            <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+              <div class="sec-1">
+                <p>Param</p>
+                <span>value</span>
+              </div>
+              <div class="sec-2">
+                <p>Param</p>
+                <span>value</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

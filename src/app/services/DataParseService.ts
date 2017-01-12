@@ -50,9 +50,8 @@ export class DataParseService {
   }
 
   parseForm(items) {
-    return items.subform.map(item=>{
+    return items.subforms.map(item=>{
       let item_=item.$;
-      console.log("sxsxss");
       return item_;
     });
   }

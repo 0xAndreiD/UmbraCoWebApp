@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {Input} from "@angular/core";
-import {IMenuItem} from "../../model/IMenuItem";
+import {IMenuItem} from "../../../model/IMenuItem";
 
 @Component({
   selector: "menu-item",

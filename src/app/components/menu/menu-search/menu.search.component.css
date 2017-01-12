@@ -1,0 +1,100 @@
+.search-form {
+  font-size: 24px;
+  color: #cfcfcf;
+  font-weight: 100;
+  width: 300px;
+  display: inline-block;
+  margin-left: 50px;
+  position: relative;
+}
+.search-form label {
+  font-family: "HelveticaNeueLT-Light", sans-serif;
+}
+.search-form.state-1 label {
+  font-weight: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  position: absolute;
+  transition: ease all 100ms;
+}
+.search-form.state-2 label {
+  top: -17px;
+  left: 0;
+  height: 1em;
+  font-size: 13px;
+  position: absolute;
+  transition: ease all 100ms;
+}
+
+.search-form input {
+  background: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  border: none;
+  border-bottom: 2px solid #f37422;
+  height: 2.076923076923077em;
+  width: 100%;
+  box-shadow: none;
+  border-radius: 0;
+  line-height: inherit;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-left: 10px;
+  padding-right: 30px;
+  outline: none;
+}
+
+.search-form .search-icon-wrapper {
+  left: 270px;
+  margin-top: 10px;
+  opacity: .625;
+  -webkit-transition: opacity .3s ease;
+  transition: opacity .3s ease;
+  position: absolute;
+}
+
+.search-form .search-icon-wrapper i {
+  font-size: 32px;
+  color: white;
+}
+
+#search_result_area {
+  margin: 40px 30px;
+  font-family: 'Oswald', sans-serif !important;
+  padding-right: 70px;
+}
+#search_result_area .item-card {
+  background-color: white;
+  padding: 10px;
+  border-radius: 2px;
+  margin: 30px 0;
+}
+#search_result_area .item-card .image-wrapper {
+  border-radius: 2px;
+  overflow: hidden;
+}
+#search_result_area .item-card .image-wrapper img{
+  width: 100%;
+}
+#search_result_area .item-card .content {
+}
+#search_result_area .item-card .content .card-name {
+  font-size: 18px;
+  margin: 10px 0;
+}
+#search_result_area .item-card .content .sec-1,
+#search_result_area .item-card .content .sec-2 {
+  text-align: center;
+}
+#search_result_area .item-card .content span {
+  font-weight: bold;
+}
+#search_result_area .item-card .content .middle {
+  border-left: 2px solid #ddac5a;
+  border-right: 2px solid #ddac5a;
+}
+

@@ -1,5 +1,6 @@
 header {
   height:150px;
+  padding-left: 0px !important;
 }
 
 .fixed-sidebar {
@@ -73,7 +74,7 @@ header {
   color: #f1f1f1;
 }
 
-.sidenav .closebtn {
+#menu_tab.sidenav .closebtn {
   position: absolute;
   top: 0;
   right: 25px;
@@ -81,7 +82,14 @@ header {
   margin-left: 50px;
   cursor: pointer;
 }
-
+#search_tab.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 90px;
+  font-size: 36px;
+  margin-left: 50px;
+  cursor: pointer;
+}
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
