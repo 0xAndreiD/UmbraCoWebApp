@@ -1,3 +1,13 @@
+/* main content */
+
 main {
   padding-left: 80px;
+  clear: both;
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    padding-left: 0;
+  }
 }

@@ -2,6 +2,10 @@
   <header>
     <img src="{{umbpagegeneral?.SidebarImageUrl}}" alt="{{umbpagegeneral?.CompanyName}}" />
   </header>
+  <!-- add item class to ul - control btn with from numbers of items
+  Ex. itemcount-3 itemcount-4
+  nothing - 2 items
+    -->
   <ul>
     <li><a (click)="onOpenNavbar('MENU')" [class.selected]="getClass() == 'MENU'"><i class="material-icons">&#xE5D2;</i><span>Menu</span></a></li>
     <li><a (click)="onOpenNavbar('SEARCH')" [class.selected]="getClass() == 'SEARCH'"><i class="material-icons">&#xE8B6;</i><span>Search</span></a></li>
