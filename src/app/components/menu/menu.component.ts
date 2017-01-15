@@ -15,6 +15,7 @@ export class MenuComponent {
   @Input() menuItems:IMenuItem[]=[]
 
   is_menutab_opened:boolean = false;
+
   is_searchtab_opened:boolean = false;
 
   nav_mode:string = '';
@@ -42,11 +43,6 @@ export class MenuComponent {
       this.is_menutab_opened = false;
     }
     this.nav_mode = cases;
-  }
-
-  private getWidthMenuTab():string {
-    if(this.is_menutab_opened)  return "300px";
-    else return "0px";
   }
 
   private getWidthSearchTab():string {

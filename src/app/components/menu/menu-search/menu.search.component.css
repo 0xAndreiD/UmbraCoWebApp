@@ -90,6 +90,9 @@
 #search_result_area .item-card .content .sec-2 {
   text-align: center;
 }
+#search_result_area .item-card .content .sec-2 {
+  margin-top: 25px;
+}
 #search_result_area .item-card .content span {
   font-weight: bold;
 }

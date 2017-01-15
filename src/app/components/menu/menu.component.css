@@ -28,7 +28,7 @@ header {
 }
 
 .fixed-sidebar a {
-  wi dth: 76px;
+  width: 76px;
   height: 76px;
   display: flex;
   text-align: center;
@@ -60,7 +60,6 @@ header {
   margin-top: 18px;
   font-size: 26px;
 }
-
 .sidenav {
   height: 100%;
   width: 0;
@@ -70,11 +69,26 @@ header {
   left: 76px;
   background-color: #2f2f2f;
   overflow-x: hidden;
-  transition: 0.5s;
   padding: 0px;
   padding-top: 60px;
 }
 
+.sidenav.collapsed {
+  width: 0;
+  transition: .5s;
+  transition-delay: .5s;
+}
+
+.sidenav.expanded {
+  width: 300px;
+  transition: .5s;
+  transition-delay: 0s;
+}
+#search_tab.expanded {
+  width: 100%;
+  transition: .5s;
+  transition-delay: 0s;
+}
 .sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;

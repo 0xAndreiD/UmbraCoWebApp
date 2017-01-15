@@ -133,3 +133,17 @@ html {
 .paper-content .container img {
     max-width: 100% !important;
 }
+
+.sidenav * {
+  opacity: 0;
+}
+.sidenav.expanded * {
+  transition: .5s;
+  transition-delay: .5s;
+  opacity: 1;
+}
+.sidenav.collapsed * {
+  transition: .5s;
+  transition-delay: 0s;
+  opacity: 0;
+}

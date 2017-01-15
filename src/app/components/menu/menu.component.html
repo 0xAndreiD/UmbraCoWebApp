@@ -11,11 +11,11 @@
     <li><a (click)="onOpenNavbar('SEARCH')" [class.selected]="getClass() == 'SEARCH'"><i class="material-icons">&#xE8B6;</i><span>Search</span></a></li>
   </ul>
 </div>
-<nav class="sidenav" id="menu_tab" [style.width]="getWidthMenuTab()">
+<nav class="sidenav" id="menu_tab" [ngClass]="{'expanded': is_menutab_opened, 'collapsed': !is_menutab_opened}">
   <a class="closebtn" (click)="is_menutab_opened = false">&times;</a>
   <menu-item [items]="menuItems"></menu-item>
 </nav>
-<nav class="sidenav" id="search_tab" [style.width]="getWidthSearchTab()">
+<nav class="sidenav" id="search_tab" [ngClass]="{'expanded': is_searchtab_opened, 'collapsed': !is_searchtab_opened}">
   <a class="closebtn" (click)="is_searchtab_opened = false">&times;</a>
   <menu-search></menu-search>
 </nav>
