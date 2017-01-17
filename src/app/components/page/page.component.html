@@ -3,8 +3,8 @@
     <div class="container">
       <h2>{{umbpage?.name}}</h2>
     </div>
-    <div [innerHTML]="contentGrid"></div>
-    <div [innerHTML]="umbpage?.contentBody"></div>
+    <div [innerHTML]="contentGrid | safeHtml"></div>
+    <div [innerHTML]="umbpage?.contentBody | safeHtml"></div>
     <!--
     <img src="{{umbpage?.contentImages[0].croppedUrl}}" alt="">
     -->
