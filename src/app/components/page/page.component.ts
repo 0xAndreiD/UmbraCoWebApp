@@ -1,8 +1,17 @@
-import {Component, OnInit, transition, trigger, style, animate, keyframes} from "@angular/core";
+import {Component, OnInit, transition, trigger, style, animate, keyframes, Pipe, PipeTransform} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {HttpService} from "../../services/http.service";
 import {SeoService} from "../../services/SeoService";
+import { DomSanitizer } from '@angular/platform-browser'
 
+@Pipe ({ name: 'safeHtml'})
+
+export class SafeHtmlPipe implements PipeTransform  {
+  constructor(private sanitized: DomSanitizer) {}
+  transform(value) {
+    return this.sanitized.bypassSecurityTrustHtml(value);
+  }
+}
 
 @Component({
   selector: 'app-page',

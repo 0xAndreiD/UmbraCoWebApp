@@ -8,6 +8,7 @@ import {LocationStrategy, PathLocationStrategy} from "@angular/common";
 import {AppComponent} from "./components/app/app.component";
 import {routing, appRoutingProviders} from "./app.routing";
 import {HttpService} from "./services/http.service";
+import {SafeHtmlPipe} from "./components/page/page.component";
 import {PageComponent} from "./components/page/page.component";
 import {ErrorComponent} from "./components/error/error.component";
 import {SeoService} from "./services/SeoService";
@@ -42,7 +43,8 @@ WebWorkerService.enabled=false;
     MenuSearchComponent,
     ContentComponent,
     ShopComponent,
-    ShopItemComponent
+    ShopItemComponent,
+    SafeHtmlPipe
   ],
   providers: [
     appRoutingProviders,
