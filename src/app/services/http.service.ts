@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 
-var domainname = "http://umb.dynamikfabrikken.com";
-///domainname = "http://localhost:50947";
-
-
+var domainname = "http://umb.dynamikfabrikken.com/";
+//domainname = "http://localhost:50947";
+var pageid = "1883";
 
 @Injectable()
 export class HttpService {
@@ -18,7 +17,7 @@ export class HttpService {
   }
 
   getUmbPageGeneralData(){
-    return this.http.get( domainname + '/umbraco/api/contentApi/GetGeneralData')
+    return this.http.get( domainname + '/umbraco/api/contentApi/GetGeneralData/?pageid' + pageid)
       .map((response: Response) => response.json());
   }
 
@@ -33,7 +32,7 @@ export class HttpService {
     return (function ():Promise<any> {
       if(loadPromise==null) {
         loadPromise=new Promise<any>((resolve)=>{
-          that.http.get( domainname + "/umbraco/api/contentApi/getTree")
+          that.http.get( domainname + '/umbraco/api/contentApi/getTree/?pageid' + pageid)
             .map(response=>response.json()).subscribe((response)=>{
               resolve(response)
           })

@@ -1,8 +1,9 @@
 <div class="paper-content" [@wrapper]="state">
   <div *ngIf="loaded">
+    <!--
     <div class="container">
       <h2>{{umbpage?.name}}</h2>
-    </div>
+    </div>-->
     <div [innerHTML]="contentGrid | safeHtml"></div>
     <div [innerHTML]="umbpage?.contentBody | safeHtml"></div>
     <!--
