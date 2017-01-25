@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 
 var domainname = "http://umb.dynamikfabrikken.com/";
-//domainname = "http://localhost:50947";
+domainname = "http://localhost:50947";
 var pageid = "1883";
 
 @Injectable()

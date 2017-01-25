@@ -147,3 +147,10 @@ html {
   transition-delay: 0s;
   opacity: 0;
 }
+
+/*grid options styling*/
+
+.paper-content .large-space{
+  padding-top: 80px;
+  padding-bottom: 60px;
+}
