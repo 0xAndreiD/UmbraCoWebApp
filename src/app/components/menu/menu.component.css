@@ -16,6 +16,7 @@ header {
 .fixed-sidebar > ul {
   padding-left: 0px;
   list-style-type: none;
+  margin: 0;
 }
 
 .fixed-sidebar > ul > li > a {

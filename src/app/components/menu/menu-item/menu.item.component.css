@@ -9,6 +9,11 @@
 ul {
   padding-left: 20px;
 }
+
+ul li{
+  float: none;
+}
+
 .menu-item:hover, .offcanvas a:focus, .menu-item.selected {
   color: #f1f1f1;
 }
@@ -21,7 +26,7 @@ ul {
 .collapse-icon {
   float: right;
   color: rgb(165, 165, 165);
-  font-size: 37px;
+  font-size: 35px;
   font-weight: 100;
   margin-right: 26px;
   margin-top: 4px;
