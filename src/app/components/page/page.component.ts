@@ -4,13 +4,7 @@ import {HttpService} from "../../services/http.service";
 import {SeoService} from "../../services/SeoService";
 import { DomSanitizer } from '@angular/platform-browser';
 
-//// In the console
-//// First install jQuery
-//npm install --save jquery
-//// and jQuery Definition
-// npm install -D @types/jquery
 import * as $ from 'jquery';
-declare var carousel: any;
 
 
 @Pipe ({ name: 'safeHtml'})
