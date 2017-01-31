@@ -2,7 +2,16 @@ import {Component, OnInit, transition, trigger, style, animate, keyframes, Pipe,
 import {ActivatedRoute} from "@angular/router";
 import {HttpService} from "../../services/http.service";
 import {SeoService} from "../../services/SeoService";
-import { DomSanitizer } from '@angular/platform-browser'
+import { DomSanitizer } from '@angular/platform-browser';
+
+//// In the console
+//// First install jQuery
+//npm install --save jquery
+//// and jQuery Definition
+// npm install -D @types/jquery
+import * as $ from 'jquery';
+declare var carousel: any;
+
 
 @Pipe ({ name: 'safeHtml'})
 
@@ -46,6 +55,13 @@ export class PageComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    $( document ).ready(function() {
+      var w = $("body").width();
+      alert(w);
+    //  $('.carousel.carousel-slider').carousel({fullWidth: true});
+    });
+
     this.activatedRoute.data.subscribe((data: any)=> {
       if (data.meta) {
         this.seoService.setMetaTags(data.meta);
@@ -65,7 +81,6 @@ export class PageComponent implements OnInit {
           this.contentGrid = conetentGrid ? conetentGrid :"";
           this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
         });
-
 
   }
 }
