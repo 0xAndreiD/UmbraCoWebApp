@@ -23,6 +23,7 @@ import {LoadImagesService} from "./services/LoadImagesService";
 import {ShopComponent} from "./components/shop/shop.component";
 import {ShopItemComponent} from "./components/shop/shop.item.component";
 import {CollapseModule} from 'ng2-bootstrap/collapse';
+import {MaterializeModule} from "angular2-materialize";
 
 WebWorkerService.enabled=false;
 @NgModule({
@@ -32,6 +33,7 @@ WebWorkerService.enabled=false;
     FormsModule,
     ImageLazyLoadModule,
     CollapseModule,
+    MaterializeModule,
     routing
   ],
   declarations: [

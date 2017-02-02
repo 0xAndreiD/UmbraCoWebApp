@@ -3,8 +3,8 @@ import {ActivatedRoute} from "@angular/router";
 import {HttpService} from "../../services/http.service";
 import {SeoService} from "../../services/SeoService";
 import { DomSanitizer } from '@angular/platform-browser';
-
-import * as $ from 'jquery';
+import {toast} from "angular2-materialize";
+//import * as $ from 'jquery';
 
 
 @Pipe ({ name: 'safeHtml'})
@@ -49,13 +49,7 @@ export class PageComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    $( document ).ready(function() {
-      var w = $("body").width();
-      alert(w);
-    //  $('.carousel.carousel-slider').carousel({fullWidth: true});
-    });
-
+    toast("...and Materialize works as well!");
     this.activatedRoute.data.subscribe((data: any)=> {
       if (data.meta) {
         this.seoService.setMetaTags(data.meta);
@@ -74,7 +68,19 @@ export class PageComponent implements OnInit {
           let conetentGrid = umbpagedata.data.bodyContentGrid;
           this.contentGrid = conetentGrid ? conetentGrid :"";
           this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
+          //console.log('API finished');
+          //var aa = $("body");
+          //console.log(aa[0].childNodes);
+          //console.log($('app-page'));
+          //console.log($('.paper-content'));
+          //setTimeout(function(){
+          //  console.log($('.umb-grid'));
+          //  console.log($('.carousel-slider.carousel'));
+          //  //$(".carousel.carousel-slider").carousel({fullWidth: true});
+          //}, 100);
         });
 
+  }
+  ngAfterViewInit() {
   }
 }
