@@ -33,7 +33,6 @@ export class MenuSearchComponent {
       parseString(response, (err, result)=> {
         this.items = this.dataParse.parseShopItems(result);
         this.shownItems = this.items;
-        console.log(this.shownItems);
       });
     });
 
