@@ -3,8 +3,14 @@ import {ActivatedRoute} from "@angular/router";
 import {HttpService} from "../../services/http.service";
 import {SeoService} from "../../services/SeoService";
 import { DomSanitizer } from '@angular/platform-browser';
-import {toast} from "angular2-materialize";
+
+//// In the console
+//// First install jQuery
+//npm install --save jquery
+//// and jQuery Definition
+// npm install -D @types/jquery
 //import * as $ from 'jquery';
+declare var carousel: any;
 
 
 @Pipe ({ name: 'safeHtml'})
@@ -49,7 +55,12 @@ export class PageComponent implements OnInit {
   }
 
   ngOnInit() {
-    toast("...and Materialize works as well!");
+
+    //$( document ).ready(function() {
+    //  var w = $("body").width();
+    //  $('.carousel.carousel-slider').carousel({fullWidth: true});
+    //});
+
     this.activatedRoute.data.subscribe((data: any)=> {
       if (data.meta) {
         this.seoService.setMetaTags(data.meta);
@@ -68,19 +79,7 @@ export class PageComponent implements OnInit {
           let conetentGrid = umbpagedata.data.bodyContentGrid;
           this.contentGrid = conetentGrid ? conetentGrid :"";
           this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
-          //console.log('API finished');
-          //var aa = $("body");
-          //console.log(aa[0].childNodes);
-          //console.log($('app-page'));
-          //console.log($('.paper-content'));
-          //setTimeout(function(){
-          //  console.log($('.umb-grid'));
-          //  console.log($('.carousel-slider.carousel'));
-          //  //$(".carousel.carousel-slider").carousel({fullWidth: true});
-          //}, 100);
         });
 
-  }
-  ngAfterViewInit() {
   }
 }
