@@ -8,8 +8,8 @@ import {HttpService} from "../../services/http.service";
 
 @Component({
   selector: "main-menu",
-  templateUrl: "./menu.component.html",
-  styleUrls: ["./menu.component.css"]
+  templateUrl: "./menu1.component.html",
+  styleUrls: ["./menu1.component.css"]
 })
 export class MenuComponent {
   @Input() menuItems:IMenuItem[]=[]

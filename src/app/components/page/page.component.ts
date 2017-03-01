@@ -30,17 +30,22 @@ export class SafeHtmlPipe implements PipeTransform  {
   animations: [
     trigger("wrapper", [
       transition("void => *", [
-      /*  animate("0.5s", keyframes([
-          style({transform: 'translate3d(-100%, 0, 0)'}),
-          style({transform: 'translate3d(0, 0, 0)'}),
 
-        ]))*/
-        /* remove css animation on index*/
-        animate("0s", keyframes([
-          style({opacity: '1'}),
-          style({opacity: '1'}),
+          animate("0.5s", keyframes([
+        /*    style({transform: 'translateX(-100%) scale(1)'}),
+            style({transform: 'translateX(100%) scale(1)'}),*/
 
+            style({transform: 'scale(0)'}),
+            style({transform: 'scale(1)'}),
         ]))
+        /* remove css animation on index*/
+
+
+        /* animate("2s", keyframes([
+          style({opacity: '1'}),
+          style({opacity: '1'}),
+
+        ])) */
       ])
     ])
   ]
@@ -51,15 +56,11 @@ export class PageComponent implements OnInit {
   imgs=[];
   loaded=false;
   contentGrid: string="";
+  isfrontpage= "frontpagecontent";
   constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute, private seoService: SeoService) {
   }
 
   ngOnInit() {
-
-    //$( document ).ready(function() {
-    //  var w = $("body").width();
-    //  $('.carousel.carousel-slider').carousel({fullWidth: true});
-    //});
 
     this.activatedRoute.data.subscribe((data: any)=> {
       if (data.meta) {
@@ -79,6 +80,12 @@ export class PageComponent implements OnInit {
           let conetentGrid = umbpagedata.data.bodyContentGrid;
           this.contentGrid = conetentGrid ? conetentGrid :"";
           this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
+          if (window.location.pathname != "/") {
+            this.isfrontpage = "subpagecontent";
+          }
+          //weill be removed
+          this.isfrontpage = "frontpagecontent";
+
         });
 
   }

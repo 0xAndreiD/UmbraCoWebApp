@@ -1,0 +1,7 @@
+<div class="paper-content" [@wrapper]="state">
+  <div *ngIf="loaded">
+    <div [id]="isfrontpage" class="content">
+        <div [innerHTML]="contentGrid | safeHtml"></div>
+    </div>
+  </div>
+</div>

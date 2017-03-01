@@ -4,8 +4,8 @@ import {IMenuItem} from "../../../model/IMenuItem";
 
 @Component({
   selector: "menu-item",
-  templateUrl: "./menu.item.component.html",
-  styleUrls: ["./menu.item.component.css"]
+  templateUrl: "./menu1.item.component.html",
+  styleUrls: ["./menu1.item.component.css"]
 })
 export class MenuItemComponent {
   @Input() items:IMenuItem[];
