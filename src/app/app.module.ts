@@ -24,6 +24,7 @@ import {ShopComponent} from "./components/shop/shop.component";
 import {ShopItemComponent} from "./components/shop/shop.item.component";
 import {CollapseModule} from 'ng2-bootstrap/collapse';
 import {MaterializeModule} from "angular2-materialize";
+import {DynamicComponentModule} from 'angular2-dynamic-component/index';
 
 WebWorkerService.enabled=false;
 @NgModule({
@@ -34,6 +35,7 @@ WebWorkerService.enabled=false;
     ImageLazyLoadModule,
     CollapseModule,
     MaterializeModule,
+    DynamicComponentModule,
     routing
   ],
   declarations: [
