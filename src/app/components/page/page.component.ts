@@ -1,4 +1,4 @@
-import {Component, OnInit, transition, trigger, style, animate, keyframes, Pipe, PipeTransform, ChangeDetectorRef} from "@angular/core";
+import {Component, OnInit, transition, trigger, style, animate, keyframes, Pipe, PipeTransform} from "@angular/core";
 import {ActivatedRoute} from "@angular/router";
 import {HttpService} from "../../services/http.service";
 import {SeoService} from "../../services/SeoService";
@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import {DynamicComponentModuleFactory} from 'angular2-dynamic-component/index';
 import {MaterializeModule} from "angular2-materialize";
 export const DYNAMIC_MODULE = DynamicComponentModuleFactory.buildModule([MaterializeModule]);
+
 //// In the console
 //// First install jQuery
 //npm install --save jquery
@@ -67,8 +68,7 @@ export class PageComponent implements OnInit {
   constructor(
     private httpService: HttpService,
     private activatedRoute: ActivatedRoute,
-    private seoService: SeoService,
-    private ref: ChangeDetectorRef
+    private seoService: SeoService
   ) {
   }
 
@@ -97,11 +97,7 @@ export class PageComponent implements OnInit {
           }
           //weill be removed
           this.isfrontpage = "frontpagecontent";
-          this.ref.detach();
-          setInterval(() => {
-            this.ref.detectChanges();
-          }, 5000);
-        });
+         });
 
   }
 }
