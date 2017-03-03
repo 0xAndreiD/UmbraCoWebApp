@@ -25,6 +25,8 @@ import {ShopItemComponent} from "./components/shop/shop.item.component";
 import {CollapseModule} from 'ng2-bootstrap/collapse';
 import {MaterializeModule} from "angular2-materialize";
 import {DynamicComponentModule} from 'angular2-dynamic-component/index';
+import { FormComponent } from './components/form/form.component';
+import { CustomFormsModule } from 'ng2-validation'
 
 WebWorkerService.enabled=false;
 @NgModule({
@@ -33,6 +35,7 @@ WebWorkerService.enabled=false;
     HttpModule,
     FormsModule,
     ImageLazyLoadModule,
+    CustomFormsModule,
     CollapseModule,
     MaterializeModule,
     DynamicComponentModule,
@@ -48,7 +51,8 @@ WebWorkerService.enabled=false;
     ContentComponent,
     ShopComponent,
     ShopItemComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    FormComponent
   ],
   providers: [
     appRoutingProviders,

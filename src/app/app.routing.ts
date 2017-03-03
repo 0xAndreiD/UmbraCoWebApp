@@ -3,6 +3,7 @@ import {Routes, RouterModule} from "@angular/router";
 import {ErrorComponent} from "./components/error/error.component";
 import {RouteController} from "./services/RouteController";
 import {ContentComponent} from "./components/content/content.component";
+import {FormComponent} from "./components/form/form.component";
 
 var appRoutes: Routes = [
   {
@@ -16,8 +17,14 @@ var appRoutes: Routes = [
               //canActivateChild: [RouteController]
   },
   {
-    path: '**', component: ErrorComponent
+    path: 'form', component: FormComponent,
+
+  },
+  {
+    path: '**', component: ErrorComponent,
+
   }
+
 ];
 
 export const appRoutingProviders: any[] = [];

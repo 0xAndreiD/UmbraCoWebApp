@@ -1,0 +1,10 @@
+<form  (ngSubmit)="onSubmit()" #heroForm="ngForm" [id]="form.formId" materialize class="col s12">
+  <div *ngFor="let element of form.elements" [ngClass]="element.wrap">
+    <div [ngClass]="element.class">
+      <input *ngIf="element.type === 'input'" [required]="element.required" [(ngModel)]="element.model" [minlength]="element.minlength" [maxlength]="element.maxlength" [placeholder]="element.placeholder" [id]="element.id"  [ngStyle]="element.style" type="text" class="validate" [ngModelOptions]="{standalone: true}">
+      <textarea *ngIf="element.type === 'textarea'" [(ngModel)]="element.model" class="materialize-textarea" [ngModelOptions]="{standalone: true}"></textarea>
+      <label [for]="element.id">{{element.label}}</label>
+    </div>
+  </div>
+  <button class="waves-effect waves-light btn" type="submit" [disabled]="!heroForm.form.valid">{{form.successText}}</button>
+</form>
