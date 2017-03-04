@@ -1,5 +1,41 @@
 <!doctype html>
 <html>
+
+
+<head>
+
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+  <title>Google Design</title>
+  <meta content="At Google we say, “Focus on the user and all else will follow.” With this in mind, we seek to design experiences that inspire and enlighten our users." name="description">
+  <meta property="og:title" content="Google Design">
+  <meta property="og:site_name" content="Google Design">
+  <meta property="og:description" content="At Google we say, “Focus on the user and all else will follow.” With this in mind, we seek to design experiences that inspire and enlighten our users.">
+  <meta property="og:image" content="/images/share.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Google Design">
+  <meta name="twitter:site" content="@GoogleDesign">
+  <meta name="twitter:description" content="At Google we say, “Focus on the user and all else will follow.” With this in mind, we seek to design experiences that inspire and enlighten our users.">
+  <meta name="twitter:image" content="/images/share.png">
+  <meta property="og:url" content="https://design.google.com/">
+
+  <link rel="icon" sizes="192x192" href="/images/favicons/android-icon-192x192.png">
+  <link rel="shortcut icon" href="/images/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" href="/images/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-icon-180x180.png">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="https://design.google.com/services/newsfeed/feed.rss">
+
+  <meta name="msapplication-TileImage" content="/images/favicons/ms-icon-144x144.png">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,400italic,500,500italic,700,700italic|Roboto:400,400italic,500,500italic,700,700italic|Material+Icons" rel="stylesheet" type="text/css">
+  <link href="/css/site.css" rel="stylesheet" type="text/css">
+</head>
+
 <head>
   <base href="/">
   <meta charset="utf-8">
@@ -30,7 +66,78 @@
 
 
   <script>
-  function addClass(el, className) {
+
+
+    ( function( window ) {
+
+      'use strict';
+
+// class helper functions from bonzo https://github.com/ded/bonzo
+
+      function classReg( className ) {
+        return new RegExp("(^|\\s+)" + className + "(\\s+|$)");
+      }
+
+// classList support for class management
+// altho to be fair, the api sucks because it won't accept multiple classes at once
+      var hasClass, addClass, removeClass;
+
+      if ( 'classList' in document.documentElement ) {
+        hasClass = function( elem, c ) {
+          return elem.classList.contains( c );
+        };
+        addClass = function( elem, c ) {
+          elem.classList.add( c );
+        };
+        removeClass = function( elem, c ) {
+          elem.classList.remove( c );
+        };
+      }
+      else {
+        hasClass = function( elem, c ) {
+          return classReg( c ).test( elem.className );
+        };
+        addClass = function( elem, c ) {
+          if ( !hasClass( elem, c ) ) {
+            elem.className = elem.className + ' ' + c;
+          }
+        };
+        removeClass = function( elem, c ) {
+          elem.className = elem.className.replace( classReg( c ), ' ' );
+        };
+      }
+
+      function toggleClass( elem, c ) {
+        var fn = hasClass( elem, c ) ? removeClass : addClass;
+        fn( elem, c );
+      }
+
+      var classie = {
+        // full names
+        hasClass: hasClass,
+        addClass: addClass,
+        removeClass: removeClass,
+        toggleClass: toggleClass,
+        // short names
+        has: hasClass,
+        add: addClass,
+        remove: removeClass,
+        toggle: toggleClass
+      };
+
+// transport
+      if ( typeof define === 'function' && define.amd ) {
+        // AMD
+        define( classie );
+      } else {
+        // browser global
+        window.classie = classie;
+      }
+
+    })( window );
+
+
+    function addClass(el, className) {
       var el = document.querySelectorAll(el);
 
       for (i = 0; i < el.length; i++) {

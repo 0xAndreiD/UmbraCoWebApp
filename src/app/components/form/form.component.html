@@ -1,10 +1,35 @@
-<form  (ngSubmit)="onSubmit()" #heroForm="ngForm" [id]="form.formId" materialize class="col s12">
-  <div *ngFor="let element of form.elements" [ngClass]="element.wrap">
-    <div [ngClass]="element.class">
-      <input *ngIf="element.type === 'input'" [required]="element.required" [(ngModel)]="element.model" [minlength]="element.minlength" [maxlength]="element.maxlength" [placeholder]="element.placeholder" [id]="element.id"  [ngStyle]="element.style" type="text" class="validate" [ngModelOptions]="{standalone: true}">
-      <textarea *ngIf="element.type === 'textarea'" [(ngModel)]="element.model" class="materialize-textarea" [ngModelOptions]="{standalone: true}"></textarea>
-      <label [for]="element.id">{{element.label}}</label>
+<header>
+  <div class="container clearfix">
+    <h1 id="logo">
+      LOGO
+    </h1>
+    <div class="nav">
+      <a href="">Lorem</a>
+      <a href="">Ipsum</a>
+      <a href="">Dolor</a>
     </div>
   </div>
-  <button class="waves-effect waves-light btn" type="submit" [disabled]="!heroForm.form.valid">{{form.successText}}</button>
-</form>
+</header>
+<div id="main">
+  <div id="content">
+    <form  (ngSubmit)="onSubmit()" #heroForm="ngForm" [id]="form.formId" materialize class="row col s12">
+      <div *ngFor="let element of form.elements" [ngClass]="element.wrap">
+        <div [ngClass]="element.class">
+          <input *ngIf="element.type === 'input'" [required]="element.required" [(ngModel)]="element.model" [minlength]="element.minlength" [maxlength]="element.maxlength" [placeholder]="element.placeholder" [id]="element.id"  [ngStyle]="element.style" [type]="element.subType" class="validate" [ngModelOptions]="{standalone: true}">
+
+          <textarea *ngIf="element.type === 'textarea'" [(ngModel)]="element.model" class="materialize-textarea" [ngModelOptions]="{standalone: true}"></textarea>
+
+          <select *ngIf="element.type === 'select'" [multiple]="element.multiline" materialize="material_select" [materializeSelectOptions]="element.model">
+            <option value="" disabled selected>{{element.placeholder}}</option>
+            <option *ngFor="let option of element.selectOptions" [value]="option.value">{{option.name}}</option>
+          </select>
+
+          <label [for]="element.id">{{element.label}}</label>
+        </div>
+
+      </div>
+
+      <button class="waves-effect waves-light btn" type="submit" [disabled]="!heroForm.form.valid">{{form.successText}}</button>
+    </form>
+  </div>
+</div>

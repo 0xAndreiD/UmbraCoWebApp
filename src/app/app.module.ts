@@ -34,7 +34,7 @@ WebWorkerService.enabled=false;
     BrowserModule,
     HttpModule,
     FormsModule,
-    ImageLazyLoadModule,
+    // ImageLazyLoadModule,
     CustomFormsModule,
     CollapseModule,
     MaterializeModule,
