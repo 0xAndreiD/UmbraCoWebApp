@@ -54,14 +54,6 @@ a img {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-body {
-  background-color: #3cb5f9;
-  color: #505050;
-  font-family: "Ubuntu", sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  line-height: 1.8; }
-
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -136,7 +128,7 @@ header {
   top: 0;
   left: 0;
   z-index: 999;
-  background-color: #0683c9;
+  /*background-color: #0683c9;*/
   -webkit-transition: height 0.3s;
   -moz-transition: height 0.3s;
   -ms-transition: height 0.3s;

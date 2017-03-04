@@ -9,6 +9,14 @@ html {
     overflow-y: scroll;
 }
 
+.blue-theme header {
+  background-color: #0683c9;
+}
+
+.blue-green header {
+  background-color: #11c92b;
+}
+
 /* loading animation */
 .centered {
   position: fixed;
