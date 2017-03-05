@@ -44,13 +44,19 @@ export class HttpService {
     })();
   }
 
-    getShops():Promise<any> {
+  getShops():Promise<any> {
     return new Promise<any>((resolve, reject)=>{
       this.http.get("https://demodk.mindworking.eu/resources/search/Cases.xml?deviceid=mwipad&searchtype=simpleWildCard&Status=Til%20salg&ReturnAllSolrFields=true&SimpleWildCardVal=s")
         .map(response=>response.text())
         .subscribe(resolve);
     })
   }
+
+  getForm(formid) {
+    return this.http.get(`${domainname}umbraco/api/contentApi/getform?formid=${formid}` )
+      .map((response: Response) => response.json());
+  }
+
 
   getForms():Promise<any> {
   return new Promise<any>((resolve, reject)=>{
