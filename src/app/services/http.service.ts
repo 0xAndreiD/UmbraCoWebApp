@@ -12,12 +12,12 @@ export class HttpService {
   constructor(private http: Http) { }
 
   getUmbPageData(url){
-      return this.http.get( domainname + '/umbraco/api/contentApi/getData?url=' + url)
+      return this.http.get( `${domainname}umbraco/api/contentApi/getData?url=${url}`)
       .map((response: Response) => response.json());
   }
 
   getUmbPageGeneralData(){
-    return this.http.get( domainname + '/umbraco/api/contentApi/GetGeneralData/?pageid' + pageid)
+    return this.http.get( `${domainname}umbraco/api/contentApi/GetGeneralData/?pageid${pageid}`)
       .map((response: Response) => response.json());
   }
 
@@ -32,7 +32,7 @@ export class HttpService {
     return (function ():Promise<any> {
       if(loadPromise==null) {
         loadPromise=new Promise<any>((resolve)=>{
-          that.http.get( domainname + '/umbraco/api/contentApi/getTree/?pageid' + pageid)
+          that.http.get( `${domainname}umbraco/api/contentApi/getTree/?pageid${pageid}`)
             .map(response=>response.json()).subscribe((response)=>{
               resolve(response)
           })
