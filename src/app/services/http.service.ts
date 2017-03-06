@@ -12,12 +12,12 @@ export class HttpService {
   constructor(private http: Http) { }
 
   getUmbPageData(url){
-      return this.http.get( domainname + '/umbraco/api/contentApi/getData?url=' + url)
+      return this.http.get( `${domainname}umbraco/api/contentApi/getData?url=${url}`)
       .map((response: Response) => response.json());
   }
 
   getUmbPageGeneralData(){
-    return this.http.get( domainname + '/umbraco/api/contentApi/GetGeneralData/?pageid' + pageid)
+    return this.http.get( `${domainname}umbraco/api/contentApi/GetGeneralData/?pageid${pageid}`)
       .map((response: Response) => response.json());
   }
 
@@ -32,7 +32,7 @@ export class HttpService {
     return (function ():Promise<any> {
       if(loadPromise==null) {
         loadPromise=new Promise<any>((resolve)=>{
-          that.http.get( domainname + '/umbraco/api/contentApi/getTree/?pageid' + pageid)
+          that.http.get( `${domainname}umbraco/api/contentApi/getTree/?pageid${pageid}`)
             .map(response=>response.json()).subscribe((response)=>{
               resolve(response)
           })
@@ -44,13 +44,19 @@ export class HttpService {
     })();
   }
 
-    getShops():Promise<any> {
+  getShops():Promise<any> {
     return new Promise<any>((resolve, reject)=>{
       this.http.get("https://demodk.mindworking.eu/resources/search/Cases.xml?deviceid=mwipad&searchtype=simpleWildCard&Status=Til%20salg&ReturnAllSolrFields=true&SimpleWildCardVal=s")
         .map(response=>response.text())
         .subscribe(resolve);
     })
   }
+
+  getForm(formid) {
+    return this.http.get(`${domainname}umbraco/api/contentApi/getform?formid=${formid}` )
+      .map((response: Response) => response.json());
+  }
+
 
   getForms():Promise<any> {
   return new Promise<any>((resolve, reject)=>{
