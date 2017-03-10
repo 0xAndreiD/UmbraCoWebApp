@@ -16,12 +16,15 @@ export class ContentComponent {
 
   menuItems: IMenuItem[] = [];
 
-  constructor(private http: HttpService, private dataParse: DataParseService) {
+  constructor(
+    private http: HttpService, 
+    private dataParse: DataParseService
+    ) {
 
   }
 
   ngOnInit(): void {
-    this.http.getMenu().then(response=> {
+    this.http.getMenu().subscribe(response=> {
       this.menuItems = this.dataParse.parseMenuDataToNav(response);
       this.menuItems.push({
         name: "Shop",

@@ -14,7 +14,7 @@
 <ul id="nav-mobile" class="right hide-on-med-and-down">
   <li *ngFor="let item of items; let i = index">
     <a class="menu-item"
-       routerLink={{item.path}}
+       href={{item.path}}
        [class.selected]="getClass('0x001', item, i)">{{item.name}}</a>
   </li>
 </ul>

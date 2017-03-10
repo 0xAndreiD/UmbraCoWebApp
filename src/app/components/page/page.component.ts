@@ -1,8 +1,9 @@
-import {Component, OnInit, transition, trigger, style, animate, keyframes, Pipe, PipeTransform} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit, transition, trigger, style, animate, keyframes, Pipe, PipeTransform, AfterViewChecked } from "@angular/core";
+import {Router, ActivatedRoute, Params} from "@angular/router";
+import { DomSanitizer } from '@angular/platform-browser';
 import {HttpService} from "../../services/http.service";
 import {SeoService} from "../../services/SeoService";
-import { DomSanitizer } from '@angular/platform-browser';
+import {FormComponent} from "../form/form.component";
 
 import {DynamicComponentModuleFactory} from 'angular2-dynamic-component/index';
 import {MaterializeModule} from "angular2-materialize";
@@ -15,6 +16,7 @@ export const DYNAMIC_MODULE = DynamicComponentModuleFactory.buildModule([Materia
 // npm install -D @types/jquery
 //import * as $ from 'jquery';
 declare var carousel: any;
+declare var $:any;
 
 @Pipe ({ name: 'safeHtml'})
 
@@ -53,7 +55,8 @@ export class SafeHtmlPipe implements PipeTransform  {
     ])
   ]
 })
-export class PageComponent implements OnInit {
+export class PageComponent implements OnInit, AfterViewChecked {
+  lastFormContent: string = '';
 
   render:boolean = true;
   umbpage;
@@ -61,18 +64,23 @@ export class PageComponent implements OnInit {
   loaded=false;
   contentGrid: string="";
   isfrontpage= "frontpagecontent";
-
+  url: string = "";
   extraTemplate = ``;
   extraModules = [MaterializeModule];
 
   constructor(
     private httpService: HttpService,
     private activatedRoute: ActivatedRoute,
-    private seoService: SeoService
+    private seoService: SeoService,
+    private router: Router
   ) {
+    this.init();
   }
 
-  ngOnInit() {
+  init() {
+    this.activatedRoute.params.subscribe((params: Params) => {
+        this.url = params['url'];
+    });
 
     this.activatedRoute.data.subscribe((data: any)=> {
       if (data.meta) {
@@ -83,21 +91,36 @@ export class PageComponent implements OnInit {
       }
     });
 
-    this.httpService.getUmbPageData(window.location.pathname)
+    this.httpService.getUmbPageData(this.url)
       .subscribe(
-        (umbpagedata: any) => {
-          this.umbpage = umbpagedata.data;
-          this.imgs = umbpagedata.data.contentImages;
-          this.loaded=true;
-          let conetentGrid = umbpagedata.data.bodyContentGrid;
-          this.contentGrid = conetentGrid ? conetentGrid :"";
-          this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
-          if (window.location.pathname != "/") {
-            this.isfrontpage = "subpagecontent";
-          }
-          //weill be removed
-          this.isfrontpage = "frontpagecontent";
-         });
+          (umbpagedata: any) => {
+              this.umbpage = umbpagedata.data;
+              this.imgs = umbpagedata.data.contentImages;
+              this.loaded=true;
+              let contentGrid = umbpagedata.data.bodyContentGrid;
+              this.contentGrid = contentGrid.replace('{{renderformid_1}}', '<div id="formContainer" #formContainer></div>');
 
+              this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
+
+              if (this.url != "/") {
+                this.isfrontpage = "subpagecontent";
+              }
+              //weill be removed
+              this.isfrontpage = "frontpagecontent";
+         },
+         (error: any) => {
+           this.router.navigate(['error/not-found']);
+         });
+  }
+
+  ngOnInit() {
+  } 
+
+  ngAfterViewChecked() {
+    var tempFormContent = $('#tempContainer').html();
+    if( $('#formContainer').length > 0 && this.lastFormContent != tempFormContent ) {
+      $('#formContainer').html( tempFormContent );
+      this.lastFormContent = tempFormContent;
+    }
   }
 }
