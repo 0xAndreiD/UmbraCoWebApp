@@ -1,5 +1,6 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {Validators} from "@angular/forms";
+import {HttpService} from "../../services/http.service";
 
 declare var classie;
 
@@ -10,7 +11,7 @@ declare var classie;
 })
 export class FormComponent implements OnInit, AfterViewInit {
 
-  form = {
+  form1 = {
     successMessage: "Ok",
     errorMessage: "Error",
     formId: "1",
@@ -186,12 +187,20 @@ export class FormComponent implements OnInit, AfterViewInit {
       },
     ],
   };
-
+  
+  form: any = {};
   onSubmit(){
     alert(this.form.successMessage);
   }
 
-  constructor() { }
+  constructor(
+    private http: HttpService
+  ) { 
+    this.http.getForm(1).subscribe((respond: any) => {
+      this.form = respond.data[0];
+      this.form.elements = this.form1.elements;
+    });
+  }
 
   ngOnInit() {
 

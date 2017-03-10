@@ -5,6 +5,7 @@
 import {Component, Input} from "@angular/core";
 import {IMenuItem} from "../../model/IMenuItem";
 import {HttpService} from "../../services/http.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: "main-menu",
@@ -22,7 +23,10 @@ export class MenuComponent {
 
   umbpagegeneral;
 
-  constructor(private http: HttpService){
+  constructor(
+    private http: HttpService,
+    private router: Router
+  ){
   }
 
   ngOnInit():void {
@@ -31,6 +35,9 @@ export class MenuComponent {
         (umbpagegeneraldata: any) => {
           //The problem was that you received an array from server but used as object
           this.umbpagegeneral = umbpagegeneraldata.data[0];
+        },
+        (error: any) => {
+          this.router.navigate(['error/not-found']);
         });
   }
 

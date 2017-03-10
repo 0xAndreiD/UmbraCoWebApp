@@ -24,12 +24,12 @@ export class RouteController implements CanActivate, CanActivateChild {
   //Loads menu data before the first page is loaded
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
     let that = this;
-    return new Promise<boolean>((resolve)=> {
+    return new Observable<boolean>((resolve)=> {
       if (that.isLoaded) {
         resolve(true);
         return;
       }
-      that.http.getMenu().then((response)=> {
+      that.http.getMenu().subscribe((response)=> {
         let additionalRoutes: Routes = [
           {
             path: "shops",

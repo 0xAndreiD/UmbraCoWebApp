@@ -60,7 +60,7 @@ export class SeoService {
     if (el === null) {
       el = document.createElement('meta');
       el.setAttribute('name', name);
-      this.headElement.appendChild(el);
+      this.headElement.insertBefore(el, this.headElement.firstChild);
     }
     return el;
   }

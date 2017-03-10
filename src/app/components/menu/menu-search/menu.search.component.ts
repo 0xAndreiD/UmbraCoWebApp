@@ -29,7 +29,7 @@ export class MenuSearchComponent {
 
   ngOnInit():void{
 
-    this.httpService.getShops().then(response=> {
+    this.httpService.getShops().subscribe(response=> {
       parseString(response, (err, result)=> {
         this.items = this.dataParse.parseShopItems(result);
         this.shownItems = this.items;

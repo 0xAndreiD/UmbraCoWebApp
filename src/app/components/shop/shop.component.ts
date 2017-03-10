@@ -23,7 +23,7 @@ export class ShopComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.httpService.getForms().then(response=> {
+    this.httpService.getForms().subscribe(response=> {
       parseString(response, (err, result)=> {
         //this.items = this.dataParse.parseShopItems(result);
         //this.shownItems=this.items;
@@ -33,7 +33,7 @@ export class ShopComponent implements OnInit {
     });
 
 
-    this.httpService.getShops().then(response=> {
+    this.httpService.getShops().subscribe(response=> {
       parseString(response, (err, result)=> {
         this.items = this.dataParse.parseShopItems(result);
         this.shownItems=this.items;
