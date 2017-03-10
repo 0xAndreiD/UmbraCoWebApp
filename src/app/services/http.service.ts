@@ -35,8 +35,8 @@ export class HttpService {
     let that=this;
     return (function (): Observable<any> {
       if(loadPromise==null) {
-        loadPromise=new Promise((resolve)=>{
-          that.http.get( domainname + '/umbraco/api/contentApi/getTree/?pageid' + pageid)
+        loadPromise=new Promise<any>((resolve)=>{
+          that.http.get( `${domainname}umbraco/api/contentApi/getTree/?pageid${pageid}`)
             .map(response=>response.json()).subscribe((response)=>{
               resolve(response)
           })
