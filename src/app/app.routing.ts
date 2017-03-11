@@ -16,8 +16,29 @@ var appRoutes: Routes = [
           redirectTo: 'side-1'
       },
       {
-          path: ":url",
-          component: PageComponent
+          path: 'side-1',
+          component: PageComponent,
+          data: {
+            url: 'side-1'
+          }
+      },
+      {
+          path: 'test-page-grid',
+          component: PageComponent,
+          data: {
+            url: 'test-page-grid'
+          }
+      },
+      {
+          path: 'shops',
+          component: PageComponent,
+          data: {
+            url: 'shops'
+          }
+      },
+      {
+          path: "**",
+          redirectTo: 'error/not-found'
       }
     ]
   },
