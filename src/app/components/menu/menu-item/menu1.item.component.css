@@ -1,0 +1,12 @@
+.normal {
+    background-color: rgba(0,0,0,0);
+}
+
+.normal:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+
+.activated {
+    background-color: rgba(0,0,0,0.1)
+}

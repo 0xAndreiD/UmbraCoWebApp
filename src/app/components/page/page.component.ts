@@ -79,7 +79,7 @@ export class PageComponent implements OnInit, AfterViewChecked {
 
   init() {
     this.activatedRoute.params.subscribe((params: Params) => {
-        this.url = params['url'];
+        this.url = this.activatedRoute.snapshot.data['url'];
     });
 
     this.activatedRoute.data.subscribe((data: any)=> {

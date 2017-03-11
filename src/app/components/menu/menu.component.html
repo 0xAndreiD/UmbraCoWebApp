@@ -13,7 +13,7 @@
 </div>
 <nav class="sidenav" id="menu_tab" [ngClass]="{'expanded': is_menutab_opened, 'collapsed': !is_menutab_opened}">
   <a class="closebtn" (click)="is_menutab_opened = false">&times;</a>
-  <menu-item [items]="menuItems"></menu-item>
+  <menu-item [items]="menuItems" [isCollapsed]="is_menutab_opened"></menu-item>
 </nav>
 <nav class="sidenav" id="search_tab" [ngClass]="{'expanded': is_searchtab_opened, 'collapsed': !is_searchtab_opened}">
   <a class="closebtn" (click)="is_searchtab_opened = false">&times;</a>
