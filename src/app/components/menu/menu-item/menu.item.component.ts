@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import {Input} from "@angular/core";
 import {IMenuItem} from "../../../model/IMenuItem";
+import {Router} from "@angular/router";
 
 @Component({
   selector: "menu-item",
@@ -23,7 +24,7 @@ export class MenuItemComponent {
   public expanded(event:any):void {
   }
 
-  constructor(){
+  constructor(private router: Router){
   }
 
   ngOnInit():void {
@@ -44,8 +45,13 @@ export class MenuItemComponent {
     return value? 'activated' : 'normal';
   }
 
-  private selectItem(item:any, index_num: any) {
-    this.selected_item_info.item = item;
-    this.selected_item_info.index_num = index_num;
+  selectItem(item){
+    console.log(item)
+    this.router.navigate([item.path]);
   }
+
+  // private selectItem(item:any, index_num: any) {
+  //   this.selected_item_info.item = item;
+  //   this.selected_item_info.index_num = index_num;
+  // }
 }

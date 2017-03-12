@@ -1,8 +1,9 @@
 <ul *ngIf="items.length>0">
   <li *ngFor="let item of items; let i = index">
+    <!--routerLink={{item.path}}-->
 
     <a class="menu-item"
-       routerLink={{item.path}}
+    (click)="selectItem(item)"
        [class.selected]="getClass('0x001', item, i)">{{item.name}}</a>
 
     <i class="material-icons collapse-icon"

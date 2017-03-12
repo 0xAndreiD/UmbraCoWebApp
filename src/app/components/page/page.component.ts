@@ -67,6 +67,8 @@ export class PageComponent implements OnInit, AfterViewChecked {
   url: string = "";
   extraTemplate = ``;
   extraModules = [MaterializeModule];
+  side;
+  subpage;
 
   constructor(
     private httpService: HttpService,
@@ -79,7 +81,31 @@ export class PageComponent implements OnInit, AfterViewChecked {
 
   init() {
     this.activatedRoute.params.subscribe((params: Params) => {
-        this.url = this.activatedRoute.snapshot.data['url'];
+      console.log(params)
+      this.side = params["side"];
+      this.subpage = params["subpage"];
+      this.url = this.activatedRoute.snapshot.data['side'];
+
+      this.httpService.getUmbPageData(this.side, this.subpage)
+        .subscribe(
+          (umbpagedata: any) => {
+            this.umbpage = umbpagedata.data;
+            this.imgs = umbpagedata.data.contentImages;
+            this.loaded=true;
+            let contentGrid = umbpagedata.data.bodyContentGrid;
+            this.contentGrid = contentGrid.replace('{{renderformid_1}}', '<div id="formContainer" #formContainer></div>');
+
+            this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
+
+            if (this.url != "/") {
+              this.isfrontpage = "subpagecontent";
+            }
+            //weill be removed
+            this.isfrontpage = "frontpagecontent";
+          },
+          (error: any) => {
+            // this.router.navigate(['error/not-found']);
+          });
     });
 
     this.activatedRoute.data.subscribe((data: any)=> {
@@ -91,30 +117,11 @@ export class PageComponent implements OnInit, AfterViewChecked {
       }
     });
 
-    this.httpService.getUmbPageData(this.url)
-      .subscribe(
-          (umbpagedata: any) => {
-              this.umbpage = umbpagedata.data;
-              this.imgs = umbpagedata.data.contentImages;
-              this.loaded=true;
-              let contentGrid = umbpagedata.data.bodyContentGrid;
-              this.contentGrid = contentGrid.replace('{{renderformid_1}}', '<div id="formContainer" #formContainer></div>');
 
-              this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
-
-              if (this.url != "/") {
-                this.isfrontpage = "subpagecontent";
-              }
-              //weill be removed
-              this.isfrontpage = "frontpagecontent";
-         },
-         (error: any) => {
-           this.router.navigate(['error/not-found']);
-         });
   }
 
   ngOnInit() {
-  } 
+  }
 
   ngAfterViewChecked() {
     var tempFormContent = $('#tempContainer').html();

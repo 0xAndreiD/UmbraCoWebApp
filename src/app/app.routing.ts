@@ -9,15 +9,17 @@ import {PageComponent} from "./components/page/page.component";
 var appRoutes: Routes = [
   {
     path: '',
-    component: ContentComponent
-  },
-  {
-    path: ':side',
-    component: ContentComponent
-  },
-  {
-    path: ':side/:subpage',
-    component: ContentComponent
+    component: ContentComponent,
+    children: [
+      {
+        path: ':side',
+        component: PageComponent
+      },
+      {
+        path: ':side/:subpage',
+        component: PageComponent
+      },
+    ]
   },
   {
     path: 'error/not-found',
