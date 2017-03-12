@@ -8,46 +8,23 @@ import {PageComponent} from "./components/page/page.component";
 
 var appRoutes: Routes = [
   {
-    path: '', 
-    component: ContentComponent,
-    children: [
-      {
-          path: '',
-          redirectTo: 'side-1'
-      },
-      {
-          path: 'side-1',
-          component: PageComponent,
-          data: {
-            url: 'side-1'
-          }
-      },
-      {
-          path: 'test-page-grid',
-          component: PageComponent,
-          data: {
-            url: 'test-page-grid'
-          }
-      },
-      {
-          path: 'shops',
-          component: PageComponent,
-          data: {
-            url: 'shops'
-          }
-      },
-      {
-          path: "**",
-          redirectTo: 'error/not-found'
-      }
-    ]
+    path: '',
+    component: ContentComponent
   },
   {
-    path: 'error/not-found', 
+    path: ':side',
+    component: ContentComponent
+  },
+  {
+    path: ':side/:subpage',
+    component: ContentComponent
+  },
+  {
+    path: 'error/not-found',
     component: ErrorComponent
   },
   {
-    path: '**', 
+    path: '**',
     component: ErrorComponent
   }
 

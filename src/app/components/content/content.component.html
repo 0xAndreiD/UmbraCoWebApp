@@ -1,5 +1,18 @@
 <main-menu [menuItems]="menuItems"></main-menu>
 
-<main>
-  <router-outlet></router-outlet>
-</main>
+<!--<main>-->
+  <!--<router-outlet></router-outlet>-->
+<!--</main>-->
+<div class="paper-content" >
+  <div *ngIf="loaded">
+    <DynamicComponent
+      [componentTemplate]='contentGrid'
+      [componentModules]="extraModules">
+    </DynamicComponent>
+    <div id="tempContainer" [hidden]='true'>
+      <app-form></app-form>
+    </div>
+  </div>
+  <div class="loader centered" *ngIf="!loaded"><div class="loader-inner ball-scale"><div></div></div></div>
+</div>
+
