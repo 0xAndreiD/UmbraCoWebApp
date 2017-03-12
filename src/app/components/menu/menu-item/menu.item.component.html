@@ -8,7 +8,7 @@
     <i class="material-icons collapse-icon"
        (click)="onMenuCollapse(item, i)"
        [ngClass]="{'in': item.isCollapsed}"
-       *ngIf="item.level == 1 && item.children.length > 0">&#xE316;</i>
+       *ngIf="item.children.length > 0">&#xE316;</i>
 
     <div class="card-block card-header sub-panel collapse" [ngClass]="{'in': item.isCollapsed}">
 
