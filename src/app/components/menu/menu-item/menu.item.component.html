@@ -1,6 +1,5 @@
 <ul *ngIf="items.length>0">
   <li *ngFor="let item of items; let i = index">
-    <!--routerLink={{item.path}}-->
 
     <a class="menu-item"
     (click)="selectItem(item)"
@@ -8,13 +7,10 @@
 
     <i class="material-icons collapse-icon"
        (click)="onMenuCollapse(item, i)"
-       [style.transform]="getStyle('0x001', item, i)"
-       *ngIf="item.level == 0 && item.children.length > 0">&#xE316;</i>
+       [ngClass]="{'in': item.isCollapsed}"
+       *ngIf="item.level == 1 && item.children.length > 0">&#xE316;</i>
 
-    <div (collapsed)="collapsed($event)"
-         (expanded)="expanded($event)"
-         [collapse]="isCollapsed"
-         class="card card-block card-header sub-panel">
+    <div class="card-block card-header sub-panel collapse" [ngClass]="{'in': item.isCollapsed}">
 
       <menu-item [items]="item.children"></menu-item>
 

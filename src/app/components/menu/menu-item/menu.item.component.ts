@@ -5,8 +5,8 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: "menu-item",
-  templateUrl: "./menu1.item.component.html",
-  styleUrls: ["./menu1.item.component.css"]
+  templateUrl: "./menu.item.component.html",
+  styleUrls: ["./menu.item.component.css"]
 })
 export class MenuItemComponent {
   @Input() items:IMenuItem[];
@@ -19,6 +19,7 @@ export class MenuItemComponent {
 
 
   public collapsed(event:any):void {
+    console.log(event);
   }
 
   public expanded(event:any):void {
@@ -48,6 +49,11 @@ export class MenuItemComponent {
   selectItem(item){
     console.log(item)
     this.router.navigate([item.path]);
+  }
+
+  private onMenuCollapse(item, index) {
+    console.log(item);
+    item.isCollapsed = !item.isCollapsed;
   }
 
   // private selectItem(item:any, index_num: any) {

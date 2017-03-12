@@ -33,6 +33,9 @@ ul li{
   cursor: pointer;
   transition: ease all 320ms;
 }
+.collapse-icon.in {
+  transform: rotate(180deg);
+}
 .collapse {
   display: none !important;
   opacity: 0 !important;

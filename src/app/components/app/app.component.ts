@@ -21,8 +21,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.http.getMenu().subscribe(response=> {
-
-
       this.menuItems = this.dataParse.parseMenuDataToNav(response);
       this.menuItems.push({
         name: "Shop",
@@ -30,10 +28,6 @@ export class AppComponent {
         level: 0,
         children:[]
       });
-      for (let i = 0; i < this.menuItems.length; i++) {
-        this.menuItems[i].level = 0;
-      }
-
     });
   }
 }
