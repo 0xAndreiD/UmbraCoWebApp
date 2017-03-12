@@ -25,13 +25,13 @@ export class DataParseService {
   parseMenuDataToNav(data): Array<IMenuItem> {
     //See Array.prototype.reduce
     return data.data.reduce((result, currentItem)=> {
-      if (currentItem.parentId == -1) {
+      // if (currentItem.parentId == -1) {
         return [...result, Object.assign({}, this.mapDataObjectToMenuItem(currentItem), {
           children: this.getChildItems(currentItem.id, data.data)
         })];
-      } else {
-        return result;
-      }
+      // } else {
+      //   return result;
+      // }
     }, []);
   }
 
