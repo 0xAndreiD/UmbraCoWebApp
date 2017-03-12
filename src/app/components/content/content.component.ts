@@ -10,7 +10,7 @@ import {DataParseService} from "../../services/DataParseService";
 
 @Component({
   templateUrl: "./content.component.html",
-  styleUrls: ["./content1.component.css"]
+  styleUrls: ["./content.component.css"]
 })
 export class ContentComponent {
 
