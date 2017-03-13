@@ -96,7 +96,7 @@ export class PageComponent implements OnInit, AfterViewChecked {
           //  this.contentGrid = contentGrid.replace('{{renderformid_1}}', '<div id="formContainer" #formContainer></div>');
             this.contentGrid = contentGrid;
             this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
-            this.seoService.setMetaElement("title", umbpagedata.data.title);
+            this.seoService.setTitle(umbpagedata.data.title);
           },
           (error: any) => {
             // this.router.navigate(['error/not-found']);
