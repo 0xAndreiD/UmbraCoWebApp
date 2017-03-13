@@ -88,6 +88,7 @@ export class PageComponent implements OnInit, AfterViewChecked {
       this.httpService.getUmbPageData(this.side, this.subpage)
         .subscribe(
           (umbpagedata: any) => {
+            console.log(umbpagedata);
             this.umbpage = umbpagedata.data;
             this.imgs = umbpagedata.data.contentImages;
             this.loaded=true;
@@ -95,6 +96,7 @@ export class PageComponent implements OnInit, AfterViewChecked {
           //  this.contentGrid = contentGrid.replace('{{renderformid_1}}', '<div id="formContainer" #formContainer></div>');
             this.contentGrid = contentGrid;
             this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
+            this.seoService.setMetaElement("title", umbpagedata.data.title);
           },
           (error: any) => {
             // this.router.navigate(['error/not-found']);
@@ -102,6 +104,7 @@ export class PageComponent implements OnInit, AfterViewChecked {
     });
 
     this.activatedRoute.data.subscribe((data: any)=> {
+      // console.log(data);
       if (data.meta) {
         this.seoService.setMetaTags(data.meta);
       }
