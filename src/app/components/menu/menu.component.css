@@ -183,3 +183,14 @@ header {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+#slide-out {
+  z-index: 998;
+  margin-left: 76px;
+}
+
+.sidenav-header {
+  background-color: #f44242;
+  width: 285px;
+  height: 75px;
+}

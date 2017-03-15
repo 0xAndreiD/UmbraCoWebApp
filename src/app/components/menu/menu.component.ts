@@ -45,11 +45,14 @@ export class MenuComponent {
     if (cases == 'MENU') {
       this.is_menutab_opened = !this.is_menutab_opened;
       this.is_searchtab_opened = false;
-    } else {
+    } else if (cases == 'SEARCH') {
       this.is_searchtab_opened = !this.is_searchtab_opened;
       this.is_menutab_opened = false;
+    } else if (cases == 'MENU2') {
+      
+    } else {
+      this.nav_mode = cases;
     }
-    this.nav_mode = cases;
   }
 
   private getWidthSearchTab():string {

@@ -10,3 +10,7 @@
 .paper-content .container img {
     max-width: 100% !important;
 }
+
+#full-carousel {
+  margin-bottom: 50px;
+}

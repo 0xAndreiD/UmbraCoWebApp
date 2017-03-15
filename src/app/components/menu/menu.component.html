@@ -9,13 +9,66 @@
   <ul>
     <li><a (click)="onOpenNavbar('MENU')" [class.selected]="getClass() == 'MENU'"><i class="material-icons">&#xE5D2;</i><span>Menu</span></a></li>
     <li><a (click)="onOpenNavbar('SEARCH')" [class.selected]="getClass() == 'SEARCH'"><i class="material-icons">&#xE8B6;</i><span>Search</span></a></li>
+    <li><a (click)="onOpenNavbar('MENU2')" data-activates="slide-out" class="button-collapse"><i class="material-icons">&#xE5D2;</i><span>Menu2</span></a></li>
   </ul>
 </div>
+
 <nav class="sidenav" id="menu_tab" [ngClass]="{'expanded': is_menutab_opened, 'collapsed': !is_menutab_opened}">
   <a class="closebtn" (click)="is_menutab_opened = false">&times;</a>
   <menu-item [items]="menuItems" [isCollapsed]="is_menutab_opened"></menu-item>
 </nav>
+
 <nav class="sidenav" id="search_tab" [ngClass]="{'expanded': is_searchtab_opened, 'collapsed': !is_searchtab_opened}">
   <a class="closebtn" (click)="is_searchtab_opened = false">&times;</a>
   <menu-search></menu-search>
 </nav>
+
+<!--
+  <div id="header-navbar" class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+		 <h1>HEADER</h1>
+      </div>
+    </nav>
+  </div> -->
+
+  <ul id="slide-out" class="side-nav">
+    <li>
+      <div class="sidenav-header">
+        <a class="header"><h4>Header</h4></a>
+      </div>
+    </li>
+    <li><a class="subheader">Subheader</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+  </ul>
