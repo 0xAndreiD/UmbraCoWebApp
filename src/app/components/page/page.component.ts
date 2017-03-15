@@ -88,7 +88,7 @@ export class PageComponent implements OnInit, AfterViewChecked {
       this.httpService.getUmbPageData(this.side, this.subpage)
         .subscribe(
           (umbpagedata: any) => {
-            console.log(umbpagedata);
+            // console.log(umbpagedata);
             this.umbpage = umbpagedata.data;
             this.imgs = umbpagedata.data.contentImages;
             this.loaded=true;
