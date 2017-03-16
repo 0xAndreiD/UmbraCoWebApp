@@ -78,6 +78,10 @@ export class PageComponent implements OnInit, AfterViewChecked {
     this.init();
   }
 
+  initCarousel() {
+    $('.carousel.carousel-slider').carousel({fullWidth: true});
+  }
+
   init() {
     this.activatedRoute.params.subscribe((params: Params) => {
       //console.log(params)
@@ -120,6 +124,7 @@ export class PageComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
+    this.initCarousel();
   /*  var tempFormContent = $('#tempContainer').html();
     if( $('#formContainer').length > 0 && this.lastFormContent != tempFormContent ) {
       $('#formContainer').html( tempFormContent );
