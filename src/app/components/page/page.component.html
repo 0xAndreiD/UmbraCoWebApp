@@ -2,7 +2,8 @@
   <div *ngIf="loaded">
     <DynamicComponent
       [componentTemplate]='contentGrid'
-      [componentModules]="extraModules">
+      [componentModules]="extraModules"
+      (dynamicComponentReady)="dynamicCallback()">
     </DynamicComponent>
     <!-- wILL ADD FORM STUFF TO THIS CONTAINER AND MOVE INTO HTML STRING. nOT WORKING AND NOT BEST CASE.
     <div id="tempContainer" [hidden]='true'>

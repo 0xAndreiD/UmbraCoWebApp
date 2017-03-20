@@ -1,8 +1,8 @@
-import {Component, OnInit, transition, trigger, style, animate, keyframes, Pipe, PipeTransform, AfterViewChecked } from "@angular/core";
-import {Router, ActivatedRoute, Params} from "@angular/router";
+import { Component, OnInit, transition, trigger, style, animate, keyframes, Pipe, PipeTransform, AfterViewChecked } from "@angular/core";
+import { Router, ActivatedRoute, Params } from "@angular/router";
 import { DomSanitizer } from '@angular/platform-browser';
-import {HttpService} from "../../services/http.service";
-import {SeoService} from "../../services/SeoService";
+import { HttpService } from "../../services/http.service";
+import { SeoService } from "../../services/SeoService";
 //import {FormComponent} from "../form/form.component";
 
 import {DynamicComponentModuleFactory} from 'angular2-dynamic-component/index';
@@ -55,7 +55,7 @@ export class SafeHtmlPipe implements PipeTransform  {
     ])
   ]
 })
-export class PageComponent implements OnInit, AfterViewChecked {
+export class PageComponent implements AfterViewChecked {
   lastFormContent: string = '';
 
   render:boolean = true;
@@ -78,9 +78,16 @@ export class PageComponent implements OnInit, AfterViewChecked {
     this.init();
   }
 
+  initCarousel() {
+    $('.carousel.carousel-slider').carousel({fullWidth: true});
+  }
+
+  dynamicCallback() {
+    this.initCarousel();
+  }
+
   init() {
     this.activatedRoute.params.subscribe((params: Params) => {
-      //console.log(params)
       this.side = params["side"];
       this.subpage = params["subpage"];
       this.url = this.activatedRoute.snapshot.data['side'];
@@ -88,7 +95,6 @@ export class PageComponent implements OnInit, AfterViewChecked {
       this.httpService.getUmbPageData(this.side, this.subpage)
         .subscribe(
           (umbpagedata: any) => {
-            // console.log(umbpagedata);
             this.umbpage = umbpagedata.data;
             this.imgs = umbpagedata.data.contentImages;
             this.loaded=true;
@@ -108,7 +114,6 @@ export class PageComponent implements OnInit, AfterViewChecked {
     });
 
     this.activatedRoute.data.subscribe((data: any)=> {
-      // console.log(data);
       if (data.meta) {
         this.seoService.setMetaTags(data.meta);
       }
@@ -275,9 +280,6 @@ export class PageComponent implements OnInit, AfterViewChecked {
       return slider;
     }
 
-  }
-
-  ngOnInit() {
   }
 
   ngAfterViewChecked() {

@@ -2,10 +2,10 @@
  * Created by User on 21.10.2016.
  */
 
-import {Component} from "@angular/core";
-import {IMenuItem} from "../../model/IMenuItem";
-import {HttpService} from "../../services/http.service";
-import {DataParseService} from "../../services/DataParseService";
+import { Component } from "@angular/core";
+import { IMenuItem } from "../../model/IMenuItem";
+import { HttpService } from "../../services/http.service";
+import { DataParseService } from "../../services/DataParseService";
 
 
 @Component({
