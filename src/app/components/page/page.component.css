@@ -10,3 +10,17 @@
 .paper-content .container img {
     max-width: 100% !important;
 }
+
+/* main content */
+
+main {
+  padding-left: 76px;
+  clear: both;
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    padding-left: 0;
+  }
+}

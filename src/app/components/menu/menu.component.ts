@@ -9,8 +9,8 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: "main-menu",
-  templateUrl: "./menu.component.html",
-  styleUrls: ["./menu.component.css"]
+  templateUrl: "./menu0.component.html",
+  styleUrls: ["./menu0.component.css"]
 })
 export class MenuComponent {
   @Input() menuItems:IMenuItem[]=[]
@@ -45,11 +45,13 @@ export class MenuComponent {
     if (cases == 'MENU') {
       this.is_menutab_opened = !this.is_menutab_opened;
       this.is_searchtab_opened = false;
-    } else if (cases == 'SEARCH') {
+    }
+    else if (cases == 'SEARCH') {
       this.is_searchtab_opened = !this.is_searchtab_opened;
       this.is_menutab_opened = false;
-    } else if (cases == 'MENU2') {
-      
+    }
+    else if (cases == 'MENU2') {
+
     } else {
       this.nav_mode = cases;
     }

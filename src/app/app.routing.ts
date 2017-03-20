@@ -5,11 +5,12 @@ import {RouteController} from "./services/RouteController";
 import {ContentComponent} from "./components/content/content.component";
 import {FormComponent} from "./components/form/form.component";
 import {PageComponent} from "./components/page/page.component";
+import {AppComponent} from "./components/app/app.component";
 
 var appRoutes: Routes = [
   {
     path: '',
-    component: ContentComponent,
+    component: AppComponent,
     children: [
       {
         path: ':side',

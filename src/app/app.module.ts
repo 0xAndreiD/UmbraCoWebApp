@@ -17,7 +17,7 @@ import {MenuItemComponent} from "./components/menu/menu-item/menu.item.component
 import {MenuSearchComponent} from "./components/menu/menu-search/menu.search.component";
 import {MenuComponent} from "./components/menu/menu.component";
 import {RouteController} from "./services/RouteController";
-import {ContentComponent} from "./components/content/content.component";
+//import {ContentComponent} from "./components/content/content.component";
 import {ImageLazyLoadModule, ImageLazyLoaderService, WebWorkerService} from "ng2-image-lazy-load"
 import {LoadImagesService} from "./services/LoadImagesService";
 import {ShopComponent} from "./components/shop/shop.component";
@@ -48,7 +48,7 @@ WebWorkerService.enabled=false;
     MenuComponent,
     MenuItemComponent,
     MenuSearchComponent,
-    ContentComponent,
+//    ContentComponent,
     ShopComponent,
     ShopItemComponent,
     SafeHtmlPipe,

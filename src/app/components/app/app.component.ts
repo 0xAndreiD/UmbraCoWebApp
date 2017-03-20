@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {DataParseService} from "../../services/DataParseService";
 import {HttpService} from "../../services/http.service";
 import {IMenuItem} from "../../model/IMenuItem";
+
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,9 @@ export class AppComponent {
         level: 0,
         children:[]
       });
+      for (let i = 0; i < this.menuItems.length; i++) {
+        this.menuItems[i].level = 0;
+      }
     });
   }
 }

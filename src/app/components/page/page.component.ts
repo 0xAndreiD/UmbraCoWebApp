@@ -29,8 +29,8 @@ export class SafeHtmlPipe implements PipeTransform  {
 
 @Component({
   selector: 'app-page',
-  templateUrl: './page.component.html',
-  styleUrls: ['./page.component.css'],
+  templateUrl: './page0.component.html',
+  styleUrls: ['./page0.component.css'],
   providers: [HttpService],
   animations: [
     trigger("wrapper", [
