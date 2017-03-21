@@ -13,6 +13,10 @@ var appRoutes: Routes = [
     component: ContentComponent,
     children: [
       {
+        path: '',
+        component: PageComponent
+      },
+      {
         path: ':side',
         component: PageComponent
       },
