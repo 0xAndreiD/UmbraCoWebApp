@@ -17,7 +17,6 @@ import {MenuItemComponent} from "./components/menu/menu-item/menu.item.component
 import {MenuSearchComponent} from "./components/menu/menu-search/menu.search.component";
 import {MenuComponent} from "./components/menu/menu.component";
 import {RouteController} from "./services/RouteController";
-//import {ContentComponent} from "./components/content/content.component";
 import {ImageLazyLoadModule, ImageLazyLoaderService, WebWorkerService} from "ng2-image-lazy-load"
 import {LoadImagesService} from "./services/LoadImagesService";
 import {ShopComponent} from "./components/shop/shop.component";
@@ -26,7 +25,8 @@ import {CollapseModule} from 'ng2-bootstrap/collapse';
 import {MaterializeModule} from "angular2-materialize";
 import {DynamicComponentModule} from 'angular2-dynamic-component/index';
 import { FormComponent } from './components/form/form.component';
-import { CustomFormsModule } from 'ng2-validation'
+import { CustomFormsModule } from 'ng2-validation';
+import { ContentComponent } from './components/content/content.component';
 
 WebWorkerService.enabled=false;
 @NgModule({
@@ -48,11 +48,11 @@ WebWorkerService.enabled=false;
     MenuComponent,
     MenuItemComponent,
     MenuSearchComponent,
-//    ContentComponent,
     ShopComponent,
     ShopItemComponent,
     SafeHtmlPipe,
-    FormComponent
+    FormComponent,
+    ContentComponent
   ],
   providers: [
     appRoutingProviders,
