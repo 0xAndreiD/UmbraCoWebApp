@@ -9,12 +9,14 @@ import {DynamicComponentModuleFactory} from 'angular2-dynamic-component/index';
 import {MaterializeModule} from "angular2-materialize";
 export const DYNAMIC_MODULE = DynamicComponentModuleFactory.buildModule([MaterializeModule]);
 
-//// In the console
-//// First install jQuery
-//npm install --save jquery
-//// and jQuery Definition
-// npm install -D @types/jquery
-//import * as $ from 'jquery';
+
+
+/* STUFF FOR PAPERSTACK ONLY */
+import '../../js/paperstack/modernizr-custom.js';
+import '../../js/paperstack/classie.js';
+import '../../js/paperstack/main.js';
+/*STUFF FOR PAPERSTACK ONLY END */
+
 declare var carousel: any;
 declare var $:any;
 
@@ -86,6 +88,8 @@ export class PageComponent implements AfterViewChecked {
     this.initCarousel();
   }
 
+
+
   init() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.side = params["side"];
@@ -112,6 +116,7 @@ export class PageComponent implements AfterViewChecked {
             // this.router.navigate(['error/not-found']);
           });
     });
+
 
     this.activatedRoute.data.subscribe((data: any)=> {
       if (data.meta) {

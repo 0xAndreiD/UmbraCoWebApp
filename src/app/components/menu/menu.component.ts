@@ -7,6 +7,9 @@ import {IMenuItem} from "../../model/IMenuItem";
 import {HttpService} from "../../services/http.service";
 import {Router} from "@angular/router";
 
+
+
+
 @Component({
   selector: "main-menu",
   templateUrl: "./menu0.component.html",
@@ -30,6 +33,8 @@ export class MenuComponent {
   }
 
   ngOnInit():void {
+
+
     this.http.getUmbPageGeneralData()
       .subscribe(
         (umbpagegeneraldata: any) => {
@@ -39,6 +44,8 @@ export class MenuComponent {
         (error: any) => {
           this.router.navigate(['error/not-found']);
         });
+
+        //this.getMenuItems();
   }
 
   private onOpenNavbar(cases:string):void {
@@ -69,5 +76,4 @@ export class MenuComponent {
       return '';
     }
   }
-
 }
