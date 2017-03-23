@@ -14,9 +14,9 @@ export class HttpService {
   constructor(private http: Http) { }
 
   getUmbPageData(url, subpage?): Observable<any>{
-      return this.http.get( `${domainname}umbraco/api/contentApi/getData?url=${url}/${subpage || ''}` )
-                      .map((response: Response) => response.json())
-                      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    return this.http.get( `${domainname}umbraco/api/contentApi/getData?url=${url || ''}/${subpage || ''}` )
+                    .map((response: Response) => response.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   getUmbPageGeneralData(): Observable<any>{

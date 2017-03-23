@@ -2,10 +2,11 @@
  * Created by User on 20.10.2016.
  */
 
-import {Component, Input} from "@angular/core";
-import {IMenuItem} from "../../model/IMenuItem";
-import {HttpService} from "../../services/http.service";
-import {Router} from "@angular/router";
+import { Component, Input } from "@angular/core";
+import { IMenuItem } from "../../model/IMenuItem";
+import { HttpService } from "../../services/http.service";
+import { DataParseService } from "../../services/DataParseService";
+import { Router } from "@angular/router";
 
 
 
@@ -16,7 +17,7 @@ import {Router} from "@angular/router";
   styleUrls: ["./menu0.component.css"]
 })
 export class MenuComponent {
-  @Input() menuItems:IMenuItem[]=[]
+  menuItems:IMenuItem[]=[]
 
   is_menutab_opened:boolean = false;
 
@@ -28,13 +29,27 @@ export class MenuComponent {
 
   constructor(
     private http: HttpService,
-    private router: Router
+    private router: Router,
+    private dataParse: DataParseService
   ){
   }
 
+  getMenuItems() {
+    this.http.getMenu().subscribe(response=> {
+      this.menuItems = this.dataParse.parseMenuDataToNav(response);
+      this.menuItems.push({
+        name: "Shop",
+        path: "/shops",
+        level: 0,
+        children:[]
+      });
+      for (let i = 0; i < this.menuItems.length; i++) {
+        this.menuItems[i].level = 0;
+      }
+    });
+  }
+
   ngOnInit():void {
-
-
     this.http.getUmbPageGeneralData()
       .subscribe(
         (umbpagegeneraldata: any) => {
@@ -45,7 +60,7 @@ export class MenuComponent {
           this.router.navigate(['error/not-found']);
         });
 
-        //this.getMenuItems();
+    this.getMenuItems();
   }
 
   private onOpenNavbar(cases:string):void {
