@@ -91,7 +91,6 @@ export class PageComponent implements AfterViewChecked {
       this.side = params["side"];
       this.subpage = params["subpage"];
       this.url = this.activatedRoute.snapshot.data['side'];
-
       this.httpService.getUmbPageData(this.side, this.subpage)
         .subscribe(
           (umbpagedata: any) => {
