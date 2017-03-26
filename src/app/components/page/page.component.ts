@@ -1,15 +1,18 @@
-import { Component, OnInit, transition, trigger, style, animate, keyframes, Pipe, PipeTransform, AfterViewChecked } from "@angular/core";
+import { Component, OnInit, transition, trigger, style, animate, keyframes, Pipe, PipeTransform,
+  AfterViewChecked, ComponentFactoryResolver, ViewChild, ViewContainerRef, NgModule, ComponentFactory } from "@angular/core";
+import { JitCompiler } from '@angular/compiler';
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpService } from "../../services/http.service";
 import { SeoService } from "../../services/SeoService";
+import { IHaveDynamicData, DynamicTypeBuilder } from '../dynamic/type.builder';
+import Settings from '../dynamic/settings';
+import _ from "lodash";
 //import {FormComponent} from "../form/form.component";
 
 import {DynamicComponentModuleFactory} from 'angular2-dynamic-component/index';
 import {MaterializeModule} from "angular2-materialize";
 export const DYNAMIC_MODULE = DynamicComponentModuleFactory.buildModule([MaterializeModule]);
-
-
 
 /* STUFF FOR PAPERSTACK ONLY */
 import '../../js/paperstack/modernizr-custom.js';
@@ -30,10 +33,14 @@ export class SafeHtmlPipe implements PipeTransform  {
   }
 }
 
+export interface IHaveDynamicData {
+}
+
 @Component({
   selector: 'app-page',
-  templateUrl: './page0.component.html',
-  styleUrls: ['./page0.component.css'],
+  /* templateUrl: './page0.component.html',
+  styleUrls: ['./page0.component.css'], */
+  template: '<div #ngIncludeContent></div>',
   providers: [HttpService],
   animations: [
     trigger("wrapper", [
@@ -56,7 +63,7 @@ export class SafeHtmlPipe implements PipeTransform  {
         ])) */
       ])
     ])
-  ]
+  ],
 })
 export class PageComponent implements AfterViewChecked {
   lastFormContent: string = '';
@@ -71,14 +78,18 @@ export class PageComponent implements AfterViewChecked {
   extraModules = [MaterializeModule];
   side;
   subpage;
+  @ViewChild('ngIncludeContent', { read: ViewContainerRef }) viewContainer: ViewContainerRef;
 
   constructor(
     private httpService: HttpService,
     private activatedRoute: ActivatedRoute,
     private seoService: SeoService,
-    private router: Router
+    private router: Router,
+    private resolver: ComponentFactoryResolver,
+    protected typeBuilder: DynamicTypeBuilder,
   ) {
     this.init();
+    // this.viewContainer.createComponent(childComponent);
   }
 
   initCarousel() {
@@ -89,9 +100,8 @@ export class PageComponent implements AfterViewChecked {
     this.initCarousel();
   }
 
-
-
   init() {
+    // this.viewContainer.createComponent(childComponent);
     this.activatedRoute.params.subscribe((params: Params) => {
       this.side = params["side"];
       this.subpage = params["subpage"];
@@ -129,11 +139,22 @@ export class PageComponent implements AfterViewChecked {
     });
   }
 
+  ngAfterViewInit() {
+  }
+
+  ngOnInit() {
+    this.typeBuilder.createComponentFactory(`./${Settings[this.side].page}.component`).then((factory: ComponentFactory<IHaveDynamicData>) =>
+    {
+      this.viewContainer.createComponent(factory);
+    });
+  }
+
   ngAfterViewChecked() {
   /*  var tempFormContent = $('#tempContainer').html();
     if( $('#formContainer').length > 0 && this.lastFormContent != tempFormContent ) {
       $('#formContainer').html( tempFormContent );
       this.lastFormContent = tempFormContent;
     }*/
+    // console.log(this.viewContainer);
   }
 }

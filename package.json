@@ -27,6 +27,7 @@
     "angular2-materialize": "^6.6.0",
     "core-js": "^2.4.1",
     "jquery": "^2.2.4",
+    "lodash": "^4.17.4",
     "materialize-css": "^0.98.0",
     "ng2-bootstrap": "^1.1.16-11",
     "ng2-image-lazy-load": "^2.0.9",

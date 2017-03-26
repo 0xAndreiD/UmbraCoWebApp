@@ -2,19 +2,19 @@
  * Created by User on 20.10.2016.
  */
 
-import { Component, Input } from "@angular/core";
+import { Component, Input, ComponentFactoryResolver, ViewChild, ViewContainerRef, ComponentFactory } from "@angular/core";
 import { IMenuItem } from "../../model/IMenuItem";
 import { HttpService } from "../../services/http.service";
 import { DataParseService } from "../../services/DataParseService";
 import { Router } from "@angular/router";
-
-
-
+import { DynamicTypeBuilder, IHaveDynamicData } from '../dynamic/type.builder';
+import Settings from '../dynamic/settings';
 
 @Component({
   selector: "main-menu",
-  templateUrl: "./menu0.component.html",
-  styleUrls: ["./menu0.component.css"]
+  /* templateUrl: "./menu0.component.html",
+  styleUrls: ["./menu0.component.css"], */
+  template: "<div #ngIncludeContent></div>",
 })
 export class MenuComponent {
   menuItems:IMenuItem[]=[]
@@ -24,13 +24,17 @@ export class MenuComponent {
   is_searchtab_opened:boolean = false;
 
   nav_mode:string = '';
-
+  side
   umbpagegeneral;
+
+  @ViewChild('ngIncludeContent', { read: ViewContainerRef }) viewContainer: ViewContainerRef;
 
   constructor(
     private http: HttpService,
     private router: Router,
-    private dataParse: DataParseService
+    private dataParse: DataParseService,
+    private resolver: ComponentFactoryResolver,
+    protected typeBuilder: DynamicTypeBuilder,
   ){
   }
 
@@ -59,6 +63,10 @@ export class MenuComponent {
         (error: any) => {
           this.router.navigate(['error/not-found']);
         });
+    this.typeBuilder.createComponentFactory(`./${Settings[this.side].page}.component`).then((factory: ComponentFactory<IHaveDynamicData>) =>
+    {
+      this.viewContainer.createComponent(factory);
+    });
 
     this.getMenuItems();
   }

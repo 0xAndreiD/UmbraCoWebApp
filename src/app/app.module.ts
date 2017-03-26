@@ -27,6 +27,8 @@ import {DynamicComponentModule} from 'angular2-dynamic-component/index';
 import { FormComponent } from './components/form/form.component';
 import { CustomFormsModule } from 'ng2-validation';
 import { ContentComponent } from './components/content/content.component';
+import { COMPILER_PROVIDERS } from '@angular/compiler';
+import { DynamicTypeBuilder } from './components/dynamic/type.builder';
 
 WebWorkerService.enabled=false;
 @NgModule({
@@ -64,7 +66,8 @@ WebWorkerService.enabled=false;
     {
       provide: ImageLazyLoaderService,
       useClass: LoadImagesService
-    }
+    },
+    DynamicTypeBuilder,
   ],
   entryComponents: [PageComponent, ErrorComponent, AppComponent, ShopComponent],
   bootstrap: [ AppComponent ]
