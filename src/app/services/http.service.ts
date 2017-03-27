@@ -2,16 +2,18 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import {Observable} from 'rxjs/Rx'
 import {PromiseObservable} from 'rxjs/observable/PromiseObservable';
+
+import Settings from './settings';
 //import 'rxjs/Rx';
 
 var domainname = "http://umb.dynamikfabrikken.com/";
 //domainname = "http://localhost:50947/";
-var pageid = "1883";
-
+let pageid= '';
 @Injectable()
 export class HttpService {
-
-  constructor(private http: Http) { }
+  constructor(private http: Http) {
+    pageid = Settings[window.location.hostname].pageid;
+  }
 
   getUmbPageData(url, subpage?): Observable<any>{
     return this.http.get( `${domainname}umbraco/api/contentApi/getData?url=${url || ''}/${subpage || ''}` )
