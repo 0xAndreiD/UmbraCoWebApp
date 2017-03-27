@@ -1,6 +1,6 @@
 export default {
   'localhost': {
-    menu: 'menu',
+    menu: 'mmenu',
     page: 'page',
     pageid: '1883',
     scripts: [
