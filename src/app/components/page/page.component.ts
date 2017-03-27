@@ -7,12 +7,6 @@ import Settings from '../../services/settings';
 import _ from "lodash";
 //import {FormComponent} from "../form/form.component";
 
-/* STUFF FOR PAPERSTACK ONLY */
-import '../../js/paperstack/modernizr-custom.js';
-import '../../js/paperstack/classie.js';
-import '../../js/paperstack/main.js';
-/*STUFF FOR PAPERSTACK ONLY END */
-
 @Pipe ({ name: 'safeHtml'})
 
 export class SafeHtmlPipe implements PipeTransform  {
@@ -38,6 +32,7 @@ export class PageComponent implements AfterViewChecked {
   }
 
   init() {
+
 
   }
 

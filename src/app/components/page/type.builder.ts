@@ -18,12 +18,11 @@ declare var buildcontenthtml:any;
 
 @Injectable()
 export class DynamicTypeBuilder {
-
   // wee need Dynamic component builder
   constructor(injector: Injector, private compiler: Compiler) {
     injector = ReflectiveInjector.resolveAndCreate(COMPILER_PROVIDERS, injector);
     compiler = injector.get(Compiler);
-  }
+}
 
   // this object is singleton - so we can use this as a cache
   private _cacheOfFactories: {[templateKey: string]: ComponentFactory<AfterViewChecked>} = {};
@@ -35,12 +34,11 @@ export class DynamicTypeBuilder {
 
     if (factory) {
         console.log("Module and Type are returned from cache")
-
         return new Promise((resolve) => {
             resolve(factory);
         });
     }
-
+    //console.log(template);
     // unknown template ... let's create a Type for it
     let type   = this.createNewComponent(template);
     let module = this.createComponentModule(type);
@@ -89,7 +87,7 @@ export class DynamicTypeBuilder {
           private seoService: SeoService,
           private router: Router,
         ) {
-          console.log('hahah');
+        //console.log('hahah');
           this.init();
         }
 

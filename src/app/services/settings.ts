@@ -1,7 +1,7 @@
 export default {
   'localhost': {
-    menu: 'menu0',
-    page: 'page0',
+    menu: 'menu',
+    page: 'page',
     pageid: '1883',
   },
   'other': {
