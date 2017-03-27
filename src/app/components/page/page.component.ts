@@ -39,7 +39,6 @@ export class PageComponent implements AfterViewChecked {
   ngAfterViewInit() {
     this.typeBuilder.createComponentFactory(`${Settings[window.location.hostname].page}.component`).then((factory: ComponentFactory<AfterViewChecked>) =>
     {
-      console.log(factory);
       this.viewContainer.createComponent(factory);
     });
   }

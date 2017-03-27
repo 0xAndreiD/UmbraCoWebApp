@@ -1,7 +1,8 @@
 export default {
   'localhost': {
-    menu: 'mmenu',
-    page: 'page',
+    menu: 'menu0',
+    menuItem: 'menu0.item',
+    page: 'page0',
     pageid: '1883',
     scripts: [
       '/src/app/js/paperstack/modernizr-custom.js',

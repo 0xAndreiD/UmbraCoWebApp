@@ -28,6 +28,7 @@ import { ContentComponent } from './components/content/content.component';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { DynamicTypeBuilder as DynamicPageTypeBuilder } from './components/page/type.builder';
 import { DynamicTypeBuilder as DynamicMenuTypeBuilder } from './components/menu/type.builder';
+import { DynamicTypeBuilder as DynamicMenuItemTypeBuilder } from './components/menu/menu-item/type.builder';
 
 WebWorkerService.enabled=false;
 @NgModule({
@@ -66,6 +67,7 @@ WebWorkerService.enabled=false;
     },
     DynamicPageTypeBuilder,
     DynamicMenuTypeBuilder,
+    DynamicMenuItemTypeBuilder,
   ],
   entryComponents: [PageComponent, ErrorComponent, AppComponent, ShopComponent],
   bootstrap: [ AppComponent ]
