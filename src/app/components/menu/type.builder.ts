@@ -39,7 +39,7 @@ export class DynamicTypeBuilder {
     }
 
 
-    console.log(template);
+    //console.log(template);
 
     // unknown template ... let's create a Type for it
     let type   = this.createNewComponent(template);

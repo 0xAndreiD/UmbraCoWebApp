@@ -38,7 +38,7 @@ export class DynamicTypeBuilder {
             resolve(factory);
         });
     }
-    //console.log(template);
+    console.log(template);
     // unknown template ... let's create a Type for it
     let type   = this.createNewComponent(template);
     let module = this.createComponentModule(type);
