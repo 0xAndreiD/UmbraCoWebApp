@@ -12,3 +12,20 @@
   <div class="loader centered" *ngIf="!loaded"><div class="loader-inner ball-scale"><div></div></div></div>
 </div>
 -->
+
+  <div class="pages-stack" [@wrapper]="state">
+    <!-- page -->
+    <div class="page" id="page-home">
+      <div class="bp-header cf">
+          <div *ngIf="loaded">
+            <DynamicComponent
+              [componentTemplate]='contentGrid'
+              [componentModules]="extraModules"
+              (dynamicComponentReady)="dynamicCallback()">
+            </DynamicComponent>
+          </div>
+      </div>
+    </div>
+  	<div class="page" id="fakepaper1"></div>
+  	<div class="page" id="fakepaper2"></div>
+  </div>

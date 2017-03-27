@@ -13,7 +13,6 @@ import {PageComponent} from "./components/page/page.component";
 import {ErrorComponent} from "./components/error/error.component";
 import {SeoService} from "./services/SeoService";
 import {DataParseService} from "./services/DataParseService";
-import {MenuItemComponent} from "./components/menu/menu-item/menu.item.component";
 import {MenuSearchComponent} from "./components/menu/menu-search/menu.search.component";
 import {MenuComponent} from "./components/menu/menu.component";
 import {RouteController} from "./services/RouteController";
@@ -27,6 +26,9 @@ import {DynamicComponentModule} from 'angular2-dynamic-component/index';
 import { FormComponent } from './components/form/form.component';
 import { CustomFormsModule } from 'ng2-validation';
 import { ContentComponent } from './components/content/content.component';
+import { COMPILER_PROVIDERS } from '@angular/compiler';
+import { DynamicTypeBuilder as DynamicPageTypeBuilder } from './components/page/type.builder';
+import { DynamicTypeBuilder as DynamicMenuTypeBuilder } from './components/menu/type.builder';
 
 WebWorkerService.enabled=false;
 @NgModule({
@@ -46,7 +48,6 @@ WebWorkerService.enabled=false;
     PageComponent,
     ErrorComponent,
     MenuComponent,
-    MenuItemComponent,
     MenuSearchComponent,
     ShopComponent,
     ShopItemComponent,
@@ -64,7 +65,9 @@ WebWorkerService.enabled=false;
     {
       provide: ImageLazyLoaderService,
       useClass: LoadImagesService
-    }
+    },
+    DynamicPageTypeBuilder,
+    DynamicMenuTypeBuilder,
   ],
   entryComponents: [PageComponent, ErrorComponent, AppComponent, ShopComponent],
   bootstrap: [ AppComponent ]

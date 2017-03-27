@@ -5,8 +5,8 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: "menu-item",
-  templateUrl: "./menu.item.component.html",
-  styleUrls: ["./menu.item.component.css"]
+  templateUrl: "./menu0.item.component.html",
+  styleUrls: ["./menu0.item.component.css"]
 })
 export class MenuItemComponent {
   @Input() items:IMenuItem[];
