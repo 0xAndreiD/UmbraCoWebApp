@@ -226,7 +226,7 @@ function initpaperstack(){
 
 setTimeout(function(){
   initpaperstack();
-}, 0);
+}, 1000);
 
 
 })(window);

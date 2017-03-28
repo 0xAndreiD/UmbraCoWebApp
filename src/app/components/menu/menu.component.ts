@@ -8,8 +8,6 @@ import Settings from '../../services/settings';
 
 @Component({
   selector: "main-menu",
-  /* templateUrl: "./menu0.component.html",
-  styleUrls: ["./menu0.component.css"], */
   template: "<div #ngIncludeContent></div>",
 })
 export class MenuComponent {

@@ -13,7 +13,6 @@ import {PageComponent} from "./components/page/page.component";
 import {ErrorComponent} from "./components/error/error.component";
 import {SeoService} from "./services/SeoService";
 import {DataParseService} from "./services/DataParseService";
-import {MenuSearchComponent} from "./components/menu/menu-search/menu.search.component";
 import {MenuComponent} from "./components/menu/menu.component";
 import {RouteController} from "./services/RouteController";
 import {ImageLazyLoadModule, ImageLazyLoaderService, WebWorkerService} from "ng2-image-lazy-load"
@@ -29,6 +28,7 @@ import { ContentComponent } from './components/content/content.component';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { DynamicTypeBuilder as DynamicPageTypeBuilder } from './components/page/type.builder';
 import { DynamicTypeBuilder as DynamicMenuTypeBuilder } from './components/menu/type.builder';
+import { DynamicTypeBuilder as DynamicMenuItemTypeBuilder } from './components/menu/menu-item/type.builder';
 
 WebWorkerService.enabled=false;
 @NgModule({
@@ -48,7 +48,6 @@ WebWorkerService.enabled=false;
     PageComponent,
     ErrorComponent,
     MenuComponent,
-    MenuSearchComponent,
     ShopComponent,
     ShopItemComponent,
     SafeHtmlPipe,
@@ -68,6 +67,7 @@ WebWorkerService.enabled=false;
     },
     DynamicPageTypeBuilder,
     DynamicMenuTypeBuilder,
+    DynamicMenuItemTypeBuilder,
   ],
   entryComponents: [PageComponent, ErrorComponent, AppComponent, ShopComponent],
   bootstrap: [ AppComponent ]

@@ -2,11 +2,13 @@ import { Component, ComponentFactory, NgModule, Input, Injectable, Injector, Com
 import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { Router } from "@angular/router";
 import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
 
 import { HttpService } from "../../services/http.service";
 import { DataParseService } from "../../services/DataParseService";
 import { IMenuItem } from "../../model/IMenuItem";
 import { MenuItemComponent } from './menu-item/menu.item.component';
+import { MenuSearchComponent } from './menu-search/menu.search.component';
 import _ from 'lodash';
 
 export interface IHaveDynamicData {};
@@ -35,6 +37,8 @@ export class DynamicTypeBuilder {
             resolve(factory);
         });
     }
+
+    console.log("dwdw");
 
     // unknown template ... let's create a Type for it
     let type   = this.createNewComponent(template);
@@ -69,6 +73,7 @@ export class DynamicTypeBuilder {
 
         nav_mode:string = '';
         umbpagegeneral;
+        pagename;
 
         constructor(
           private http: HttpService,
@@ -106,6 +111,11 @@ export class DynamicTypeBuilder {
 
 
           this.getMenuItems();
+
+
+
+            this.pagename = "Headline";
+
         }
 
         private onOpenNavbar(cases:string):void {
@@ -145,10 +155,12 @@ export class DynamicTypeBuilder {
       @NgModule({
         imports: [
           BrowserModule,
+          FormsModule,
         ],
         declarations: [
           componentType,
           MenuItemComponent,
+          MenuSearchComponent,
         ],
       })
       class RuntimeComponentModule
