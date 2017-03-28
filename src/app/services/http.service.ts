@@ -16,13 +16,13 @@ export class HttpService {
   }
 
   getUmbPageData(url, subpage?): Observable<any>{
-    return this.http.get( `${domainname}umbraco/api/contentApi/getData?url=${url || ''}/${subpage || ''}` )
+    return this.http.get( `${domainname}umbraco/api/contentApi/getData?pageid=${pageid}&url=${url || ''}/${subpage || ''}` )
                     .map((response: Response) => response.json())
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   getUmbPageGeneralData(): Observable<any>{
-    return this.http.get( `${domainname}umbraco/api/contentApi/GetGeneralData/?pageid${pageid}` )
+    return this.http.get( `${domainname}umbraco/api/contentApi/GetGeneralData/?pageid=${pageid}` )
                     .map((response: Response) => response.json())
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
@@ -38,7 +38,7 @@ export class HttpService {
     return (function (): Observable<any> {
       if(loadPromise==null) {
         loadPromise=new Promise<any>((resolve)=>{
-          that.http.get( `${domainname}umbraco/api/contentApi/getTree/?pageid${pageid}`)
+          that.http.get( `${domainname}umbraco/api/contentApi/getTree/?pageid=${pageid}`)
             .map(response=>response.json()).subscribe((response)=>{
               resolve(response)
           })

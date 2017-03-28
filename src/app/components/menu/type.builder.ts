@@ -38,6 +38,8 @@ export class DynamicTypeBuilder {
         });
     }
 
+    console.log("dwdw");
+
     // unknown template ... let's create a Type for it
     let type   = this.createNewComponent(template);
     let module = this.createComponentModule(type);
@@ -71,6 +73,7 @@ export class DynamicTypeBuilder {
 
         nav_mode:string = '';
         umbpagegeneral;
+        pagename;
 
         constructor(
           private http: HttpService,
@@ -108,6 +111,11 @@ export class DynamicTypeBuilder {
 
 
           this.getMenuItems();
+
+
+
+            this.pagename = "Headline";
+
         }
 
         private onOpenNavbar(cases:string):void {

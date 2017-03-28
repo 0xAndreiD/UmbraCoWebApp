@@ -1,12 +1,16 @@
 nav {
      box-shadow: none;
-     background: #00bcd4;
+     background: #2bbbad;
 }
 header {
-    background: #00bcd4;
+    background: #2bbbad;
     padding: 40px 20px 10px 140px;
 }
 
 header h1 {
     color: #fff;
+}
+
+.navlogo{
+  text-align: center;
 }
