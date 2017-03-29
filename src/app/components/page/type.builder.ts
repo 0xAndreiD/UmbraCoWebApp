@@ -1,4 +1,5 @@
-import { Component, ComponentFactory, NgModule, Input, Injectable, Injector, Compiler, ReflectiveInjector, trigger, transition, AfterViewChecked } from '@angular/core';
+import { Component, ComponentFactory, NgModule, Input, Injectable, Injector, Compiler, ReflectiveInjector, trigger, transition, AfterViewChecked,
+  style, animate, keyframes } from '@angular/core';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { DynamicComponentModule } from 'angular2-dynamic-component/index';
 import { Router, ActivatedRoute, Params } from "@angular/router";
@@ -63,7 +64,23 @@ export class DynamicTypeBuilder {
           styleUrls: [`../page/${templateUrl}.css`],
           animations: [
             trigger("wrapper", [
-              transition("void => *", [])
+              transition("void => *", [
+                //    animate("0.5s", keyframes([
+                  /*    style({transform: 'translateX(-100%) scale(1)'}),
+                      style({transform: 'translateX(100%) scale(1)'}),*/
+
+              //        style({transform: 'scale(0)'}),
+              //        style({transform: 'scale(1)'}),
+              //    ]))
+                  /* remove css animation on index*/
+
+
+                  /*animate("2s", keyframes([
+                    style({opacity: '1'}),
+                    style({opacity: '1'}),
+
+                  ]))*/
+              ])
             ])
           ],
       })
