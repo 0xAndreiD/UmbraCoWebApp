@@ -1,6 +1,5 @@
 function buildcontenthtml(j){
   var s = "<div>";
-
   if (j) {
       //if one col
       if (Object.keys(j.sections).length <= 1) {
@@ -12,17 +11,28 @@ function buildcontenthtml(j){
         }
       }
       else {
-        s += "<p>We need to take care of 2-12 col. stuff</p>";
+        s += "<div class='container'>";
+        s += "<div class='row'>";
+        for (var i = 0; i < j.sections.length; i++) {
+          s += "<div class='col s" + j.sections[i].grid + "'>";
+          var array = j.sections[i].rows;
+          for (let i = 0; i < array.length; i++) {
+            s += renderRow(array[i], false);
+          }
+          s += "</div>";
+        }
+        s += "</div>";
+        s += "</div>";
+
       }
   }
   else {
       s += "<p>EMPTY</p>";
   }
-
   s += "</div>";
-
   return s;
 }
+
 
 function renderRow(row, singleColumn) {
 
@@ -99,6 +109,12 @@ function editorview(contentItem){
           if (macroalias == "slider") {
             e += buildslider();
           }
+          else if (macroalias == "cardlist") {
+            e += buildcardlist();
+          }
+          else {
+            console.log(macroalias);
+          }
         }
         else{
           console.log(type);
@@ -113,8 +129,6 @@ function editorview(contentItem){
 
 function buildslider(){
   var slider = "";
-
-
         slider += "<div materialize='carousel' class='carousel'>";
 
         slider += "<div class='carousel-fixed-item center'>";
@@ -153,4 +167,20 @@ function buildslider(){
           slider += "</div>";
 
   return slider;
+}
+
+function buildcardlist(){
+  var cl = "Cardlist here";
+
+  var postUrl = "http://localhost:50947/umbraco/api/contentApi/GetListContent/?idlist=1112,1113";
+
+  $.getJSON(postUrl, function (data) {
+  //  console.log(data.data);
+    $.each(Object.keys(data.data), function (key, val) {
+      console.log(key);
+    //items.push('<li id="' + key + '"><span class="name">' + val.entityname + '</span><br><span class="addr">' + val.principaladdress1 + '</span> <span class="city">' + val.principalcity + '</span></li>');
+});
+
+  });
+  return cl
 }
