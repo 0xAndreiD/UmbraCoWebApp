@@ -101,7 +101,7 @@ export class DynamicTypeBuilder {
 
         init() {
           this.activatedRoute.params.subscribe((params: Params) => {
-            this.side = params["side"];
+            this.side = params["side"] === 'home' ? '' : params["side"];
             this.subpage = params["subpage"];
             this.url = this.activatedRoute.snapshot.data['side'];
             this.httpService.getUmbPageData(this.side, this.subpage)

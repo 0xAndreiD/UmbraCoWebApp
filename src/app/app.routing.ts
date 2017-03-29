@@ -14,10 +14,12 @@ var appRoutes: Routes = [
     children: [
       {
         path: '',
-        component: PageComponent
+        redirectTo: 'home',
+        pathMatch: 'full'
       },
       {
         path: ':side',
+        pathMatch: 'prefix',
         component: PageComponent
       },
       {
