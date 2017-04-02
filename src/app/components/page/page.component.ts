@@ -53,6 +53,5 @@ export class PageComponent implements AfterViewChecked {
       $('#formContainer').html( tempFormContent );
       this.lastFormContent = tempFormContent;
     }*/
-    // console.log(this.viewContainer);
   }
 }

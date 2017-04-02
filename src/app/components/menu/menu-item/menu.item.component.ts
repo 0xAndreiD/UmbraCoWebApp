@@ -57,7 +57,6 @@ export class MenuItemComponent {
   }
   public ngOnChanges(changes: {[key: string]: SimpleChange}): void
   {
-    console.log(changes);
     if (changes.items && changes.items.currentValue && changes.items.currentValue.length > 0)
       this.refreshContent();
   }

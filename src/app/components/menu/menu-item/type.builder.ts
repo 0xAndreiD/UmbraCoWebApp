@@ -2,6 +2,7 @@ import { Component, ComponentFactory, NgModule, Input, Injectable, Injector, Com
 import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { Router } from "@angular/router";
 import { BrowserModule } from "@angular/platform-browser";
+import request from 'sync-request';
 
 import { IMenuItem } from "../../../model/IMenuItem";
 import _ from 'lodash';
@@ -35,8 +36,6 @@ export class DynamicTypeBuilder {
             resolve(factory);
         });
     }
-
-    console.log("xsw");
     // unknown template ... let's create a Type for it
     let type   = this.createNewComponent(template);
     let module = this.createComponentModule(type);
@@ -55,64 +54,65 @@ export class DynamicTypeBuilder {
   }
 
   protected createNewComponent (templateUrl: string) {
-      @Component({
-          selector: 'dynamice-component',
-          // templateUrl: `${templateUrl}.html`,
-          templateUrl: `../menu-item/${templateUrl}.html`,
-          styleUrls: [`../menu-item/${templateUrl}.css`],
-      })
-      class CustomDynamicComponent implements IHaveDynamicData {
-        @Input() items:IMenuItem[];
-        @Input() isCollapsed:boolean = true;
-        selected_item_info:any = {
-          item: [],
-          index_num: 1
-        };
-
-
-        public collapsed(event:any):void {
-        }
-
-        public expanded(event:any):void {
-        }
-
-        constructor(private router: Router){
-        }
-
-        ngOnInit():void {
-        }
-
-        private getClass(cases:any, item:any, index_num:any):string {
-          var value = false;
-          switch (cases) {
-            case '0x001':
-              if (this.isCollapsed) {
-                if (this.selected_item_info.index_num == index_num)
-                  value = true;
-              }
-              break;
-            default:
-              value = false;
-          }
-          return value? 'activated' : 'normal';
-        }
-
-        selectItem(item){
-          this.router.navigate([item.path]);
-        }
-
-        private onMenuCollapse(item, index) {
-          item.isCollapsed = !item.isCollapsed;
-        }
-
-        // private selectItem(item:any, index_num: any) {
-        //   this.selected_item_info.item = item;
-        //   this.selected_item_info.index_num = index_num;
-        // }
-
+    const html = request('GET', `/src/app/components/menu/menu-item/${templateUrl}.html`).getBody();
+    const css = request('GET', `/src/app/components/menu/menu-item/${templateUrl}.css`).getBody();
+    @Component({
+        selector: 'dynamice-component',
+        template: html,
+        styles: [css],
+    })
+    class CustomDynamicComponent implements IHaveDynamicData {
+      @Input() items:IMenuItem[];
+      @Input() isCollapsed:boolean = true;
+      selected_item_info:any = {
+        item: [],
+        index_num: 1
       };
-      // a component for this particular template
-      return CustomDynamicComponent;
+
+
+      public collapsed(event:any):void {
+      }
+
+      public expanded(event:any):void {
+      }
+
+      constructor(private router: Router){
+      }
+
+      ngOnInit():void {
+      }
+
+      private getClass(cases:any, item:any, index_num:any):string {
+        var value = false;
+        switch (cases) {
+          case '0x001':
+            if (this.isCollapsed) {
+              if (this.selected_item_info.index_num == index_num)
+                value = true;
+            }
+            break;
+          default:
+            value = false;
+        }
+        return value? 'activated' : 'normal';
+      }
+
+      selectItem(item){
+        this.router.navigate([item.path]);
+      }
+
+      private onMenuCollapse(item, index) {
+        item.isCollapsed = !item.isCollapsed;
+      }
+
+      // private selectItem(item:any, index_num: any) {
+      //   this.selected_item_info.item = item;
+      //   this.selected_item_info.index_num = index_num;
+      // }
+
+    };
+    // a component for this particular template
+    return CustomDynamicComponent;
   }
   protected createComponentModule (componentType: any) {
       @NgModule({
