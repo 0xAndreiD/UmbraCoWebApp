@@ -1,4 +1,4 @@
-import { Component, OnInit, transition, trigger, style, animate, keyframes, Pipe, PipeTransform,
+import { Component, OnInit, Pipe, PipeTransform,
   AfterViewChecked, ComponentFactoryResolver, ViewChild, ViewContainerRef, NgModule, ComponentFactory } from "@angular/core";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { DynamicTypeBuilder } from './type.builder';
@@ -53,6 +53,5 @@ export class PageComponent implements AfterViewChecked {
       $('#formContainer').html( tempFormContent );
       this.lastFormContent = tempFormContent;
     }*/
-    // console.log(this.viewContainer);
   }
 }

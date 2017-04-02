@@ -150,7 +150,6 @@ function initpaperstack(){
     var stackPagesIdxs = getStackPagesIdxs();
     for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
       var page = pages[stackPagesIdxs[i]];
-      console.log(page);
       page.style.WebkitTransform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)'; // -200px, -230px, -260px
       page.style.transform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)';
     }
