@@ -67,16 +67,14 @@ export class DynamicTypeBuilder {
         animations: [
           trigger("wrapper", [
             transition("void => *", [
-              //    animate("0.5s", keyframes([
-                /*    style({transform: 'translateX(-100%) scale(1)'}),
-                    style({transform: 'translateX(100%) scale(1)'}),*/
+                  animate("2s", keyframes([
+                    //style({transform: 'translateX(-100%) scale(1)'}),
+                    //style({transform: 'translateX(100%) scale(1)'}),
 
-            //        style({transform: 'scale(0)'}),
-            //        style({transform: 'scale(1)'}),
-            //    ]))
+                   style({transform: 'scale(0)'}),
+                    style({transform: 'scale(1)'}),
+                ]))
                 /* remove css animation on index*/
-
-
                 /*animate("2s", keyframes([
                   style({opacity: '1'}),
                   style({opacity: '1'}),
