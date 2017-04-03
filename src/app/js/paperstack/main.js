@@ -96,14 +96,15 @@ function initpaperstack(){
     menuCtrl.addEventListener('click', toggleMenu);
 
     // navigation menu clicks
-/*    navItems.forEach(function(item) {
+    navItems.forEach(function(item) {
       // which page to open?
-      var pageid = item.getAttribute('href').slice(1);
+      // console.log(item);
+      // var pageid = item.getAttribute('href').slice(1);
       item.addEventListener('click', function(ev) {
         ev.preventDefault();
-        openPage(pageid);
+        closeMenu();
       });
-    });*/
+    });
 
     // clicking on a page when the menu is open triggers the menu to close again and open the clicked page
     pages.forEach(function(page) {

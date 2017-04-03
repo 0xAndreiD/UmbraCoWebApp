@@ -29,14 +29,9 @@ var appRoutes: Routes = [
     ]
   },
   {
-    path: 'error/not-found',
-    component: ErrorComponent
-  },
-  {
     path: '**',
     component: ErrorComponent
   }
-
 ];
 
 export const appRoutingProviders: any[] = [];

@@ -29,7 +29,7 @@ export class DynamicTypeBuilder {
   // this object is singleton - so we can use this as a cache
   private _cacheOfFactories: {[templateKey: string]: ComponentFactory<AfterViewChecked>} = {};
 
-  public createComponentFactory(template: string)
+  public createComponentFactory(template: string, animation: any)
     : Promise<ComponentFactory<AfterViewChecked>> {
 
     let factory = this._cacheOfFactories[template];
@@ -41,7 +41,7 @@ export class DynamicTypeBuilder {
         });
     }
     // unknown template ... let's create a Type for it
-    let type   = this.createNewComponent(template);
+    let type   = this.createNewComponent(template, animation);
     let module = this.createComponentModule(type);
     return new Promise((resolve) => {
         this.compiler
@@ -57,7 +57,7 @@ export class DynamicTypeBuilder {
     });
   }
 
-  protected createNewComponent (templateUrl: string) {
+  protected createNewComponent (templateUrl: string, animation: any) {
     const html = request('GET', `/src/app/components/page/${templateUrl}.html`).getBody();
     const css = request('GET', `/src/app/components/page/${templateUrl}.css`).getBody();
     @Component({
@@ -66,21 +66,7 @@ export class DynamicTypeBuilder {
         styles: [css],
         animations: [
           trigger("wrapper", [
-            transition("void => *", [
-                  animate("2s", keyframes([
-                    //style({transform: 'translateX(-100%) scale(1)'}),
-                    //style({transform: 'translateX(100%) scale(1)'}),
-
-                   style({transform: 'scale(0)'}),
-                    style({transform: 'scale(1)'}),
-                ]))
-                /* remove css animation on index*/
-                /*animate("2s", keyframes([
-                  style({opacity: '1'}),
-                  style({opacity: '1'}),
-
-                ]))*/
-            ])
+            transition("void => *", animation.animations)
           ])
         ],
     })
@@ -97,6 +83,7 @@ export class DynamicTypeBuilder {
       extraModules = [MaterializeModule];
       side;
       subpage;
+      state;
 
       constructor(
         private httpService: HttpService,
@@ -119,6 +106,7 @@ export class DynamicTypeBuilder {
         this.activatedRoute.params.subscribe((params: Params) => {
           this.side = params["side"] === 'home' ? '' : params["side"];
           this.subpage = params["subpage"];
+          this.state = "void";
           this.url = this.activatedRoute.snapshot.data['side'];
           this.httpService.getUmbPageData(this.side, this.subpage)
             .subscribe(
@@ -136,9 +124,14 @@ export class DynamicTypeBuilder {
                 this.contentGrid = contentGrid;
                 this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
                 this.seoService.setTitle(umbpagedata.data.title);
+                if (animation.pageSwitch)
+                  this.state =`${this.side}-${this.subpage}`;
               },
               (error: any) => {
                 // this.router.navigate(['error/not-found']);
+                this.contentGrid = 'Please place here error html (line 142 of src/app/components/page/type.builder.ts)';
+                if (animation.pageSwitch)
+                  this.state =`${this.side}-${this.subpage}`;
               });
         });
 
