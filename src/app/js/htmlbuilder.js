@@ -155,9 +155,14 @@ function addcard(card) {
   if (card.title) {
     c += "<span class='card-title'>" + card.title + "</span>";
   }
-  console.log(card.text);
-  if (card.text) {
-    c += card.text
+  let cardObject = {};
+  card.forEach(item => (cardObject = Object.assign(cardObject, item)));
+
+  console.log(cardObject.text);
+  var json_data = JSON.stringify(card);
+
+  if (cardObject.text) {
+    c += cardObject.text;
   }
   /*
 
@@ -185,7 +190,7 @@ function buildlistofitems(nodeids, target, type) {
     $("#" + target).empty();
     for (var i = 0; i < li.length; i++) {
       if (type = "card") {
-        $("#" + target).append(addcard(li[i].nodedata[0]));
+        $("#" + target).append(addcard(li[i].nodedata));
       }
     }
   }).error(function() {
