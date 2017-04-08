@@ -2,14 +2,6 @@ nav {
      box-shadow: none;
      background: #2bbbad;
 }
-header {
-    background: #2bbbad;
-    padding: 40px 20px 10px 140px;
-}
-
-header h1 {
-    color: #fff;
-}
 
 .navlogo{
   text-align: center;
@@ -20,11 +12,17 @@ header h1 {
 	width: 100% !important;
 	height: 100% !important;
 	background: white;
-	transition: opacity 1.5s;
+	transition: opacity 0.1s;
+	z-index: 2;
 }
 
 .navbar-fixed.selected {
 	opacity: 0;
-	transition: opacity 1.5s 0.7s;
+	transition: opacity 0.1s 0.7s;
 	pointer-events: none;
+}
+
+.fixed-footer {
+	position: fixed;
+	z-index: 1;
 }

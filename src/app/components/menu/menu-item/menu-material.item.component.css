@@ -10,7 +10,7 @@
   z-index: 0;
   font-size: 25px;
   text-shadow: 1px 1px #888888;
-  transition: left 0.7s 1.5s, top 0.7s 1.5s, right 0.7s 1.5s, bottom 0.7s 1.5s, border-width 0.7s, z-index 0.7s 1.5s;
+  transition: left 0.7s 0.1s, top 0.7s 0.1s, right 0.7s 0.1s, bottom 0.7s 0.1s, border-width 0.7s, z-index 0.7s 0.1s, color 0.0s 0.7s, text-shadow 0.0s 0.7s;
 }
 
 .menu-item:hover {
@@ -25,4 +25,6 @@
   bottom: 0% !important;
   border-width: 0px;
   z-index: 100;
+  color: transparent;
+  text-shadow: none;
 }
