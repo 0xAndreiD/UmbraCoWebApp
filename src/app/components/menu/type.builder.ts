@@ -8,6 +8,7 @@ import { HttpService } from "../../services/http.service";
 import { DataParseService } from "../../services/DataParseService";
 import { IMenuItem } from "../../model/IMenuItem";
 import { MenuItemComponent } from './menu-item/menu.item.component';
+import { FooterComponent } from '../footer/footer.component';
 import { MenuSearchComponent } from './menu-search/menu.search.component';
 import _ from 'lodash';
 
@@ -25,10 +26,10 @@ export class DynamicTypeBuilder {
   // this object is singleton - so we can use this as a cache
   private _cacheOfFactories: {[templateKey: string]: ComponentFactory<IHaveDynamicData>} = {};
 
-  public createComponentFactory(template: string)
+  public createComponentFactory(menu: any)
     : Promise<ComponentFactory<IHaveDynamicData>> {
 
-    let factory = this._cacheOfFactories[template];
+    let factory = this._cacheOfFactories[menu.template];
 
     if (factory) {
         console.log("Module and Type are returned from cache")
@@ -39,7 +40,7 @@ export class DynamicTypeBuilder {
     }
 
     // unknown template ... let's create a Type for it
-    let type   = this.createNewComponent(template);
+    let type   = this.createNewComponent(menu);
     let module = this.createComponentModule(type);
     return new Promise((resolve) => {
         this.compiler
@@ -48,16 +49,16 @@ export class DynamicTypeBuilder {
             {
                 factory = _.find(moduleWithFactories.componentFactories, { componentType: type });
 
-                this._cacheOfFactories[template] = factory;
+                this._cacheOfFactories[menu.template] = factory;
 
                 resolve(factory);
             });
     });
   }
 
-  protected createNewComponent (templateUrl: string) {
-    const html = request('GET', `/src/app/components/menu/${templateUrl}.html`).getBody();
-    const css = request('GET', `/src/app/components/menu/${templateUrl}.css`).getBody();
+  protected createNewComponent (menu: any) {
+    const html = request('GET', `/src/app/components/menu/${menu.template}.component.html`).getBody();
+    const css = request('GET', `/src/app/components/menu/${menu.template}.component.css`).getBody();
     @Component({
         selector: 'dynamice-component',
         template: html,
@@ -66,13 +67,17 @@ export class DynamicTypeBuilder {
     class CustomDynamicComponent implements IHaveDynamicData {
       menuItems:IMenuItem[]=[]
 
-      is_menutab_opened:boolean = false;
+      is_menutab_opened:boolean = menu.is_menutab_opened;
 
       is_searchtab_opened:boolean = false;
 
       nav_mode:string = '';
       umbpagegeneral;
       pagename;
+      selected_item_info:any = {
+        item: [],
+        index_num: -1,
+      };
 
       constructor(
         private http: HttpService,
@@ -108,29 +113,16 @@ export class DynamicTypeBuilder {
               this.router.navigate(['error/not-found']);
             });
 
-
-        this.getMenuItems();
-
-
+          this.getMenuItems();
 
           this.pagename = "Headline";
 
       }
 
-      private onOpenNavbar(cases:string):void {
-        if (cases == 'MENU') {
-          this.is_menutab_opened = !this.is_menutab_opened;
-          this.is_searchtab_opened = false;
-        }
-        else if (cases == 'SEARCH') {
-          this.is_searchtab_opened = !this.is_searchtab_opened;
-          this.is_menutab_opened = false;
-        }
-        else if (cases == 'MENU2') {
-
-        } else {
-          this.nav_mode = cases;
-        }
+      selectItem = (item, index_num, navigate = true) => {
+        this.selected_item_info.item = item;
+        this.selected_item_info.index_num = index_num;
+        if (navigate) this.router.navigate([item.path]);
       }
 
       private getWidthSearchTab():string {
@@ -158,6 +150,7 @@ export class DynamicTypeBuilder {
         ],
         declarations: [
           componentType,
+          FooterComponent,
           MenuItemComponent,
           MenuSearchComponent,
         ],

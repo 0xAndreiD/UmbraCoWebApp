@@ -21,6 +21,8 @@ export class MenuItemComponent {
   @Input() items:IMenuItem[];
 
   @Input() isCollapsed:boolean = true;
+  @Input() selectedItemInfo: any = {};
+  @Input() selectItem: any;
 
   constructor(
     private resolver: ComponentFactoryResolver,
@@ -33,10 +35,10 @@ export class MenuItemComponent {
     if (this.componentRef) {
       this.componentRef.destroy();
     }
-
+      if (!Settings[window.location.hostname].menuItem || !Settings[window.location.hostname].menuItem.template) return;
     // here we get Factory (just compiled or from cache)
     this.typeBuilder
-        .createComponentFactory(`${Settings[window.location.hostname].menuItem}.component`)
+        .createComponentFactory(Settings[window.location.hostname].menuItem)
         .then((factory: ComponentFactory<IHaveDynamicData>) =>
       {
           // Target will instantiate and inject component (we'll keep reference to it)
@@ -48,6 +50,8 @@ export class MenuItemComponent {
           let component = this.componentRef.instance;
           component.items = this.items;
           component.isCollapsed = this.isCollapsed;
+          component.selectedItemInfo = this.selectedItemInfo;
+          component.selectItem = this.selectItem;
           //...
       });
     }

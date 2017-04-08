@@ -1,18 +1,16 @@
-import { Component, ComponentFactory, NgModule, Input, Injectable, Injector, Compiler, ReflectiveInjector, AfterViewChecked, ComponentFactoryResolver } from '@angular/core';
+import { Component, ComponentFactory, NgModule, Input, Injectable, Injector, Compiler, ReflectiveInjector, ComponentFactoryResolver } from '@angular/core';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { Router } from "@angular/router";
 import { BrowserModule } from "@angular/platform-browser";
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import request from 'sync-request';
-
-import { IMenuItem } from "../../../model/IMenuItem";
+import { HttpService } from "../../services/http.service";
+import { DataParseService } from "../../services/DataParseService";
+import { IMenuItem } from "../../model/IMenuItem";
 import _ from 'lodash';
 
 export interface IHaveDynamicData {
-  items:IMenuItem[];
-  isCollapsed:boolean;
-  selectedItemInfo: any;
-  selectItem: any;
+  selectItem: any,
 };
 
 @Injectable()
@@ -27,10 +25,10 @@ export class DynamicTypeBuilder {
   // this object is singleton - so we can use this as a cache
   private _cacheOfFactories: {[templateKey: string]: ComponentFactory<IHaveDynamicData>} = {};
 
-  public createComponentFactory(menuItem: any)
+  public createComponentFactory(footer: any)
     : Promise<ComponentFactory<IHaveDynamicData>> {
 
-    let factory = this._cacheOfFactories[menuItem.template];
+    let factory = this._cacheOfFactories[footer.template];
 
     if (factory) {
         console.log("Module and Type are returned from cache")
@@ -39,8 +37,9 @@ export class DynamicTypeBuilder {
             resolve(factory);
         });
     }
+
     // unknown template ... let's create a Type for it
-    let type   = this.createNewComponent(menuItem);
+    let type   = this.createNewComponent(footer)
     let module = this.createComponentModule(type);
     return new Promise((resolve) => {
         this.compiler
@@ -49,64 +48,31 @@ export class DynamicTypeBuilder {
             {
                 factory = _.find(moduleWithFactories.componentFactories, { componentType: type });
 
-                this._cacheOfFactories[menuItem.template] = factory;
+                this._cacheOfFactories[footer.template] = factory;
 
                 resolve(factory);
             });
     });
   }
 
-  protected createNewComponent (menuItem: any) {
-    const html = request('GET', `/src/app/components/menu/menu-item/${menuItem.template}.component.html`).getBody();
-    const css = request('GET', `/src/app/components/menu/menu-item/${menuItem.template}.component.css`).getBody();
+  protected createNewComponent (footer: any) {
+    const html = request('GET', `/src/app/components/footer/${footer.template}.component.html`).getBody();
+    const css = request('GET', `/src/app/components/footer/${footer.template}.component.css`).getBody();
     @Component({
         selector: 'dynamice-component',
         template: html,
         styles: [css],
     })
     class CustomDynamicComponent implements IHaveDynamicData {
-      @Input() items:IMenuItem[];
-      @Input() isCollapsed:boolean = true;
-      @Input() selectedItemInfo: any = {};
       @Input() selectItem: any;
-      nativeWindow: any = window;
 
-      public collapsed(event:any):void {
+      constructor(
+        private http: HttpService,
+        private router: Router,
+        private dataParse: DataParseService,
+        private resolver: ComponentFactoryResolver,
+      ){
       }
-
-      public expanded(event:any):void {
-      }
-
-      constructor(private router: Router){
-      }
-
-      ngOnInit():void {
-      }
-
-      private getClass(cases:any, item:any, index_num:any):string {
-        var value = false;
-        switch (cases) {
-          case '0x001':
-            if (this.isCollapsed) {
-              if (this.selectedItemInfo.index_num == index_num)
-                value = true;
-            }
-            break;
-          default:
-            value = false;
-        }
-        return value? 'activated' : 'normal';
-      }
-
-      private onMenuCollapse(item, index) {
-        item.isCollapsed = !item.isCollapsed;
-      }
-
-      // private selectItem(item:any, index_num: any) {
-      //   this.selected_item_info.item = item;
-      //   this.selected_item_info.index_num = index_num;
-      // }
-
     };
     // a component for this particular template
     return CustomDynamicComponent;

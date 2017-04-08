@@ -29,10 +29,10 @@ export class DynamicTypeBuilder {
   // this object is singleton - so we can use this as a cache
   private _cacheOfFactories: {[templateKey: string]: ComponentFactory<AfterViewChecked>} = {};
 
-  public createComponentFactory(template: string, animation: any)
+  public createComponentFactory(page: any)
     : Promise<ComponentFactory<AfterViewChecked>> {
 
-    let factory = this._cacheOfFactories[template];
+    let factory = this._cacheOfFactories[page.template];
 
     if (factory) {
         console.log("Module and Type are returned from cache")
@@ -41,7 +41,7 @@ export class DynamicTypeBuilder {
         });
     }
     // unknown template ... let's create a Type for it
-    let type   = this.createNewComponent(template, animation);
+    let type   = this.createNewComponent(page);
     let module = this.createComponentModule(type);
     return new Promise((resolve) => {
         this.compiler
@@ -50,23 +50,23 @@ export class DynamicTypeBuilder {
             {
                 factory = _.find(moduleWithFactories.componentFactories, { componentType: type });
 
-                this._cacheOfFactories[template] = factory;
+                this._cacheOfFactories[page.template] = factory;
 
                 resolve(factory);
             });
     });
   }
 
-  protected createNewComponent (templateUrl: string, animation: any) {
-    const html = request('GET', `/src/app/components/page/${templateUrl}.html`).getBody();
-    const css = request('GET', `/src/app/components/page/${templateUrl}.css`).getBody();
+  protected createNewComponent (page: any) {
+    const html = request('GET', `/src/app/components/page/${page.template}.component.html`).getBody();
+    const css = request('GET', `/src/app/components/page/${page.template}.component.css`).getBody();
     @Component({
         selector: 'dynamic-component',
         template: html,
         styles: [css],
         animations: [
           trigger("wrapper", [
-            transition("void => *", animation.animations)
+            transition("void => *", page.animation ? page.animation.animations : [])
           ])
         ],
     })
@@ -124,13 +124,13 @@ export class DynamicTypeBuilder {
                 this.contentGrid = contentGrid;
                 this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
                 this.seoService.setTitle(umbpagedata.data.title);
-                if (animation.pageSwitch)
+                if (page.animation && page.animation.pageSwitch)
                   this.state =`${this.side}-${this.subpage}`;
               },
               (error: any) => {
                 // this.router.navigate(['error/not-found']);
                 this.contentGrid = 'Please place here error html (line 142 of src/app/components/page/type.builder.ts)';
-                if (animation.pageSwitch)
+                if (page.animation && page.animation.pageSwitch)
                   this.state =`${this.side}-${this.subpage}`;
               });
         });

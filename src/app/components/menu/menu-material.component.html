@@ -1,0 +1,23 @@
+<div
+  class="navbar-fixed"
+  [class.selected]="selected_item_info.index_num > -1"
+>
+    <menu-item
+      style="width: 100%;"
+      [items]="menuItems"
+      [isCollapsed]="is_menutab_opened"
+      [selectedItemInfo]="selected_item_info"
+      [selectItem]="selectItem"
+    ></menu-item>
+</div>
+
+<header>
+  <h1>
+    {{pagename}}
+  </h1>
+</header>
+
+<footer
+  [selectItem]="selectItem"
+>
+</footer>

@@ -37,7 +37,8 @@ export class PageComponent implements AfterViewChecked {
   }
 
   ngAfterViewInit() {
-    this.typeBuilder.createComponentFactory(`${Settings[window.location.hostname].page}.component`, Settings[window.location.hostname].animation).then((factory: ComponentFactory<AfterViewChecked>) =>
+    if (!Settings[window.location.hostname].page || !Settings[window.location.hostname].page.template) return;
+    this.typeBuilder.createComponentFactory(Settings[window.location.hostname].page).then((factory: ComponentFactory<AfterViewChecked>) =>
     {
       this.viewContainer.createComponent(factory);
     });

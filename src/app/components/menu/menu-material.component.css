@@ -1,0 +1,30 @@
+nav {
+     box-shadow: none;
+     background: #2bbbad;
+}
+header {
+    background: #2bbbad;
+    padding: 40px 20px 10px 140px;
+}
+
+header h1 {
+    color: #fff;
+}
+
+.navlogo{
+  text-align: center;
+}
+
+.navbar-fixed {
+	position: absolute;
+	width: 100% !important;
+	height: 100% !important;
+	background: white;
+	transition: opacity 1.5s;
+}
+
+.navbar-fixed.selected {
+	opacity: 0;
+	transition: opacity 1.5s 0.7s;
+	pointer-events: none;
+}

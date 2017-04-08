@@ -21,7 +21,8 @@ export class MenuComponent {
   }
 
   ngAfterViewInit() {
-    this.typeBuilder.createComponentFactory(`${Settings[window.location.hostname].menu}.component`).then((factory: ComponentFactory<AfterViewChecked>) =>
+    if (!Settings[window.location.hostname].menu || !Settings[window.location.hostname].menu.template) return;
+    this.typeBuilder.createComponentFactory(Settings[window.location.hostname].menu).then((factory: ComponentFactory<AfterViewChecked>) =>
     {
       this.viewContainer.createComponent(factory);
     });
