@@ -3,18 +3,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid gray;
+  border: 3px solid #fff;
   cursor: pointer;
   background-color: white;
-  border-width: 2px;
+  border-width: 5px;
   z-index: 0;
-  font-size: 25px;
-  text-shadow: 1px 1px #888888;
+  font-size: 2rem;
   transition: left 0.7s 0.1s, top 0.7s 0.1s, right 0.7s 0.1s, bottom 0.7s 0.1s, border-width 0.7s, z-index 0.7s 0.1s, color 0.0s 0.7s, text-shadow 0.0s 0.7s;
 }
 
 .menu-item:hover {
-  border-width: 20px;
+  border-width: 15px;
 }
 
 .menu-item.selected {
