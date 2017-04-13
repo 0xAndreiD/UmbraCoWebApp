@@ -26,6 +26,7 @@ import { FormComponent } from './components/form/form.component';
 import { CustomFormsModule } from 'ng2-validation';
 import { ContentComponent } from './components/content/content.component';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
+import { FooterComponent } from './components/footer/footer.component';
 import { DynamicTypeBuilder as DynamicPageTypeBuilder } from './components/page/type.builder';
 import { DynamicTypeBuilder as DynamicMenuTypeBuilder } from './components/menu/type.builder';
 import { DynamicTypeBuilder as DynamicMenuItemTypeBuilder } from './components/menu/menu-item/type.builder';
@@ -53,7 +54,8 @@ WebWorkerService.enabled=false;
     ShopItemComponent,
     SafeHtmlPipe,
     FormComponent,
-    ContentComponent
+    ContentComponent,
+    FooterComponent
   ],
   providers: [
     appRoutingProviders,

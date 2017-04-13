@@ -8,7 +8,6 @@ import { HttpService } from "../../services/http.service";
 import { DataParseService } from "../../services/DataParseService";
 import { IMenuItem } from "../../model/IMenuItem";
 import { MenuItemComponent } from './menu-item/menu.item.component';
-import { FooterComponent } from '../footer/footer.component';
 import { MenuSearchComponent } from './menu-search/menu.search.component';
 import _ from 'lodash';
 
@@ -78,6 +77,7 @@ export class DynamicTypeBuilder {
         item: [],
         index_num: -1,
       };
+      nativeWindow: any = window;
 
       constructor(
         private http: HttpService,
@@ -122,6 +122,7 @@ export class DynamicTypeBuilder {
       selectItem = (item, index_num, navigate = true) => {
         this.selected_item_info.item = item;
         this.selected_item_info.index_num = index_num;
+        this.nativeWindow.hideFooter(index_num !== -1);
         if (navigate) this.router.navigate([item.path]);
       }
 
@@ -150,7 +151,6 @@ export class DynamicTypeBuilder {
         ],
         declarations: [
           componentType,
-          FooterComponent,
           MenuItemComponent,
           MenuSearchComponent,
         ],
