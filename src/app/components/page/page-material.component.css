@@ -1,6 +1,5 @@
 .paper-content{
-  background-color: #fff;
-  color: #1c1d22;
+  background-color: transparent;
 }
 .paper-content .container {
   max-width: 100%;

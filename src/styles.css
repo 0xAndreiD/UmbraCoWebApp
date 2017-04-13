@@ -124,10 +124,6 @@ html {
 
 /* move this to correct place normal content*/
 
-.paper-content{
-  background-color: #fff;
-  color: #1c1d22;
-}
 .paper-content .container {
     max-width: 100%;
 }

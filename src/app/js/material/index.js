@@ -1,3 +1,13 @@
+const getBackgroundColor = function(indexNum) {
+  var bgcolors = ['#F5F5F5', '#7e7e7e', '#EEEEEE', '#212121', '#616161', '#7e7e7e'];
+  return bgcolors[indexNum % bgcolors.length];
+}
+
+const getColor = function(indexNum) {
+  var colors = ['#000', '#000', '#000', '#fff', '#fff', '#000'];
+  return colors[indexNum % colors.length];
+}
+
 window.getStyle = function(indexNum, isLast) {
   var sInitial = [
     [100, 100, 50, 100],
@@ -11,16 +21,24 @@ window.getStyle = function(indexNum, isLast) {
     sInitial[initPoint][0] / zoomLevel - sInitial[initPoint][2] / zoomLevel,
     sInitial[initPoint][1] / zoomLevel - sInitial[initPoint][3] / zoomLevel
   ];
-  var bgcolors = ['#F5F5F5', '#7e7e7e', '#EEEEEE', '#212121', '#616161', '#7e7e7e'];
-  var colors = ['#000', '#000', '#000', '#fff', '#fff', '#000'];
+
   return {
     left: sPos[0] + "%",
     top: sPos[1] + "%",
     right: (isLast ? "0" : sPos[2]) + "%",
     bottom: (isLast ? "0" : sPos[3]) + "%",
-    backgroundColor: bgcolors[indexNum % bgcolors.length],
-    color: colors[indexNum % colors.length]
+    backgroundColor: getBackgroundColor(indexNum),
+    color: getColor(indexNum),
   };
+}
+
+window.setPageBackground = function(indexNum) {
+  const mainComponent = document.getElementsByTagName('main')[0];
+  mainComponent.style.color = getColor(indexNum);
+  mainComponent.style.backgroundColor = getBackgroundColor(indexNum);
+
+  const menuFooter = document.getElementsByClassName('menu-footer')[0];
+  menuFooter.style.boxShadow = '2px 2px 5px' + getColor(indexNum);
 }
 
 window.hideFooter = function (hide) {
