@@ -142,37 +142,35 @@ function buildslider() {
 
 function addcard(card) {
   var c = ""
-  //console.log(card);
+  let cardObject = {};
+  card.forEach(item => (cardObject = Object.assign(cardObject, item)));
   c += "<div class='col s12 m6'>";
   c += "<div class='card'>";
 
-  /*  c += "<div class='card-image'>";
-    c += "<img src='" + ImageModel.GetUiImageCrop(p, "image").Url + "'>";
-    c += "<span class='card-title'>" + p.GetValue("image") + "</span>";
-    c += "</div>";*/
+  if (cardObject.image.url) {
+    c += "<div class='card-image'>";
+    c += "<img src='" + cardObject.image.url + "' alt='" + cardObject.image.alttext + "' />";
+    if (cardObject.imageTitle) {
+      c += "<span class='card-title'>" + cardObject.imageTitle + "</span>";
+    }
+    c += "</div>";
+  }
 
   c += "<div class='card-content'>";
   if (card.title) {
     c += "<span class='card-title'>" + card.title + "</span>";
   }
-  let cardObject = {};
-  card.forEach(item => (cardObject = Object.assign(cardObject, item)));
-
-  console.log(cardObject.text);
-  var json_data = JSON.stringify(card);
-
   if (cardObject.text) {
     c += cardObject.text;
   }
-  /*
-
-
-   if (!string.IsNullOrEmpty(p.GetValue("text").ToString()))
-   {
-       c += p.GetValue("text");
-   }*/
-
   c += "</div>";
+
+
+  console.log(cardObject.link.url);
+  c += "<div class='card-action'>";
+  c += "<a href='" + cardObject.link.url + " target='" + cardObject.link.target + "''>" + cardObject.link.name + "</a>";
+  c += "</div>";
+
 
 
   c += "</div>";
