@@ -11,8 +11,6 @@
     ></menu-item>
 </div>
 
-<footer
-  class="fixed-footer"
-  [selectItem]="selectItem"
->
-</footer>
+<div class="menu-footer" (click)="selectItem({}, -1, false)">
+  X
+</div>

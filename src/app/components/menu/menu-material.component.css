@@ -22,7 +22,25 @@ nav {
 	pointer-events: none;
 }
 
-.fixed-footer {
-	position: fixed;
-	z-index: 1;
+.menu-footer {
+  position: fixed;
+  color: white;
+  right: 20px;
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 5px 5px 10px gray;
+  background-color: #cc3399;
+  text-align: center;
+  line-height: 50px;
+  font-size: 25px;
+  cursor: pointer;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.menu-footer:hover {
+  opacity: 1;
+  transition: opacity 0.5s;
 }

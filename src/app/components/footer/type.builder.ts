@@ -65,6 +65,7 @@ export class DynamicTypeBuilder {
     })
     class CustomDynamicComponent implements IHaveDynamicData {
       @Input() selectItem: any;
+      collapsed: boolean = true;
 
       constructor(
         private http: HttpService,
@@ -72,6 +73,10 @@ export class DynamicTypeBuilder {
         private dataParse: DataParseService,
         private resolver: ComponentFactoryResolver,
       ){
+      }
+
+      private expand(collapsed) {
+        this.collapsed = !collapsed;
       }
     };
     // a component for this particular template

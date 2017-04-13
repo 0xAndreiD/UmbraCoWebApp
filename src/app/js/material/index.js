@@ -19,5 +19,19 @@ window.getStyle = function (indexNum, isLast) {
     bottom: (isLast ? "0" : sPos[3]) + "%",
     backgroundColor: colors[indexNum % colors.length]
   };
+}
 
+window.hideFooter = function (hide) {
+  var footer = document.getElementsByClassName('footer')[0];
+  var classes = footer.className.split(' ');
+
+  if (hide) {
+    classes.push('invisible');
+  } else {
+    var index = classes.indexOf("invisible");
+    if (index >= 0) {
+      classes.splice( index, 1 );
+    }
+  }
+  footer.className = classes.join(' ');
 }
