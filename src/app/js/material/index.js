@@ -55,6 +55,108 @@ window.hideFooter = function (hide) {
   }
   footer.className = classes.join(' ');
 }
+
+window.hideAbout = function (hide) {
+  const aboutComponent = document.getElementsByClassName('about')[0];
+  var classes = aboutComponent.className.split(' ');
+
+  if (hide) {
+    classes.push('invisible');
+  } else {
+    var index = classes.indexOf("invisible");
+    if (index >= 0) {
+      classes.splice( index, 1 );
+    }
+  }
+  aboutComponent.className = classes.join(' ');
+}
+
+let aboutAnimationStep = 0;
+let aboutAnimationInProgress = false;
+
+const applyAboutStyle = () => {
+  const parentPage = document.getElementsByClassName('blue-green')[0];
+  const whitePart = document.getElementsByClassName('white-part')[0];
+  const blackPart = document.getElementsByClassName('black-part')[0];
+  const width = whitePart.offsetWidth;
+  const height = whitePart.offsetHeight / 2;
+  const p1 = {
+    x: (width - 100) - (width / 2 - 100) / 100 * aboutAnimationStep,
+    y: 0
+  };
+  const q1 = p1;
+  let p2, p3, p4;
+  let q2, q3, q4;
+  const angle = (45 / 100 * aboutAnimationStep + 45) * Math.PI / 180;
+  if ((width - p1.x) * Math.tan(angle) < height) {
+    p2 = q2 = p3 = q3 = {
+      x: width,
+      y: (width - p1.x) * Math.tan(angle)
+    };
+  } else {
+    p2 = q2 = {
+      x: p1.x + ((angle === Math.PI / 2) ? 0 : height / Math.tan(angle)),
+      y: height
+    };
+    p3 = {
+      x: width - (width - p2.x) * Math.sin(angle) * 2 * Math.sin(angle),
+      y: height + (width - p2.x) * Math.sin(angle) * 2 * Math.cos(angle)
+    };
+    q3 = {
+      x: width,
+      y: height
+    };
+  }
+  p4 = {
+    x: width - (width - p1.x) * Math.sin(angle) * 2 * Math.sin(angle),
+    y: (width - p1.x) * Math.sin(angle) * 2 * Math.cos(angle)
+  };
+  q4 = {
+    x: width,
+    y: 0,
+  };
+  whitePart.style.clipPath = `polygon(${p1.x}px ${p1.y}px, ${p2.x}px ${p2.y}px, ${p3.x}px ${p3.y}px, ${p4.x}px ${p4.y}px)`;
+  blackPart.style.clipPath = `polygon(${q1.x}px ${q1.y}px, ${q2.x}px ${q2.y}px, ${q3.x}px ${q3.y}px, ${q4.x}px ${q4.y}px)`;
+  const size = (aboutAnimationStep - 50) * (aboutAnimationStep - 50) / 10000 + 0.75;
+  parentPage.style.height = '100%';
+  parentPage.style.transform=`scale(${size})`;
+  document.getElementsByTagName('body')[0].style.backgroundColor = 'black';
+}
+
+window.openAbout = function () {
+  window.hideFooter(true);
+  applyAboutStyle();
+  aboutAnimationStep += 1;
+  aboutAnimationInProgress = true;
+  if (aboutAnimationStep < 101)
+  {
+    setTimeout(window.openAbout, 10);
+  } else {
+    const menuFooter = document.getElementsByClassName('menu-footer')[0];
+    menuFooter.style.zIndex = 3;
+    aboutAnimationInProgress = false;
+    aboutAnimationStep = 100;
+    applyAboutStyle();
+  }
+}
+
+window.closeAbout = function() {
+  const menuFooter = document.getElementsByClassName('menu-footer')[0];
+  menuFooter.style.zIndex = 1;
+  applyAboutStyle();
+  aboutAnimationStep -= 1;
+  aboutAnimationInProgress = true;
+  if (aboutAnimationStep > -1)
+  {
+    setTimeout(window.closeAbout, 10);
+  } else {
+    aboutAnimationInProgress = false;
+    aboutAnimationStep = 0;
+    applyAboutStyle();
+    window.hideFooter(false);
+  }
+}
+
 // font handeling
 $(function() {
   $(function() {
