@@ -8,7 +8,7 @@ nav {
 }
 
 .navbar-fixed {
-	position: absolute;
+	position: fixed;
 	width: 100% !important;
 	height: 100% !important;
 	background: white;
@@ -43,4 +43,46 @@ nav {
 .menu-footer:hover {
   opacity: 1;
   transition: opacity 0.5s;
+}
+
+.about {
+  position: absolute;
+  z-index: 2;
+  transition: opacity 0.5s 0.7s;
+  opacity: 1;
+}
+
+.about.invisible {
+  opacity: 0;
+  transition: opacity 0.0s;
+  pointer-events: none;
+}
+
+.about .white-part, .about .black-part {
+  width: 200%;
+  height: 200%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  color: black;
+}
+
+.about .white-part {
+  clip-path: polygon(calc(100% - 100px) 0, calc(100% - 100px) 100px, 100% 100px, 100% 100px);
+  background-color: white;
+  cursor: pointer;
+}
+
+.about .black-part {
+  clip-path: polygon(calc(100% - 100px) 0, 100% 100px, 100% 100px, 100% 0);
+  background-color: #888888;
+  color: white;
+}
+
+.about .black-part .content {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 0;
+  right: 0;
 }
