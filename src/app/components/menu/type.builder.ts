@@ -122,8 +122,10 @@ export class DynamicTypeBuilder {
       selectItem = (item, index_num, navigate = true) => {
         this.selected_item_info.item = item;
         this.selected_item_info.index_num = index_num;
-        this.nativeWindow.setPageBackground(index_num);
-        this.nativeWindow.hideFooter(index_num !== -1);
+        if (this.nativeWindow.setPageBackground) {
+          this.nativeWindow.setPageBackground(index_num);
+          this.nativeWindow.hideFooter(index_num !== -1);
+        }
         if (navigate) this.router.navigate([item.path]);
       }
 

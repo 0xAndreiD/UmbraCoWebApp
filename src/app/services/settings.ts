@@ -1,6 +1,6 @@
 import { style, animate, keyframes } from '@angular/core';
 export default {
-  'localhost1': {
+  'localhost2': {
     menu: {
       template: 'menu0',
     },
@@ -38,7 +38,7 @@ export default {
       '/src/styles.css',
     ],
   },
-  'localhost2': {
+  'localhost1': {
     menu: {
       template: 'mmenu',
     },
@@ -54,12 +54,6 @@ export default {
             //style({transform: 'translateX(-100%) scale(1)'}),
             //style({transform: 'translateX(100%) scale(1)'}),
            style({transform: 'scale(0)'}),
-           style({transform: 'scale(0.4)'}),
-           style({transform: 'scale(0.3)'}),
-           style({transform: 'scale(0.4)'}),
-           style({transform: 'scale(0.3)'}),
-           style({transform: 'scale(0.4)'}),
-           style({transform: 'scale(0.3)'}),
            style({transform: 'scale(1)'}),
          ])),
           /* remove css animation on index*/
@@ -73,9 +67,14 @@ export default {
     },
     pageid: '1139',
     scripts: [
-      '/src/app/js/mmenu/mmenujs.js'
+      '/src/app/js/mmenu/mmenujs.js',
+      '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js'
     ],
-    styles: ['/src/app/css/mmenu/mmenucss.css'],
+    styles: [
+      '/src/app/css/mmenu/mmenucss.css',
+      '/src/app/css/htmlbuilder.css',
+      '/src/app/css/customstylingtest.css'
+  ],
   },
   'localhost3': {
     menu: {

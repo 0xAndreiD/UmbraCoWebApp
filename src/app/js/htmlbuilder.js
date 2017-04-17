@@ -41,7 +41,6 @@ function renderRow(row, singleColumn) {
   return rowhtml;
 }
 
-
 function RenderElementAttributes(contentItem) {
   var r = "";
 
@@ -78,13 +77,15 @@ function editorview(contentItem) {
     } else if (type == "macro") {
       var macroalias = contentItem.value.macroAlias;
       if (macroalias == "slider") {
-        e += buildslider();
+        var id = macroalias + "_" + guidGenerator();
+        e += "<div id='" + id + "'><div class='loader-inner ball-scale center-align'><div></div></div></div>";
+        buildlistofitems(contentItem.value.macroParamsDictionary, id, "slide");
       } else if (macroalias == "cardlist") {
         var id = macroalias + "_" + guidGenerator();
         //prepare div
         e += "<div id='" + id + "' class='row'><div class='loader-inner ball-scale center-align'><div></div></div></div>";
         //get content for this div
-        buildlistofitems(contentItem.value.macroParamsDictionary.listitems, id, "card");
+        buildlistofitems(contentItem.value.macroParamsDictionary, id, "card");
       } else {
         console.log(macroalias);
       }
@@ -98,55 +99,44 @@ function editorview(contentItem) {
   return e;
 }
 
-function buildslider() {
-  var slider = "";
-  slider += "<div materialize='carousel' class='carousel'>";
+function addslide(slide, itemnumber) {
+  var s = "";
 
-  slider += "<div class='carousel-fixed-item center'>";
-  slider += "<a class='btn waves-effect white grey-text darken-text-2'>button</a>";
-  slider += "</div>";
+  let slideObject = {};
+  slide.forEach(item => (slideObject = Object.assign(slideObject, item)));
 
-  for (let i = 0; i < 3; i++) {
-    slider += "<div class='carousel-item red white-text' href='#" + i + "'>";
-    slider += "<h2>First Panel</h2><p class='white-text'>This is your first panel</p>";
-    slider += "</div>";
+  s += "<div style='background-color: " + slideObject.backgroundColor + ";'>";
+
+  s += "<div class='slick-text'>";
+  if (slideObject.title) {
+    s += "<h1>" + slideObject.title + "</h1>";
+  }
+  //slide text
+  if (slideObject.text) {
+    s += slideObject.text;
+  }
+  s += "</div> ";
+
+  if (slideObject.image) {
+    s += "<img src='" + slideObject.image.url + "'alt='' />"
+
   }
 
-  slider += "</div>";
 
+  s += "</div> ";
 
-  slider += "<div appCarouselSpy id='full-carousel' class='carousel carousel-slider center' data-indicators='true'>";
-  slider += "<div class='carousel-fixed-item center'>";
-  slider += "<a class='btn waves-effect white grey-text darken-text-2'>button</a>";
-  slider += "</div>";
-  slider += "<div class='carousel-item red white-text' href='#one!'>";
-  slider += "<h2>First Panel</h2>";
-  slider += "<p class='white-text'>This is your first panel</p>";
-  slider += "</div> ";
-  slider += "<div class='carousel-item amber white-text' href='#two!'>";
-  slider += "<h2>Second Panel</h2>";
-  slider += "<p class='white-text'>This is your second panel</p>";
-  slider += "</div>";
-  slider += "<div class='carousel-item green white-text' href='#three!'>";
-  slider += "<h2>Third Panel</h2>";
-  slider += "<p class='white-text'>This is your third panel</p>";
-  slider += "</div>";
-  slider += "<div class='carousel-item blue white-text' href='#four!'>";
-  slider += "<h2>Fourth Panel</h2>";
-  slider += "<p class='white-text'>This is your fourth panel</p>";
-  slider += "</div>";
-  slider += "</div>";
-
-  return slider;
+  return s;
 }
 
 function addcard(card) {
   var c = ""
   let cardObject = {};
   card.forEach(item => (cardObject = Object.assign(cardObject, item)));
+
   c += "<div class='col s12 m6'>";
   c += "<div class='card'>";
 
+  // card image
   if (cardObject.image.url) {
     c += "<div class='card-image'>";
     c += "<img src='" + cardObject.image.url + "' alt='" + cardObject.image.alttext + "' />";
@@ -156,41 +146,101 @@ function addcard(card) {
     c += "</div>";
   }
 
+  // card title
   c += "<div class='card-content'>";
   if (card.title) {
     c += "<span class='card-title'>" + card.title + "</span>";
   }
+  //card text
   if (cardObject.text) {
     c += cardObject.text;
   }
   c += "</div>";
 
-
-  console.log(cardObject.link.url);
-  c += "<div class='card-action'>";
-  c += "<a href='" + cardObject.link.url + " target='" + cardObject.link.target + "''>" + cardObject.link.name + "</a>";
-  c += "</div>";
-
-
+  //card link
+  if (cardObject.link) {
+    var href = cardObject.link.url;
+    if (cardObject.link.hashtarget) {
+      href = "#" + cardObject.link.hashtarget;
+    }
+    c += "<div class='card-action'>";
+    c += "<a href='" + href + "' target='" + cardObject.link.target + "''>" + cardObject.link.name + "</a>";
+    c += "</div>";
+  }
 
   c += "</div>";
   c += "</div>";
   return c;
 };
 
-
-function buildlistofitems(nodeids, target, type) {
+function buildlistofitems(nodeinfo, target, type) {
   var cl = "";
+  var nodeids = nodeinfo.listitems;
+  if (type == "slide") {
+    nodeids = nodeinfo.Slider;
+  }
+
   var postUrl = "http://localhost:50947/umbraco/api/contentApi/GetListContent/?idlist=" + nodeids;
   $.getJSON(postUrl, function(data) {}).success(function(data) {
     //add each card
     var li = data.data[0].nodelist;
-    $("#" + target).empty();
-    for (var i = 0; i < li.length; i++) {
-      if (type = "card") {
+
+    if (type == "card") {
+      $("#" + target).empty();
+      for (var i = 0; i < li.length; i++) {
         $("#" + target).append(addcard(li[i].nodedata));
       }
     }
+    if (type == "slide") {
+
+
+      var s = "";
+      //s += "<div class='carousel-fixed-item center'>";
+      //s += "<a class='btn waves-effect white grey-text darken-text-2'>button</a>";
+      //s += "</div>";
+
+      for (var i = 0; i < li.length; i++) {
+        //$("#" + target).append(addslide(li[i].nodedata));
+        s += addslide(li[i].nodedata, [i]);
+      }
+
+      setTimeout(function() {
+        $("#" + target).empty();
+        $("#" + target).closest(".container").removeClass("container").addClass("container-full");
+        let height = 340;
+        if (nodeinfo.sliderHeight !== "null" && nodeinfo.sliderHeight !== "") {height = nodeinfo.sliderHeight;}
+        let speed = 400;
+        if (nodeinfo.speed !== "null" && nodeinfo.speed !== "") {speed = nodeinfo.speed;}
+        let slidesToShow = 1;
+        if (nodeinfo.slidesToShow !== "null" && nodeinfo.slidesToShow !== "") {slidesToShow = nodeinfo.slidesToShow;}
+        //  arrows dots
+        let showarrows = false;
+        if (nodeinfo.arrows !== "null" && nodeinfo.arrows !== "0") {showarrows = true;}
+        let showdots = false;
+        if (nodeinfo.dots !== "null" && nodeinfo.dots !== "0") {showdots = true;}
+
+        $("#" + target).attr("data-height", height);
+        $("#" + target).attr("data-speed", speed);
+        $("#" + target).attr("data-slidestoshow", slidesToShow);
+        $("#" + target).attr("data-showarrows", showarrows);
+        $("#" + target).attr("data-showdots", showdots);
+
+        $("#" + target).append(s);
+        $("#" + target).slick({
+          dots: $("#" + target).data("showdots"),
+          arrows: $("#" + target).data("showarrows"),
+          nextArrow: '<div class="next-slide"><i class="material-icons">keyboard_arrow_right</i></div>',
+          prevArrow: '<div class="prev-slide"><i class="material-icons">keyboard_arrow_left</i></div>',
+          infinite: true,
+          speed: $("#" + target).data("speed"),
+          slidesToShow: $("#" + target).data("slidestoshow"),
+          adaptiveHeight: false
+
+        });
+        $("#" + target + " .slick-slide").css("height", $("#" + target).data("height"));
+      }, 0);
+      }
+
   }).error(function() {
     console.log("Error on getting content list data");
   }).complete(function(data) {
@@ -198,7 +248,6 @@ function buildlistofitems(nodeids, target, type) {
   });
   return cl
 }
-
 
 //main function
 function buildcontenthtml(j) {

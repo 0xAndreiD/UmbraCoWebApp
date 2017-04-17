@@ -1,0 +1,20 @@
+nav {
+    background: red;
+}
+header{
+  background: red;
+}
+header h1 {
+    color: #fff;
+}
+
+.btn, .btn-large {
+    background-color: red;
+}
+.btn:hover, .btn-large:hover {
+    background-color: pink;
+}
+
+p a, p a:active, p a:hover, p a:link, p a:visited {
+    color: green;
+}

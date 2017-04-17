@@ -94,12 +94,17 @@ export class DynamicTypeBuilder {
         this.init();
       }
 
+      //not needed i think
       initCarousel() {
-        $('.carousel.carousel-slider').carousel({fullWidth: true});
+      //  $('.carousel.carousel-slider').carousel({
+      //    fullWidth: $('.carousel.carousel-slider').data("fullwidth"),
+      //    duration: $('.carousel.carousel-slider').data("duration"),
+      //    indicators: $('.carousel.carousel-slider').data("indicators")
+      //  });
       }
 
       dynamicCallback() {
-        this.initCarousel();
+        //this.initCarousel();
       }
 
       init() {
