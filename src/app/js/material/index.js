@@ -45,7 +45,7 @@ window.hideFooter = function (hide) {
   var footer = document.getElementsByClassName('footer')[0];
   var classes = footer.className.split(' ');
 
-  if (hide) {
+  if (hide && classes.indexOf('invisible') === -1) {
     classes.push('invisible');
   } else {
     var index = classes.indexOf("invisible");

@@ -74,10 +74,6 @@ export class DynamicTypeBuilder {
         private resolver: ComponentFactoryResolver,
       ){
       }
-
-      private expand(collapsed) {
-        this.collapsed = !collapsed;
-      }
     };
     // a component for this particular template
     return CustomDynamicComponent;

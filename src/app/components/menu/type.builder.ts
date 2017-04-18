@@ -9,6 +9,7 @@ import { DataParseService } from "../../services/DataParseService";
 import { IMenuItem } from "../../model/IMenuItem";
 import { MenuItemComponent } from './menu-item/menu.item.component';
 import { MenuSearchComponent } from './menu-search/menu.search.component';
+import { FooterComponent } from '../footer/footer.component';
 import _ from 'lodash';
 
 export interface IHaveDynamicData {};
@@ -90,12 +91,6 @@ export class DynamicTypeBuilder {
       getMenuItems() {
         this.http.getMenu().subscribe(response=> {
           this.menuItems = this.dataParse.parseMenuDataToNav(response);
-          this.menuItems.push({
-            name: "Shop",
-            path: "/shops",
-            level: 0,
-            children:[]
-          });
           for (let i = 0; i < this.menuItems.length; i++) {
             this.menuItems[i].level = 0;
           }
@@ -103,6 +98,18 @@ export class DynamicTypeBuilder {
       }
 
       ngOnInit():void {
+        setTimeout(() => {
+          if (this.nativeWindow.setPageBackground) {
+            const index = this.menuItems.findIndex((menuItem) => {
+              const path = menuItem.path === '/' ? '/home/' : menuItem.path;
+              return (`${this.nativeWindow.location.href}/`).indexOf(path) !== -1;
+            });
+            if (index !== -1) {
+              this.selectItem(this.menuItems[index], index, false);
+              this.nativeWindow.hideAbout(true);
+            }
+          }
+        }, 500);
         this.http.getUmbPageGeneralData()
           .subscribe(
             (umbpagegeneraldata: any) => {
@@ -157,6 +164,7 @@ export class DynamicTypeBuilder {
         declarations: [
           componentType,
           MenuItemComponent,
+          FooterComponent,
           MenuSearchComponent,
         ],
       })
