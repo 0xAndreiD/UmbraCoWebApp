@@ -105,10 +105,10 @@ export default {
       animation: {
         pageSwitch: true,
         animations: [
-          animate("1s", keyframes([
+          animate("0s", keyframes([
             //style({transform: 'translateX(-100%) scale(1)'}),
             //style({transform: 'translateX(100%) scale(1)'}),
-           style({transform: 'scale(0)'}),
+           style({transform: 'scale(1)'}),
            style({transform: 'scale(1)'})
          ])),
           /* remove css animation on index*/
