@@ -102,6 +102,7 @@ export class DynamicTypeBuilder {
           if (this.nativeWindow.setPageBackground) {
             const index = this.menuItems.findIndex((menuItem) => {
               const path = menuItem.path === '/' ? '/home/' : menuItem.path;
+              if (path.indexOf('home') !== -1) return false;
               return (`${this.nativeWindow.location.href}/`).indexOf(path) !== -1;
             });
             if (index !== -1) {

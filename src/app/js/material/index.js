@@ -123,6 +123,20 @@ const applyAboutStyle = () => {
   document.getElementsByTagName('body')[0].style.backgroundColor = 'black';
 }
 
+const applyOpenStyle = () => {
+  const whitePart = document.getElementsByClassName('white-part')[0];
+  const blackPart = document.getElementsByClassName('black-part')[0];
+  whitePart.style.clipPath = `polygon(0 0, 0 100%, 50% 100%, 50% 0%)`;
+  blackPart.style.clipPath = `polygon(50% 0, 50% 100%, 100% 100%, 100% 0%)`;
+}
+
+const applyCloseStyle = () => {
+  const whitePart = document.getElementsByClassName('white-part')[0];
+  const blackPart = document.getElementsByClassName('black-part')[0];
+  whitePart.style.clipPath = `polygon(calc(100% - 100px) 0, calc(100% - 100px) 100px, 100% 100px, 100% 100px)`;
+  blackPart.style.clipPath = `polygon(calc(100% - 100px) 0, 100% 100px, 100% 100px, 100% 0)`;
+}
+
 window.openAbout = function () {
   window.hideFooter(true);
   applyAboutStyle();
@@ -136,7 +150,7 @@ window.openAbout = function () {
     menuFooter.style.zIndex = 3;
     aboutAnimationInProgress = false;
     aboutAnimationStep = 100;
-    applyAboutStyle();
+    applyOpenStyle();
   }
 }
 
@@ -152,7 +166,7 @@ window.closeAbout = function() {
   } else {
     aboutAnimationInProgress = false;
     aboutAnimationStep = 0;
-    applyAboutStyle();
+    applyCloseStyle();
     window.hideFooter(false);
   }
 }
