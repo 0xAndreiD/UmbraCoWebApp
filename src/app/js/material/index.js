@@ -1,10 +1,10 @@
 const getBackgroundColor = function(indexNum) {
-  var bgcolors = ['#F5F5F5', '#7e7e7e', '#EEEEEE', '#212121', '#616161', '#7e7e7e'];
+  var bgcolors = ['transparant', 'transparant', 'transparant', 'transparant', 'transparant', 'transparant'];
   return bgcolors[indexNum % bgcolors.length];
 }
 
 const getColor = function(indexNum) {
-  var colors = ['#000', '#000', '#000', '#fff', '#fff', '#000'];
+  var colors = ['#414042', '#414042', '#414042', '#414042', '#414042', '#414042'];
   return colors[indexNum % colors.length];
 }
 

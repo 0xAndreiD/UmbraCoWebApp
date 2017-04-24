@@ -41,3 +41,41 @@ main {
   width: 100%;
   overflow-y: auto;
 }
+
+
+
+/* dynnamikfabrikken style */
+.link.link--page.menu-item:nth-child(1){
+  background-image: url('/src/app/css/dynamikfabrikken_velkommen.png'), url(http://dynamikfabrikken.com/img/bg.png);
+  background-repeat: no-repeat, repeat;
+  background-size: 80%, auto;
+  background-position: right bottom;
+}
+
+.link.link--page.menu-item:nth-child(2){
+  background-image: url(''), url(http://dynamikfabrikken.com/img/bg.png);
+  background-repeat: no-repeat, repeat;
+  background-size: 40%, auto;
+  background-position: center center;
+}
+
+.link.link--page.menu-item:nth-child(3){
+  background-image: url(''), url(http://dynamikfabrikken.com/img/bg.png);
+  background-repeat: no-repeat, repeat;
+  background-size: 80%, auto;
+  background-position: center bottom;
+}
+
+.link.link--page.menu-item:nth-child(4){
+  background-image: url('/src/app/img/dynamikfabrikken/dynamikfabrikken_truck_small.png'), url(http://dynamikfabrikken.com/img/bg.png);
+  background-repeat: no-repeat, repeat;
+  background-size: 40%, auto;
+  background-position: right bottom;
+}
+
+.link.link--page.menu-item:nth-child(5){
+  background-image: url(''), url(http://dynamikfabrikken.com/img/bg.png);
+  background-repeat: no-repeat, repeat;
+  background-size: 80%, auto;
+  background-position: center bottom;
+}

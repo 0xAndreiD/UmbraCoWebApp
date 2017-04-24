@@ -106,17 +106,9 @@ export default {
         pageSwitch: true,
         animations: [
           animate("0s", keyframes([
-            //style({transform: 'translateX(-100%) scale(1)'}),
-            //style({transform: 'translateX(100%) scale(1)'}),
            style({transform: 'scale(1)'}),
            style({transform: 'scale(1)'})
-         ])),
-          /* remove css animation on index*/
-          /*animate("2s", keyframes([
-            style({opacity: '1'}),
-            style({opacity: '1'}),
-
-          ]))*/
+         ]))
         ],
       },
     },

@@ -1,4 +1,4 @@
-<div class="link link--page menu-item"
+<div class="link link--page menu-item text-position-top-left"
   (click)="selectItem(item, i); nativeWindow.setPageBackground(i); nativeWindow.hideFooter(true); nativeWindow.hideAbout(true);"
   [class.selected]="selectedItemInfo.index_num === i"
   [ngStyle]="nativeWindow.getStyle(i, items.length - 1 === i)"

@@ -25,19 +25,23 @@ nav {
 .menu-footer {
   position: fixed;
   color: white;
-  right: 40px;
+  right: 20px;
   bottom: 20px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  box-shadow: 2px 2px 5px gray;
-  background-color: #cc3399;
   text-align: center;
-  line-height: 50px;
-  font-size: 25px;
+  line-height: 67px;
   cursor: pointer;
+  background-color: black;
   opacity: 0.8;
   z-index: 1;
+  box-shadow: none !important;
+  border: 3px solid black;
+}
+
+.menu-footer i {
+  font-size: 32px;
 }
 
 .menu-footer:hover {
@@ -75,7 +79,7 @@ nav {
 
 .about .black-part {
   clip-path: polygon(calc(100% - 100px) 0, 100% 100px, 100% 100px, 100% 0);
-  background-color: #888888;
+  background-color: rgb(65, 64, 66);
   color: white;
 }
 
