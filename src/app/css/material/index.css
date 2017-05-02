@@ -30,7 +30,7 @@ time, mark, audio, video, .h1, .h2, .h3, .h4, .h5, .h6, .p {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
+  font-weight: 300;
 }
 
 main {
@@ -43,39 +43,63 @@ main {
 }
 
 
-
 /* dynnamikfabrikken style */
-.link.link--page.menu-item:nth-child(1){
-  background-image: url('/src/app/css/dynamikfabrikken_velkommen.png'), url(http://dynamikfabrikken.com/img/bg.png);
-  background-repeat: no-repeat, repeat;
-  background-size: 80%, auto;
-  background-position: right bottom;
+dynamice-component .menu-item{
+  padding: 30px;
 }
 
-.link.link--page.menu-item:nth-child(2){
-  background-image: url(''), url(http://dynamikfabrikken.com/img/bg.png);
-  background-repeat: no-repeat, repeat;
-  background-size: 40%, auto;
-  background-position: center center;
+.menu-item a,
+.menu-item a:hover,
+header h1 {
+  color: #e57200 !important;
+  font-weight: 400;
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  line-height: 3rem;
 }
 
-.link.link--page.menu-item:nth-child(3){
-  background-image: url(''), url(http://dynamikfabrikken.com/img/bg.png);
-  background-repeat: no-repeat, repeat;
-  background-size: 80%, auto;
-  background-position: center bottom;
+.menu-item p {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  font-weight: 300;
 }
 
-.link.link--page.menu-item:nth-child(4){
-  background-image: url('/src/app/img/dynamikfabrikken/dynamikfabrikken_truck_small.png'), url(http://dynamikfabrikken.com/img/bg.png);
-  background-repeat: no-repeat, repeat;
-  background-size: 40%, auto;
-  background-position: right bottom;
+.link.link--page.menu-item{
+  background-repeat: repeat;
 }
 
-.link.link--page.menu-item:nth-child(5){
-  background-image: url(''), url(http://dynamikfabrikken.com/img/bg.png);
-  background-repeat: no-repeat, repeat;
-  background-size: 80%, auto;
-  background-position: center bottom;
+.menu-item img{
+  width: 60%;
+  left: 50%;
+  margin-left: -30%;
+  position: absolute;
+  bottom: 0;
+}
+
+main{
+  background-repeat: repeat;
+  font-weight: 300;
+}
+
+header{
+  padding: 30px;
+}
+
+/*header h1 styling same as menu items a*/
+
+
+main p {
+
+}
+
+main h2 {
+  font-size: 2rem;
+  font-style: italic;
+  position: relative;
+  top: 23px;
+}
+
+main h3 {
+  font-weight:400;
+  font-size: 2rem;
 }

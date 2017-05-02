@@ -49,6 +49,7 @@ export class MenuItemComponent {
           // let's inject @Inputs to component instance
           let component = this.componentRef.instance;
           component.items = this.items;
+          console.log(this.items);
           component.isCollapsed = this.isCollapsed;
           component.selectedItemInfo = this.selectedItemInfo;
           component.selectItem = this.selectItem;

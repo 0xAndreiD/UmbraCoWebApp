@@ -40,7 +40,7 @@ export class HttpService {
         loadPromise=new Promise<any>((resolve)=>{
           that.http.get( `${domainname}umbraco/api/contentApi/getTree/?pageid=${pageid}`)
             .map(response=>response.json()).subscribe((response)=>{
-              resolve(response)
+              resolve(response);
           })
         });
         return PromiseObservable.create(loadPromise);

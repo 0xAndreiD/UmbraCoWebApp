@@ -149,6 +149,11 @@ html {
 /*grid options styling*/
 
 .paper-content .large-space{
-  padding-top: 80px;
+  padding-top: 20px;
   padding-bottom: 60px;
+}
+
+.paper-content .thin-text{
+  padding-left: 180px;
+  padding-right: 180px;
 }

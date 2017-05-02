@@ -62,13 +62,12 @@ nav {
   pointer-events: none;
 }
 
-.about .white-part, .about .black-part {
+.about .white-part, .about .black-part, .about .white-part-shadow {
   width: 200%;
   height: 200%;
   position: fixed;
   right: 0;
   top: 0;
-  color: black;
 }
 
 .about .white-part {
@@ -77,9 +76,17 @@ nav {
   cursor: pointer;
 }
 
+.about .white-part-shadow{
+  width: 92px;
+  height: 92px;
+  background-color: black;
+  box-shadow: 0 0 5px 10px black;
+  opacity: 0.6;
+}
+
 .about .black-part {
   clip-path: polygon(calc(100% - 100px) 0, 100% 100px, 100% 100px, 100% 0);
-  background-color: rgb(65, 64, 66);
+  background-color: rgb(39, 39, 39);
   color: white;
 }
 

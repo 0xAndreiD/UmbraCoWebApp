@@ -115,7 +115,7 @@ export default {
     footer: {
       template: 'footer-material',
     },
-    pageid: '1152',
+    pageid: '1183',
     scripts: ['/src/app/js/material/index.js'],
     styles: ['/src/app/css/material/index.css'],
   },

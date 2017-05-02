@@ -3,6 +3,11 @@ const getBackgroundColor = function(indexNum) {
   return bgcolors[indexNum % bgcolors.length];
 }
 
+const getBackgroundImage = function(indexNum) {
+  var bgimage = ['url(http://dynamikfabrikken.com/img/bg.png)', 'url(http://dynamikfabrikken.com/img/bg.png)', 'url(http://dynamikfabrikken.com/img/bg.png)', 'url(http://dynamikfabrikken.com/img/bg.png)', 'url(http://dynamikfabrikken.com/img/bg.png)', 'url(http://dynamikfabrikken.com/img/bg.png)'];
+  return bgimage[indexNum % bgimage.length];
+}
+
 const getColor = function(indexNum) {
   var colors = ['#414042', '#414042', '#414042', '#414042', '#414042', '#414042'];
   return colors[indexNum % colors.length];
@@ -28,6 +33,7 @@ window.getStyle = function(indexNum, isLast) {
     right: (isLast ? "0" : sPos[2]) + "%",
     bottom: (isLast ? "0" : sPos[3]) + "%",
     backgroundColor: getBackgroundColor(indexNum),
+    backgroundImage: getBackgroundImage(indexNum),
     color: getColor(indexNum),
   };
 }
@@ -36,9 +42,10 @@ window.setPageBackground = function(indexNum) {
   const mainComponent = document.getElementsByTagName('main')[0];
   mainComponent.style.color = getColor(indexNum);
   mainComponent.style.backgroundColor = getBackgroundColor(indexNum);
+  mainComponent.style.backgroundImage = getBackgroundImage(indexNum);
 
   const menuFooter = document.getElementsByClassName('menu-footer')[0];
-  menuFooter.style.boxShadow = '2px 2px 5px' + getColor(indexNum);
+  //menuFooter.style.boxShadow = '2px 2px 5px' + getColor(indexNum);
 }
 
 window.hideFooter = function (hide) {

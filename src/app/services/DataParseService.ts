@@ -75,6 +75,8 @@ export class DataParseService {
     return {
       path: object.path,
       name: object.name,
+      menuText: object.menuText,
+      menuImage: object.menuImage,
       level: object.level,
     }
   }

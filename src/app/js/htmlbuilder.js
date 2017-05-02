@@ -70,10 +70,12 @@ function editorview(contentItem) {
   var e = ""
   var type = contentItem.editor.alias;
 
+  var domainname = "http://localhost:50947"; //http://localhost:50947/
+
   try {
     if (type == "rte") {
       // line 139 - TemplateUtilities.ParseInternalLinks not added
-      e += contentItem.value.replace("src=\"/", "src=\"" + "http://umb.dynamikfabrikken.com" + "/");
+      e += contentItem.value.replace("src=\"/", "src=\"" + domainname + "/");
     } else if (type == "macro") {
       var macroalias = contentItem.value.macroAlias;
       if (macroalias == "slider") {
@@ -87,10 +89,13 @@ function editorview(contentItem) {
         //get content for this div
         buildlistofitems(contentItem.value.macroParamsDictionary, id, "card");
       } else {
-        console.log(macroalias);
+      //  console.log(macroalias);
       }
     } else {
-      console.log(type);
+      // image
+      if (contentItem.editor.name == "Image") {
+        e += "<img src='" + domainname + contentItem.value.image + "' alt='" + contentItem.value.altText + "' />";
+      }
     }
   } catch (err) {
 

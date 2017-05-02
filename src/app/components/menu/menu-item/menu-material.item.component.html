@@ -1,8 +1,14 @@
 <div class="link link--page menu-item text-position-top-left"
   (click)="selectItem(item, i); nativeWindow.setPageBackground(i); nativeWindow.hideFooter(true); nativeWindow.hideAbout(true);"
   [class.selected]="selectedItemInfo.index_num === i"
-  [ngStyle]="nativeWindow.getStyle(i, items.length - 1 === i)"
+  [ngStyle]="nativeWindow.getStyle && nativeWindow.getStyle(i, items.length - 1 === i)"
   *ngFor="let item of items; let i = index"
 >
-  {{item.name}}
+  <a href="javascript:void(0)">
+    {{item.name}}
+  </a>
+  <div [innerHTML]="item.menuText">
+  </div>
+  <img [src]="item.menuImage" onError=""/>
+
 </div>
