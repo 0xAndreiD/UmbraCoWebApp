@@ -98,6 +98,7 @@ export class DynamicTypeBuilder {
       }
 
       ngOnInit():void {
+        console.log('message');
         setTimeout(() => {
           if (this.nativeWindow.setPageBackground) {
             const index = this.menuItems.findIndex((menuItem) => {

@@ -55,6 +55,7 @@ export class DynamicTypeBuilder {
     });
   }
 
+
   protected createNewComponent (footer: any) {
     const html = request('GET', `/src/app/components/footer/${footer.template}.component.html`).getBody();
     const css = request('GET', `/src/app/components/footer/${footer.template}.component.css`).getBody();
@@ -66,6 +67,7 @@ export class DynamicTypeBuilder {
     class CustomDynamicComponent implements IHaveDynamicData {
       @Input() selectItem: any;
       collapsed: boolean = true;
+      umbpagegeneral;
 
       constructor(
         private http: HttpService,
@@ -74,10 +76,28 @@ export class DynamicTypeBuilder {
         private resolver: ComponentFactoryResolver,
       ){
       }
+
+      ngOnInit():void {
+        this.http.getUmbPageGeneralData()
+          .subscribe(
+            (umbpagegeneraldata: any) => {
+              //The problem was that you received an array from server but used as object
+              this.umbpagegeneral = umbpagegeneraldata.data[0];
+            },
+            (error: any) => {
+
+            });
+          };
     };
+
+
+
     // a component for this particular template
     return CustomDynamicComponent;
   }
+
+
+
   protected createComponentModule (componentType: any) {
       @NgModule({
         imports: [
