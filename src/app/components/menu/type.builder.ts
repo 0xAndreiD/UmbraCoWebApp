@@ -77,6 +77,7 @@ export class DynamicTypeBuilder {
       selected_item_info:any = {
         item: [],
         index_num: -1,
+        isAnimating: false,
       };
       nativeWindow: any = window;
 
@@ -129,6 +130,10 @@ export class DynamicTypeBuilder {
       }
 
       selectItem = (item, index_num, navigate = true) => {
+        if (this.selected_item_info.index_num != index_num) {
+          this.selected_item_info.isAnimating = true;
+          setTimeout(() => this.selected_item_info.isAnimating = false, 750);
+        }
         this.selected_item_info.item = item;
         this.selected_item_info.index_num = index_num;
 

@@ -4,11 +4,12 @@
   [ngStyle]="nativeWindow.getStyle && nativeWindow.getStyle(i, items.length - 1 === i)"
   *ngFor="let item of items; let i = index"
 >
-  <a href="javascript:void(0)">
-    {{item.name}}
-  </a>
-  <div [innerHTML]="item.menuText">
+  <div *ngIf="!selectedItemInfo.isAnimating">
+    <a href="javascript:void(0)">
+      {{item.name}}
+    </a>
+    <div [innerHTML]="item.menuText">
+    </div>
+    <img [src]="item.menuImage" onError=""/>
   </div>
-  <img [src]="item.menuImage" onError=""/>
-
 </div>
