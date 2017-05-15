@@ -1,14 +1,16 @@
 <div class="footer">
   <div>
-    <img class="logo-img" src="/src/app/img/dynamikfabrikken/dynamik_fabrikken_logo.png" alt="Dynamikfabrikken" /><br/>
-    <a href="mailto:{{umbpagegeneral?.CompanyEmail}}">{{umbpagegeneral?.CompanyEmail}}</a><br />
-    <a href="tel: 26329300">Tlf. 26329300</a><br />
+    <img *ngIf="umbpagegeneral?.MainLogo?.length > 0" class="logo-img" src="{{umbpagegeneral?.MainLogo}}" alt="Dynamikfabrikken" /><br/>
+    <a *ngIf="umbpagegeneral?.CompanyName?.length > 0" href="mailto:{{umbpagegeneral?.CompanyName}}">{{umbpagegeneral?.CompanyName}}</a><br *ngIf="umbpagegeneral?.CompanyName?.length > 0" />
+    <a *ngIf="umbpagegeneral?.CompanyAddress?.length > 0" href="mailto:{{umbpagegeneral?.CompanyAddress}}">{{umbpagegeneral?.CompanyAddress}}</a><br *ngIf="umbpagegeneral?.CompanyAddress?.length > 0" />
+    <a *ngIf="umbpagegeneral?.CompanyEmail?.length > 0" href="mailto:{{umbpagegeneral?.CompanyEmail}}">{{umbpagegeneral?.CompanyEmail}}</a><br *ngIf="umbpagegeneral?.CompanyEmail?.length > 0" />
+    <a *ngIf="umbpagegeneral?.CompanyPhone?.length > 0" href="tel:{{umbpagegeneral?.CompanyPhone}}">{{umbpagegeneral?.CompanyPhone}}</a><br *ngIf="umbpagegeneral?.CompanyPhone?.length > 0" />
 
     <div class="footer-social-links">
-      <a href="#"><i class="mdi mdi-facebook"></i></a>
-      <a href="#"><i class="mdi mdi-linkedin"></i></a>
-      <a href="#"><i class="mdi mdi-instagram"></i></a>
-      <a href="#"><i class="mdi mdi-twitter"></i></a>
+      <a href="{{umbpagegeneral?.CompanyFacebook}}" *ngIf="umbpagegeneral?.CompanyFacebook?.length > 0" target="_blank"><i class="mdi mdi-facebook"></i></a>
+      <a href="{{umbpagegeneral?.CompanyLinkedin}}" *ngIf="umbpagegeneral?.CompanyLinkedin?.length > 0" target="_blank"><i class="mdi mdi-linkedin"></i></a>
+      <a href="{{umbpagegeneral?.CompanyInstagram}}" *ngIf="umbpagegeneral?.CompanyInstagram?.length > 0" target="_blank"><i class="mdi mdi-instagram"></i></a>
+      <a href="{{umbpagegeneral?.CompanyTwitter}}" *ngIf="umbpagegeneral?.CompanyTwitter?.length > 0" target="_blank"><i class="mdi mdi-twitter"></i></a>
     </div>
   </div>
 </div>

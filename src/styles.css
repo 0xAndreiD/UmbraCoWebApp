@@ -153,7 +153,10 @@ html {
   padding-bottom: 60px;
 }
 
-.paper-content .thin-text{
-  padding-left: 180px;
-  padding-right: 180px;
+
+@media screen and (min-width: 992px) {
+    .paper-content .thin-text{
+      padding-left: 180px;
+      padding-right: 180px;
+    }
 }

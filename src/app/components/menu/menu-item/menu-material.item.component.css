@@ -1,3 +1,4 @@
+
 .menu-item {
   position: absolute;
   display: flex;
@@ -11,12 +12,6 @@
   z-index: 0;
   font-size: 2rem;
   transition: left 0.7s 0.1s, top 0.7s 0.1s, right 0.7s 0.1s, bottom 0.7s 0.1s, border-width 0.7s, z-index 0.7s 0.1s, color 0.0s 0.7s, text-shadow 0.0s 0.7s;
-}
-
-.menu-item.text-position-top-left {
-  align-items: flex-start;
-  justify-content: left;
-  padding: 30px;
 }
 
 .menu-item:hover {

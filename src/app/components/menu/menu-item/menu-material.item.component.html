@@ -1,4 +1,4 @@
-<div class="link link--page menu-item text-position-top-left"
+<div class="link link--page menu-item"
   (click)="selectItem(item, i); nativeWindow.setPageBackground(i); nativeWindow.hideFooter(true); nativeWindow.hideAbout(true);"
   [class.selected]="selectedItemInfo.index_num === i"
   [ngStyle]="nativeWindow.getStyle && nativeWindow.getStyle(i, items.length - 1 === i)"
@@ -10,6 +10,6 @@
     </a>
     <div [innerHTML]="item.menuText">
     </div>
-    <img [src]="item.menuImage" onError=""/>
+    <img *ngIf="item.menuImage" [src]="item.menuImage" onError=""/>
   </div>
 </div>

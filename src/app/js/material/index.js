@@ -81,7 +81,7 @@ window.hideAbout = function (hide) {
 let aboutAnimationStep = 0;
 let aboutAnimationInProgress = false;
 
-const applyAboutStyle = () => {
+var applyAboutStyle = () => {
   const parentPage = document.getElementsByClassName('blue-green')[0];
   const whitePart = document.getElementsByClassName('white-part')[0];
   const blackPart = document.getElementsByClassName('black-part')[0];
@@ -194,7 +194,7 @@ function initfontsize() {
   var bwidth = $("body").width();
   var size = size = 100;
   if (bwidth < 768) {
-    size = 50;
+    size = 40;
   }
   $('html').css('font-size', size + "%");
 }
