@@ -149,6 +149,7 @@ window.openAbout = function () {
   applyAboutStyle();
   aboutAnimationStep += 1;
   aboutAnimationInProgress = true;
+  window.aboutOpen = true;
   if (aboutAnimationStep < 101)
   {
     setTimeout(window.openAbout, 10);
@@ -167,6 +168,7 @@ window.closeAbout = function() {
   applyAboutStyle();
   aboutAnimationStep -= 1;
   aboutAnimationInProgress = true;
+  window.aboutOpen = false;
   if (aboutAnimationStep > -1)
   {
     setTimeout(window.closeAbout, 10);
