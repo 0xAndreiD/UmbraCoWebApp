@@ -1,4 +1,5 @@
 import { Component, ComponentFactory, NgModule, Input, Injectable, Injector, Compiler, ReflectiveInjector, ComponentFactoryResolver } from '@angular/core';
+import { PlatformLocation } from '@angular/common'
 import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { Router } from "@angular/router";
 import { BrowserModule } from "@angular/platform-browser";
@@ -86,6 +87,7 @@ export class DynamicTypeBuilder {
         private router: Router,
         private dataParse: DataParseService,
         private resolver: ComponentFactoryResolver,
+        private location: PlatformLocation,
       ){
       }
 
@@ -103,16 +105,38 @@ export class DynamicTypeBuilder {
         setTimeout(() => {
           if (this.nativeWindow.setPageBackground) {
             const index = this.menuItems.findIndex((menuItem) => {
-              const path = menuItem.path === '/' ? '/home/' : menuItem.path;
-              if (path.indexOf('home') !== -1) return false;
+              const path = menuItem.path === '/' ? '/home-open/' : menuItem.path;
               return (`${this.nativeWindow.location.href}/`).indexOf(path) !== -1;
             });
             if (index !== -1) {
               this.selectItem(this.menuItems[index], index, false);
               this.nativeWindow.hideAbout(true);
+            } else if ((`${this.nativeWindow.location.href}/`).indexOf('about')) {
+              this.selectItem({}, -2, false);
             }
           }
         }, 500);
+        this.location.onPopState((event) => {
+          if ((`${this.nativeWindow.location.href}/`).indexOf('/home/') !== -1) {
+            if (this.nativeWindow) {
+              const { closeAbout, hideFooter, hideAbout } = this.nativeWindow;
+              closeAbout && closeAbout();
+              hideFooter && hideFooter(false);
+              hideAbout && hideAbout(false);
+            }
+            this.selectItem({}, -1, false);
+            return false;
+          } else if ((`${this.nativeWindow.location.href}/`).indexOf('/about/') !== -1) {
+            this.selectItem({}, -2, false);
+          } else {
+            const index = this.menuItems.findIndex((menuItem) => {
+              const path = menuItem.path === '/' ? '/home-open/' : menuItem.path;
+              return (`${this.nativeWindow.location.href}/`).indexOf(path) !== -1;
+            });
+            this.selectItem(this.menuItems[index], index, true);
+            this.nativeWindow.hideAbout(true);
+          }
+        });
         this.http.getUmbPageGeneralData()
           .subscribe(
             (umbpagegeneraldata: any) => {
@@ -132,7 +156,7 @@ export class DynamicTypeBuilder {
       selectItem = (item, index_num, navigate = true) => {
         if (this.selected_item_info.index_num != index_num) {
           this.selected_item_info.isAnimating = true;
-          setTimeout(() => this.selected_item_info.isAnimating = false, 750);
+          setTimeout(() => this.selected_item_info.isAnimating = false, 1000);
         }
         this.selected_item_info.item = item;
         this.selected_item_info.index_num = index_num;
@@ -141,8 +165,14 @@ export class DynamicTypeBuilder {
           this.nativeWindow.setPageBackground(index_num);
           this.nativeWindow.hideFooter(index_num !== -1);
         }
-
-        if (navigate) this.router.navigate([item.path]);
+        if (navigate)
+          this.router.navigate([item.path === '/' ? 'home-open' : item.path]);
+        else if(index_num === -2) {
+          this.nativeWindow.openAbout();
+          this.router.navigate(['about']);
+        }
+        else
+          this.router.navigate(['home']);
       }
 
       private getWidthSearchTab():string {
