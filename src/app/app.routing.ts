@@ -12,11 +12,11 @@ var appRoutes: Routes = [
     path: '',
     component: ContentComponent,
     children: [
-      // {
-      //   path: '',
-      //   redirectTo: 'home',
-      //   pathMatch: 'full'
-      // },
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
       {
         path: ':side',
         pathMatch: 'prefix',
