@@ -19,7 +19,7 @@ export class DynamicTypeBuilder {
   // wee need Dynamic component builder
   constructor(injector: Injector, private compiler: Compiler) {
     injector = ReflectiveInjector.resolveAndCreate(COMPILER_PROVIDERS, injector);
-    compiler = injector.get(Compiler);
+    compiler = injector.get(Compiler) as Compiler;
   }
 
   // this object is singleton - so we can use this as a cache
