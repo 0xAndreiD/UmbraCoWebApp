@@ -108,7 +108,9 @@ function addslide(slide, itemnumber) {
   var s = "";
 
   let slideObject = {};
-  slide.forEach(item => (slideObject = Object.assign(slideObject, item)));
+  slide.forEach(function(item) {
+    slideObject = Object.assign(slideObject, item)
+  });
 
   s += "<div style='background-color: " + slideObject.backgroundColor + ";'>";
 
@@ -136,7 +138,9 @@ function addslide(slide, itemnumber) {
 function addcard(card) {
   var c = ""
   let cardObject = {};
-  card.forEach(item => (cardObject = Object.assign(cardObject, item)));
+  card.forEach(function(item){
+    cardObject = Object.assign(cardObject, item);
+  });
 
   c += "<div class='col s12 m6'>";
   c += "<div class='card'>";

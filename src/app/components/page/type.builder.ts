@@ -1,5 +1,5 @@
-import { Component, ComponentFactory, NgModule, Input, Injectable, Injector, Compiler, ReflectiveInjector, trigger, transition, AfterViewChecked,
-  style, animate, keyframes } from '@angular/core';
+import { Component, ComponentFactory, NgModule, Input, Injectable, Injector, Compiler, ReflectiveInjector, 
+          trigger, transition, AfterViewChecked, style, animate, keyframes } from '@angular/core';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { DynamicComponentModule } from 'angular2-dynamic-component/index';
 import { Router, ActivatedRoute, Params } from "@angular/router";
@@ -23,7 +23,7 @@ export class DynamicTypeBuilder {
   // wee need Dynamic component builder
   constructor(injector: Injector, private compiler: Compiler) {
     injector = ReflectiveInjector.resolveAndCreate(COMPILER_PROVIDERS, injector);
-    compiler = injector.get(Compiler);
+    compiler = injector.get(Compiler) as Compiler;
 }
 
   // this object is singleton - so we can use this as a cache
@@ -125,10 +125,12 @@ export class DynamicTypeBuilder {
 
                 //buildcontenthtml function is added on index.html in js file named htmlbuilder.js
                 let contentGrid = buildcontenthtml(umbpagedata.data.bodyContentGridJson);
-              //  this.contentGrid = contentGrid.replace('{{renderformid_1}}', '<div id="formContainer" #formContainer></div>');
+                console.log("buildcontenthtml: ", contentGrid);
+                // this.contentGrid = contentGrid.replace('{{renderformid_1}}', '<div id="formContainer" #formContainer></div>');
                 this.contentGrid = contentGrid;
                 this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
                 this.seoService.setTitle(umbpagedata.data.title);
+                console.log(umbpagedata.data);
                 if (page.animation && page.animation.pageSwitch)
                   this.state =`${this.side}-${this.subpage}`;
               },
