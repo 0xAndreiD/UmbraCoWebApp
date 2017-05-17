@@ -59,4 +59,3 @@ export class RouteController implements CanActivate, CanActivateChild {
   }
 
 }
-

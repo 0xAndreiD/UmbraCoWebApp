@@ -81,7 +81,7 @@ window.hideAbout = function (hide) {
 let aboutAnimationStep = 0;
 let aboutAnimationInProgress = false;
 
-var applyAboutStyle = () => {
+const applyAboutStyle = () => {
   const parentPage = document.getElementsByClassName('blue-green')[0];
   const whitePart = document.getElementsByClassName('white-part')[0];
   const blackPart = document.getElementsByClassName('black-part')[0];

@@ -107,74 +107,74 @@ function editorview(contentItem) {
 function addslide(slide, itemnumber) {
   var s = "";
 
-  let slideObject = {};
-  slide.forEach(item => (slideObject = Object.assign(slideObject, item)));
-
-  s += "<div style='background-color: " + slideObject.backgroundColor + ";'>";
-
-  s += "<div class='slick-text'>";
-  if (slideObject.title) {
-    s += "<h1>" + slideObject.title + "</h1>";
-  }
-  //slide text
-  if (slideObject.text) {
-    s += slideObject.text;
-  }
-  s += "</div> ";
-
-  if (slideObject.image) {
-    s += "<img src='" + slideObject.image.url + "'alt='' />"
-
-  }
-
-
-  s += "</div> ";
+//  let slideObject = {};
+//  slide.forEach(item => (slideObject = Object.assign(slideObject, item)));
+//
+//  s += "<div style='background-color: " + slideObject.backgroundColor + ";'>";
+//
+//  s += "<div class='slick-text'>";
+//  if (slideObject.title) {
+//    s += "<h1>" + slideObject.title + "</h1>";
+//  }
+//  //slide text
+//  if (slideObject.text) {
+//    s += slideObject.text;
+//  }
+//  s += "</div> ";
+//
+//  if (slideObject.image) {
+//    s += "<img src='" + slideObject.image.url + "'alt='' />"
+//
+//  }
+//
+//
+//  s += "</div> ";
 
   return s;
 }
 
 function addcard(card) {
   var c = ""
-  let cardObject = {};
-  card.forEach(item => (cardObject = Object.assign(cardObject, item)));
-
-  c += "<div class='col s12 m6'>";
-  c += "<div class='card'>";
-
-  // card image
-  if (cardObject.image.url) {
-    c += "<div class='card-image'>";
-    c += "<img src='" + cardObject.image.url + "' alt='" + cardObject.image.alttext + "' />";
-    if (cardObject.imageTitle) {
-      c += "<span class='card-title'>" + cardObject.imageTitle + "</span>";
-    }
-    c += "</div>";
-  }
-
-  // card title
-  c += "<div class='card-content'>";
-  if (card.title) {
-    c += "<span class='card-title'>" + card.title + "</span>";
-  }
-  //card text
-  if (cardObject.text) {
-    c += cardObject.text;
-  }
-  c += "</div>";
-
-  //card link
-  if (cardObject.link) {
-    var href = cardObject.link.url;
-    if (cardObject.link.hashtarget) {
-      href = "#" + cardObject.link.hashtarget;
-    }
-    c += "<div class='card-action'>";
-    c += "<a href='" + href + "' target='" + cardObject.link.target + "''>" + cardObject.link.name + "</a>";
-    c += "</div>";
-  }
-
-  c += "</div>";
-  c += "</div>";
+//  let cardObject = {};
+//  card.forEach(item => (cardObject = Object.assign(cardObject, item)));
+//
+//  c += "<div class='col s12 m6'>";
+//  c += "<div class='card'>";
+//
+//  // card image
+//  if (cardObject.image.url) {
+//    c += "<div class='card-image'>";
+//    c += "<img src='" + cardObject.image.url + "' alt='" + cardObject.image.alttext + "' />";
+//    if (cardObject.imageTitle) {
+//      c += "<span class='card-title'>" + cardObject.imageTitle + "</span>";
+//    }
+//    c += "</div>";
+//  }
+//
+//  // card title
+//  c += "<div class='card-content'>";
+//  if (card.title) {
+//    c += "<span class='card-title'>" + card.title + "</span>";
+//  }
+//  //card text
+//  if (cardObject.text) {
+//    c += cardObject.text;
+//  }
+//  c += "</div>";
+//
+//  //card link
+//  if (cardObject.link) {
+//    var href = cardObject.link.url;
+//    if (cardObject.link.hashtarget) {
+//      href = "#" + cardObject.link.hashtarget;
+//    }
+//    c += "<div class='card-action'>";
+//    c += "<a href='" + href + "' target='" + cardObject.link.target + "''>" + cardObject.link.name + "</a>";
+//    c += "</div>";
+//  }
+//
+//  c += "</div>";
+//  c += "</div>";
   return c;
 };
 
