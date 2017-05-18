@@ -1,6 +1,7 @@
 import { style, animate, keyframes } from '@angular/core';
 export default {
-  'localhost2': {
+  //ikke testet
+  'localhost_paperstack': {
     menu: {
       template: 'menu0',
     },
@@ -13,21 +14,13 @@ export default {
         pageSwitch: false,
         animations: [
           animate("2s", keyframes([
-            //style({transform: 'translateX(-100%) scale(1)'}),
-            //style({transform: 'translateX(100%) scale(1)'}),
-
            style({transform: 'scale(0)'}),
            style({transform: 'scale(1)'}),
          ])),
-          /* remove css animation on index*/
-          /*animate("2s", keyframes([
-            style({opacity: '1'}),
-            style({opacity: '1'}),
-          ]))*/
         ],
       },
     },
-    pageid: '1152',
+    pageid: '1198',
     scripts: [
       '/src/app/js/paperstack/modernizr-custom.js',
       '/src/app/js/paperstack/classie.js',
@@ -38,7 +31,8 @@ export default {
       '/src/styles.css',
     ],
   },
-  'localhost1': {
+  // ikke testet
+  'localhost_plainsite': {
     menu: {
       template: 'mmenu',
     },
@@ -65,7 +59,7 @@ export default {
         ],
       },
     },
-    pageid: '1139',
+    pageid: '1183',
     scripts: [
       '/src/app/js/mmenu/mmenujs.js',
       '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js'
@@ -75,22 +69,6 @@ export default {
       '/src/app/css/htmlbuilder.css',
       '/src/app/css/customstylingtest.css'
   ],
-  },
-  'localhost3': {
-    menu: {
-      template: 'menu0',
-    },
-    menuItem: {
-      template: 'menu0.item',
-    },
-    page: {
-      template: 'page0',
-    },
-    pageid: '1883',
-    scripts: [],
-    styles: [
-      '/src/styles.css',
-    ],
   },
   'localhost': {
     menu: {

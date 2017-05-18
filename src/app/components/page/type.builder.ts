@@ -1,4 +1,4 @@
-import { Component, ComponentFactory, NgModule, Input, Injectable, Injector, Compiler, ReflectiveInjector, 
+import { Component, ComponentFactory, NgModule, Input, Injectable, Injector, Compiler, ReflectiveInjector,
           trigger, transition, AfterViewChecked, style, animate, keyframes } from '@angular/core';
 import { COMPILER_PROVIDERS } from '@angular/compiler';
 import { DynamicComponentModule } from 'angular2-dynamic-component/index';
@@ -124,13 +124,13 @@ export class DynamicTypeBuilder {
                 //let contentGrid = umbpagedata.data.bodyContentGrid;
 
                 //buildcontenthtml function is added on index.html in js file named htmlbuilder.js
-                let contentGrid = buildcontenthtml(umbpagedata.data.bodyContentGridJson);
-                console.log("buildcontenthtml: ", contentGrid);
+                let contentGrid = buildcontenthtml(umbpagedata.data.bodyContentGridJson, umbpagedata.data.domaine);
+                //console.log("buildcontenthtml: ", contentGrid);
                 // this.contentGrid = contentGrid.replace('{{renderformid_1}}', '<div id="formContainer" #formContainer></div>');
                 this.contentGrid = contentGrid;
                 this.seoService.setMetaElement("metaDescription", umbpagedata.data.metaDescription);
                 this.seoService.setTitle(umbpagedata.data.title);
-                console.log(umbpagedata.data);
+                //console.log(umbpagedata.data);
                 if (page.animation && page.animation.pageSwitch)
                   this.state =`${this.side}-${this.subpage}`;
               },

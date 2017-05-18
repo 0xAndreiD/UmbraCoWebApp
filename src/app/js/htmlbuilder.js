@@ -70,12 +70,10 @@ function editorview(contentItem) {
   var e = ""
   var type = contentItem.editor.alias;
 
-  var domainname = "http://localhost:50947"; //http://localhost:50947/
-
   try {
     if (type == "rte") {
       // line 139 - TemplateUtilities.ParseInternalLinks not added
-      e += contentItem.value.replace("src=\"/", "src=\"" + domainname + "/");
+      e += contentItem.value.replace("src=\"/", "src=\"" + backenddomaine + "/");
     } else if (type == "macro") {
       var macroalias = contentItem.value.macroAlias;
       if (macroalias == "slider") {
@@ -94,7 +92,7 @@ function editorview(contentItem) {
     } else {
       // image
       if (contentItem.editor.name == "Image") {
-        e += "<img src='" + domainname + contentItem.value.image + "' alt='" + contentItem.value.altText + "' />";
+        e += "<img src='" + backenddomaine + contentItem.value.image + "' alt='" + contentItem.value.altText + "' />";
       }
     }
   } catch (err) {
@@ -144,12 +142,25 @@ function addcard(card) {
   });
 
   c += "<div class='col s12 m6'>";
-  c += "<div class='card'>";
+
+  console.log(cardObject);
+  var cardstyling = "";
+  if (cardObject.backgroundColor || cardObject.color ) {
+    cardstyling += "style='";
+      if (cardObject.backgroundColor) {
+        cardstyling += "background-color:" + cardObject.backgroundColor + "; ";
+      }
+      if (cardObject.color) {
+        cardstyling += "color:" + cardObject.color + "; ";
+      }
+    cardstyling += "'";
+  }
+  c += "<div class='card' " + cardstyling + ">";
 
   // card image
   if (cardObject.image.url) {
     c += "<div class='card-image'>";
-    c += "<img src='" + cardObject.image.url + "' alt='" + cardObject.image.alttext + "' />";
+    c += "<img src='" + cardObject.image.url + "' alt='" + cardObject.image.altText + ", " + cardObject.title + "' />";
     if (cardObject.imageTitle) {
       c += "<span class='card-title'>" + cardObject.imageTitle + "</span>";
     }
@@ -158,8 +169,8 @@ function addcard(card) {
 
   // card title
   c += "<div class='card-content'>";
-  if (card.title) {
-    c += "<span class='card-title'>" + card.title + "</span>";
+  if (cardObject.title) {
+    c += "<span class='card-title'>" + cardObject.title + "</span>";
   }
   //card text
   if (cardObject.text) {
@@ -260,7 +271,11 @@ function buildlistofitems(nodeinfo, target, type) {
 }
 
 //main function
-function buildcontenthtml(j) {
+var backenddomaine = "http://umb.dynamikfabrikken.com";
+function buildcontenthtml(j, domaine) {
+  if (domaine) {
+    backenddomaine = domaine;
+  }
   var s = "<div>";
   if (j) {
     //if one col
