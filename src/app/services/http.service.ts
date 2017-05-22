@@ -7,7 +7,8 @@ import Settings from './settings';
 //import 'rxjs/Rx';
 
 var domainname = "http://umb.dynamikfabrikken.com/";
-//domainname = "http://localhost:50947/";
+domainname = "http://localhost:50947/";
+
 let pageid= '';
 @Injectable()
 export class HttpService {

@@ -27,6 +27,7 @@ export class SeoService {
       content
     });
     this.getOrCreateMetaElement(name).setAttribute("content", content);
+    console.log(name);
   }
 
   public getMetaElement(name:string) {

@@ -10,8 +10,10 @@ declare var classie;
   templateUrl: 'form.component.html',
   styleUrls: ['form.component.css']
 })
+
 export class FormComponent implements OnInit, AfterViewInit {
 
+// rename class to cssclass
   form1:any = {
     successMessage: "Ok",
     errorMessage: "Error",
@@ -195,31 +197,31 @@ export class FormComponent implements OnInit, AfterViewInit {
     alert(this.form.successMessage);
   }
 
-  constructor(public httpService:HttpService) {
-    var id = 1; 
-    this.httpService.getForm(id).subscribe((response:any) => {
-      this.form = response.data[0];
-      this.form.elements = this.form1.elements;
-    })
-  }
+//  constructor(public httpService:HttpService) {
+//    var id = 1132;
+//    this.httpService.getForm(id).subscribe((response:any) => {
+//      this.form = response.data[0];
+//      this.form.elements = this.form1.elements;
+//    })
+//  }
 
   ngOnInit() {
 
   }
 
   ngAfterViewInit() {
-      window.addEventListener('scroll', function(e){
-        var distanceY = window.pageYOffset || document.documentElement.scrollTop,
-          shrinkOn = 300,
-          header = document.querySelector("header");
-        if (distanceY > shrinkOn) {
-          classie.add(header,"smaller");
-        } else {
-          if (classie.has(header,"smaller")) {
-            classie.remove(header,"smaller");
-          }
-        }
-      })
+  //  window.addEventListener('scroll', function(e){
+  //    var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+  //      shrinkOn = 300,
+  //      header = document.querySelector("header");
+  //    if (distanceY > shrinkOn) {
+  //      classie.add(header,"smaller");
+  //    } else {
+  //      if (classie.has(header,"smaller")) {
+  //        classie.remove(header,"smaller");
+  //      }
+  //    }
+  //  })
 
   }
 }
